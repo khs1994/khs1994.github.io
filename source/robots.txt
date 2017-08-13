@@ -1,0 +1,22 @@
+# hexo robots.txt
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories.html
+Allow: /tags.html
+Allow: /about.html
+Allow: /more/
+
+
+Disallow: /vendors/
+Disallow: /js/
+Disallow: /css/
+Disallow: /fonts/
+Disallow: /vendors/
+Disallow: /fancybox/
+Disallow: /page/
+Disallow: /categories/
+Disallow: /tags/
+Disallow: /archives/page
+
+Sitemap: https://www.khs1994.com/sitemap.xml
