@@ -23,4 +23,10 @@ CI持续集成/CD持续部署由<a href="//travis-ci.org/dashboard" target="_blo
 <!-- tab Wechat -->
 <center>![](//cos.khs1994.com/khs1994/wechat05.jpg)</center>
 <!-- endtab -->
+<!-- tab GitHub -->
+<a href="//github.com/khs1994" target="_block">`https://github.com/khs1994`</a>
+<!-- endtab -->
+<!-- tab 知乎 -->
+<a href="//www.zhihu.com/people/khs1994/activities" target="_block">`https://www.zhihu.com/people/khs1994`</a>
+<!-- endtab -->
 {% endtabs %}

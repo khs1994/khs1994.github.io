@@ -1,10 +1,12 @@
 #!/bin/bash
 
-REPO=git@github.com:khs1994/khs1994.github.io.git
-REPO_ALIYUN=git@code.aliyun.com:khs1994/www.khs1994.git
-ROOT_BRANCH=hexo
+REPO=`repo.php github`
+REPO_ALIYUN=`repo.php aliyun`
 VERSION=v0.0.1
 
+echo `repo.php path`
+echo
+echo
 case $1 in
   generate)
     rm -rf source/_posts
@@ -40,17 +42,22 @@ case $1 in
         rm -rf .git
         git init
         git remote add origin "$REPO" ; git remote add aliyun "$REPO_ALIYUN"
-        git checkout -b "$ROOT_BRANCH"
+        git checkout -b hexo
         git add . ; git commit -m "first"
-        git push -f aliyun "$ROOT_BRANCH"
+        git push -f aliyun hexo
         echo -e "\033[31mINFO\033[0m  $REPO_ALIYUN already push success"
-        git push -f origin "$ROOT_BRANCH"
+        git push -f origin hexo
         echo -e "\033[31mINFO\033[0m  $REPO already push success"
     else
       echo "ERROR"
     fi
     ;;
-
+  git-push)
+  git push -f aliyun hexo
+  echo -e "\033[31mINFO\033[0m  $REPO_ALIYUN already push success"
+  git push -f origin hexo
+  echo -e "\033[31mINFO\033[0m  $REPO already push success"
+  ;;
   init)
     which hexo
     if [ $?=0 ];then
@@ -82,6 +89,7 @@ Options:
 init       : 初始化部署环境(适用于首次搭建Hexo环境)
 generate   : 将源文件复制到[source/_posts]并生成静态文件
 git-init   : 将部署文件的仓库初始化
+git-push   : 将部署文件的仓库推送
 ssh        : [Travis CI]加密SSH密钥
 "
 ;;
