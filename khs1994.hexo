@@ -2,6 +2,7 @@
 
 REPO=`repo.php github`
 REPO_ALIYUN=`repo.php aliyun`
+BRANCH=`repo.php branch`
 VERSION=v0.0.1
 
 echo `repo.php path`
@@ -42,20 +43,20 @@ case $1 in
         rm -rf .git
         git init
         git remote add origin "$REPO" ; git remote add aliyun "$REPO_ALIYUN"
-        git checkout -b hexo
+        git checkout -b $BRANCH
         git add . ; git commit -m "first"
-        git push -f aliyun hexo
+        git push -f aliyun $BRANCH
         echo -e "\033[31mINFO\033[0m  $REPO_ALIYUN already push success"
-        git push -f origin hexo
+        git push -f origin $BRANCH
         echo -e "\033[31mINFO\033[0m  $REPO already push success"
     else
       echo "ERROR"
     fi
     ;;
   git-push)
-  git push -f aliyun hexo
+  git push -f aliyun $BRANCH
   echo -e "\033[31mINFO\033[0m  $REPO_ALIYUN already push success"
-  git push -f origin hexo
+  git push -f origin $BRANCH
   echo -e "\033[31mINFO\033[0m  $REPO already push success"
   ;;
   init)
@@ -77,8 +78,19 @@ case $1 in
 
   themes)
   cd themes
-  mv next next.default
-  git clone git@github.com:iissnan/hexo-theme-next.git next
+  rm -rf next/.git _config.yml
+  cp next/_config.yml .
+  mv _config.yml.default next/_config.yml
+  cd next
+  git init
+  git remote add origin git@github.com:iissnan/hexo-theme-next.git
+  git add .
+  #git commit -m "first"
+  git fetch origin
+  git reset --hard origin/master
+  mv _config.yml ../_config.yml.default
+  cp ../_config.yml .
+  rm -rf .git
   ;;
   *)
     echo  "
@@ -91,6 +103,7 @@ generate   : 将源文件复制到[source/_posts]并生成静态文件
 git-init   : 将部署文件的仓库初始化
 git-push   : 将部署文件的仓库推送
 ssh        : [Travis CI]加密SSH密钥
+themes     ：更新主题
 "
 ;;
 esac
