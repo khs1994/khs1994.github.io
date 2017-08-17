@@ -53,12 +53,14 @@ case $1 in
       echo "ERROR"
     fi
     ;;
+    
   git-push)
   git push -f aliyun $BRANCH
   echo -e "\033[31mINFO\033[0m  $REPO_ALIYUN already push success"
   git push -f origin $BRANCH
   echo -e "\033[31mINFO\033[0m  $REPO already push success"
   ;;
+
   init)
     which hexo
     if [ $?=0 ];then
@@ -92,6 +94,7 @@ case $1 in
   cp ../_config.yml .
   rm -rf .git
   ;;
+
   *)
     echo  "
 hexo khs1994.com 小工具"$VERSION"
@@ -103,7 +106,7 @@ generate   : 将源文件复制到[source/_posts]并生成静态文件
 git-init   : 将部署文件的仓库初始化
 git-push   : 将部署文件的仓库推送
 ssh        : [Travis CI]加密SSH密钥
-themes     ：更新主题
+themes     : 更新主题
 "
 ;;
 esac

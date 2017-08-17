@@ -90,7 +90,7 @@ deploy:
       github: git@github.com:khs1994/khs1994.github.io.git,master
 
 #头像
-avatar: https://cos.khs1994.com/hexo/zhihu_head.jpeg
+#avatar: https://cos.khs1994.com/hexo/zhihu_head.jpeg
 
 sitemap:
 path: sitemap.xml
