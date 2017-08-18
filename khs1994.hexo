@@ -34,7 +34,7 @@ case $1 in
     ;;
 
   git-init)
-    echo -e "this repo is \033[31m$REPO\033[0m ? YES|NO y/n:\c"
+    echo -e "this repo is \033[32m$REPO\033[0m ? YES|NO y/n:\c"
 
     read -p "  " REPO_BOOLE
 
@@ -46,31 +46,31 @@ case $1 in
         git checkout -b $BRANCH
         git add . ; git commit -m "first"
         git push -f aliyun $BRANCH
-        echo -e "\033[31mINFO\033[0m  $REPO_ALIYUN already push success"
+        echo -e "\033[32mINFO\033[0m  $REPO_ALIYUN already push success"
         git push -f origin $BRANCH
-        echo -e "\033[31mINFO\033[0m  $REPO already push success"
+        echo -e "\033[32mINFO\033[0m  $REPO already push success"
     else
       echo "ERROR"
     fi
     ;;
-    
+
   git-push)
   git push -f aliyun $BRANCH
-  echo -e "\033[31mINFO\033[0m  $REPO_ALIYUN already push success"
+  echo -e "\033[32mINFO\033[0m  $REPO_ALIYUN already push success"
   git push -f origin $BRANCH
-  echo -e "\033[31mINFO\033[0m  $REPO already push success"
+  echo -e "\033[32mINFO\033[0m  $REPO already push success"
   ;;
 
   init)
     which hexo
     if [ $?=0 ];then
-      echo -e "\033[31mINFO\033[0m  Hexo-cli already installed"
+      echo -e "\033[32mINFO\033[0m  Hexo-cli already installed"
     else
-      echo -e "\033[31mINFO\033[0m  hexo-cli is installing..."
+      echo -e "\033[32mINFO\033[0m  hexo-cli is installing..."
       npm install -g hexo-cli
       #echo "error"
     fi
-    echo -e "\033[31mINFO\033[0m  Hexo-Plugins is installing..."
+    echo -e "\033[32mINFO\033[0m  Hexo-Plugins is installing..."
     npm install
   ;;
 
@@ -84,14 +84,30 @@ case $1 in
   cp next/_config.yml .
   mv _config.yml.default next/_config.yml
   cd next
-  git init
-  git remote add origin git@github.com:iissnan/hexo-theme-next.git
-  git add .
+  if [ ! -f "git.tar.gz" ];then
+    echo -e "\033[32mINFO\033[0m  git.tar.gz NOT existe"
+    #git.tar.gz不存在
+    git init
+    git remote add origin git@github.com:iissnan/hexo-theme-next.git
+    git add .
+    #git commit -m "first"
+  else
+  echo -e "\033[32mINFO\033[0m  git.tar.gz existe"
+  tar -zxf git.tar.gz
+  fi
+  echo -e "\033[32mINFO\033[0m  ALL branch: "
+  echo
+  git branch -av
+  #git add .
   #git commit -m "first"
+  echo -e "\033[32mINFO\033[0m  fetch origin..."
   git fetch origin
+  echo -e "\033[32mINFO\033[0m  fetch reset..."
   git reset --hard origin/master
   mv _config.yml ../_config.yml.default
   cp ../_config.yml .
+  tar -zcf git.tar.gz .git
+  echo -e "\033[32mINFO\033[0m  rm .git folder..."
   rm -rf .git
   ;;
 
