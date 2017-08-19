@@ -19,8 +19,8 @@ install:
 - ls -la
 #- npm install
 script:
-- ./node_modules/hexo/bin/hexo g
-- ./node_modules/hexo/bin/hexo d
+- npm run generate
+- npm run deploy
 branches:
   only:
   - hexo

@@ -1,6 +1,7 @@
 # Hexo 持续部署
 
-[![Build Status](https://travis-ci.org/khs1994/khs1994.github.io.svg?branch=source)](https://travis-ci.org/khs1994/khs1994.github.io)
+[![Build Status](https://travis-ci.org/khs1994/khs1994.github.io.svg?branch=hexo)](https://travis-ci.org/khs1994/khs1994.github.io)
+[![Website](https://img.shields.io/website-up-down-green-red/https/www.khs1994.com.svg?label=www.khs1994.com)](https://www.khs1994.com)
 
 # 持续集成(Continuous integration) / 持续部署(Continuous deployment)
 
@@ -16,8 +17,8 @@
 ```bash
 $ npm install -g hexo-cli
 
-$ git clone -b source git@github.com:khs1994/khs1994.github.io.git hexo
-$ cd hexo
+$ git clone -b hexo git@github.com:khs1994/khs1994.github.io.git www.khs1994
+$ cd www.khs1994
 $ npm install
 ```
 

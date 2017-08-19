@@ -1,9 +1,14 @@
 {
-  "name": "hexo-site",
-  "version": "0.0.0",
+  "name": "www.khs1994.com",
+  "version": "0.0.1",
+  "author": "khs1994.com",
   "private": true,
   "hexo": {
     "version": "3.3.8"
+  },
+  "scripts": {
+    "generate": "./node_modules/hexo/bin/hexo g",
+    "deploy": "./node_modules/hexo/bin/hexo d"
   },
   "dependencies": {
     "hexo": "^3.3.8",
