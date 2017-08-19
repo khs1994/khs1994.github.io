@@ -15,14 +15,14 @@ case $1 in
 
     echo -e "\033[32mINFO\033[0m  copy post source..."
 
-    cp -r ../docs/* source/_posts/
+    cp -r -p  ../docs/* source/_posts/
     cd source/_posts
     rm -rf _book node_modules .DS_Store *.json *.md .deploy_git
 
     echo -e "\033[32mINFO\033[0m  remove php folder[$PWD/php]"
 
     rm -rf php/*
-    cp -r ../../../php-docs/* php/
+    cp -r -p ../../../php-docs/* php/
 
     echo -e "\033[32mINFO\033[0m  SUCCESS move php-source TO [$PWD/php]"
 
