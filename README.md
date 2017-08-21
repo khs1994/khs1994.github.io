@@ -1,5 +1,7 @@
 # 康怀帅技术博客
 
+[![Join the chat at https://gitter.im/khs1994/khs1994.github.io](https://badges.gitter.im/khs1994/khs1994.github.io.svg)](https://gitter.im/khs1994/khs1994.github.io?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/khs1994/khs1994.github.io.svg?branch=hexo)](https://travis-ci.org/khs1994/khs1994.github.io)
 [![Website](https://img.shields.io/website-up-down-green-red/https/www.khs1994.com.svg?label=www.khs1994.com)](https://www.khs1994.com)
 
