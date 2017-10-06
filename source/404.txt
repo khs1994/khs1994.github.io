@@ -1,0 +1,9 @@
+https://www.khs1994.com/java/maven.html
+https://www.khs1994.com/dev-tools/vim.html
+https://www.khs1994.com/dev-tools/atom/plugins.html
+https://www.khs1994.com/dev-tools/ci/travis-ci-hexo.html
+https://www.khs1994.com/dev-tools/git/github.html
+https://www.khs1994.com/Linux/ubuntu-init.html
+https://www.khs1994.com/PHP/dev-env/apache-php.html
+https://www.khs1994.com/dev-tools/git/README.html
+https://www.khs1994.com/dev-tools/atom.html
