@@ -8,3 +8,4 @@ if [ ! $? = 0 ];then
 else
   #存在
   echo -e "\033[32mINFO\033[0m  BRANCH exist"
+fi
