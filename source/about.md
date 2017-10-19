@@ -1,6 +1,5 @@
 ---
 title: 关于
-date: 2017-02-17 08:29:19
 comments: false
 ---
 
