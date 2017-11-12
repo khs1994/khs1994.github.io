@@ -7,6 +7,7 @@
     "version": "3.4.0"
   },
   "scripts": {
+    "clean": "./node_modules/hexo/bin/hexo clean",
     "generate": "./node_modules/hexo/bin/hexo g",
     "deploy": "./node_modules/hexo/bin/hexo d",
     "version": "./node_modules/hexo/bin/hexo version"
