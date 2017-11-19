@@ -37,9 +37,6 @@ skip_render:
     - '_posts/*/*/source/*'
     - '_posts/*/*/*/source/*'
     - '_posts/*/*/*/*/source/*'
-    - '_posts/php/*.json'
-    - '_posts/php/*.md'
-    - '_posts/php/*.txt'
     - 'more/*'
 
 
