@@ -2,8 +2,8 @@
 Thumbs.db
 db.json
 *.log
-node_modules/
-public/
-.deploy*/
+node_modules
+public
+.deploy*
 package-lock.json
 themes/next/git.tar.gz
