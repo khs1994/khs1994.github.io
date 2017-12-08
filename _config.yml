@@ -81,7 +81,7 @@ theme: next
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
-- type: git
+  type: git
   repo:
       aliyun: git@code.aliyun.com:khs1994/www.khs1994.git,master
       github: git@github.com:khs1994/khs1994.github.io.git,master
