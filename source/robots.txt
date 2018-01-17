@@ -2,11 +2,10 @@
 User-agent: *
 Allow: /
 Allow: /archives/
-Allow: /categories.html
-Allow: /tags.html
-Allow: /about.html
+Allow: /categories/index.html
+Allow: /tags/index.html
+Allow: /about/index.html
 Allow: /more/
-
 
 Disallow: /vendors/
 Disallow: /js/
