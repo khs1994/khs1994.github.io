@@ -17,5 +17,6 @@ Disallow: /page/
 Disallow: /categories/
 Disallow: /tags/
 Disallow: /archives/page
+Disallow: /lib/
 
 Sitemap: https://www.khs1994.com/sitemap.xml
