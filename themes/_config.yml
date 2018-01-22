@@ -50,13 +50,13 @@ footer:
   copyright:
   # -------------------------------------------------------------
   # Hexo link (Powered by Hexo).
-  powered: false
+  powered: true
 
   theme:
     # Theme & scheme info link (Theme - NexT.scheme).
     enable: true
     # Version info of NexT after scheme info (vX.X.X).
-    version: true
+    version: false
   # -------------------------------------------------------------
   # Any custom text can be defined here.
   custom_text: <a target="_block" href="http://www.miitbeian.gov.cn/">晋ICP备16007512号</a> Powered by <a target="_blank" href="//github.com/khs1994-docker/lnmp">khs1994-docker/lnmp</a>
@@ -90,11 +90,11 @@ index_with_subtitle: false
 menu:
   home: / || home
   #about: /about/ || user
+  archives: /archives/ || archive
   categories: /categories/ || th
   tags: /tags/ || tags
   about: /about/ || user
   #categories: /categories/ || th
-  archives: /archives/ || archive
   #schedule: /schedule/ || calendar
   #sitemap: /sitemap.xml || sitemap
   #commonweal: /404/ || heartbeat
@@ -389,9 +389,9 @@ changyan:
 # You can get your appid and appkey from https://leancloud.cn
 # more info please open https://valine.js.org
 valine:
-  enable: false
-  appid:  # your leancloud application appid
-  appkey:  # your leancloud application appkey
+  enable: true
+  appid:  XIHxBRQs1ijkKrdjHvb5DJa7-gzGzoHsz # your leancloud application appid
+  appkey:  GtQLQEn98uwVGhni3IhveGkc # your leancloud application appkey
   notify: false # mail notifier , https://github.com/xCss/Valine/wiki
   verify: false # Verification code
   placeholder: Just go go # comment box placeholder
@@ -411,7 +411,7 @@ valine:
 # Gitment
 # Introduction: https://imsun.net/posts/gitment-introduction/
 gitment:
-  enable: true
+  enable: flase
   mint: true # RECOMMEND, A mint on Gitment, to support count, language and proxy_gateway
   count: true # Show comments count in post meta area
   lazy: false # Comments lazy loading with a button
@@ -419,8 +419,8 @@ gitment:
   language: # Force language, or auto switch by theme
   github_user: khs1994 # MUST HAVE, Your Github Username
   github_repo: khs1994.github.io # MUST HAVE, The name of the repo you use to store Gitment comments
-  client_id: # MUST HAVE, Github client id for the Gitment
-  client_secret: # EITHER this or proxy_gateway, Github access secret token for the Gitment
+  client_id: f61913efb28b5f86b5b2 # MUST HAVE, Github client id for the Gitment
+  client_secret: 1f05705dfd5c99d8ca7f0098c27f55c87daf88a2 # EITHER this or proxy_gateway, Github access secret token for the Gitment
   proxy_gateway: # Address of api proxy, See: https://github.com/aimingoo/intersect
   redirect_protocol: # Protocol of redirect_uri with force_redirect_protocol when mint enabled
 
@@ -563,10 +563,10 @@ busuanzi_count:
 
 
 # Tencent analytics ID
-tencent_analytics: 500439913
+# tencent_analytics: 500439913
 
 # Tencent MTA ID
-# tencent_mta:
+tencent_mta: 500439913
 
 
 # Enable baidu push so that the blog will push the url to baidu automatically which is very helpful for SEO
@@ -641,7 +641,7 @@ label: true
 tabs:
   enable: true
   transition:
-    tabs: false
+    tabs: true
     labels: true
   border_radius: 0
 

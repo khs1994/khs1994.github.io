@@ -6,8 +6,11 @@
 
 <p align="center">«NexT» 是一款风格优雅的高质量 <a href="http://hexo.io">Hexo</a> 主题，自点点滴滴中用爱雕琢而成。</p>
 
+[![lang-image]][lang-url]
 [![gitter-image]][gitter-url]
-[![mnt-image]][commits-url]
+[![riot-image]][riot-url]
+[![t-chat-image]][t-chat-url]
+[![t-news-image]][t-news-url]
 [![travis-image]][travis-url]
 [![rel-image]][releases-url]
 [![hexo-image]][hexo-url]
@@ -32,6 +35,20 @@
    ```
 
 此外，如果你想要使用其他方式，你也可以参见[详细安装步骤][docs-installation-url]。
+
+## 插件
+
+在 NexT 配置中你现在可以找到已经被移至外部仓库的依赖项。你可以在[组织主页](https://github.com/theme-next)中找到它们。
+
+例如，假设你想要在你的站点中使用 `fancybox` 插件，请进入 NexT 配置文件，你会看到如下内容：
+
+```yml
+# Fancybox
+# Dependencies: https://github.com/theme-next/theme-next-fancybox
+fancybox: false
+```
+
+将 `fancybox` 配置项打开，进入它上面的 «Dependencies» 链接以查看它的安装步骤。
 
 ## 更新
 
@@ -65,11 +82,23 @@ $ git pull
 [browser-image]: https://img.shields.io/badge/browser-%20chrome%20%7C%20firefox%20%7C%20opera%20%7C%20safari%20%7C%20ie%20%3E%3D%209-lightgrey.svg
 [browser-url]: https://www.browserstack.com
 
+[lang-image]: https://img.shields.io/badge/languages-15-orange.svg "使用 GitLocalize 添加或改進翻譯!"
+[lang-url]: https://gitlocalize.com/repo/679
+
 [gitter-image]: https://badges.gitter.im/Join%20Chat.svg
 [gitter-url]: https://gitter.im/theme-next
 
+[riot-image]: https://img.shields.io/badge/riot-join%20chat-green.svg
+[riot-url]: https://riot.im/app/#/room/#NexT:matrix.org
+
+[t-chat-image]: https://img.shields.io/badge/telegram-chat-lightgrey.svg
+[t-chat-url]: https://t.me/joinchat/GUNHXA-vZkgSMuimL1VmMw
+
+[t-news-image]: https://img.shields.io/badge/telegram-news-lightgrey.svg
+[t-news-url]: https://t.me/theme_next
+
 [travis-image]: https://travis-ci.org/theme-next/hexo-theme-next.svg?branch=master
-[travis-url]: https://travis-ci.org/theme-next/hexo-theme-next?branch=master "Travis CI"
+[travis-url]: https://travis-ci.org/theme-next/hexo-theme-next?branch=master "Travis CI [Linux]"
 
 [hexo-image]: https://img.shields.io/badge/hexo-%3E%3D%203.0-blue.svg
 [hexo-url]: http://hexo.io
@@ -77,8 +106,9 @@ $ git pull
 [lic-image]: https://img.shields.io/badge/license-%20AGPL-blue.svg
 [lic-url]: https://github.com/theme-next/hexo-theme-next/blob/master/LICENSE.md
 
-[rel-image]: https://img.shields.io/github/release/theme-next/hexo-theme-next.svg
-[mnt-image]: https://img.shields.io/maintenance/yes/2018.svg
+<!--[rel-image]: https://img.shields.io/github/release/theme-next/hexo-theme-next.svg-->
+[rel-image]: https://badge.fury.io/gh/theme-next%2Fhexo-theme-next.svg
+<!--[mnt-image]: https://img.shields.io/maintenance/yes/2018.svg-->
 
 [download-latest-url]: https://github.com/theme-next/hexo-theme-next/archive/master.zip
 [releases-latest-url]: https://github.com/theme-next/hexo-theme-next/releases/latest
@@ -86,6 +116,6 @@ $ git pull
 [tags-url]: https://github.com/theme-next/hexo-theme-next/tags
 [commits-url]: https://github.com/theme-next/hexo-theme-next/commits/master
 
-[docs-installation-url]: https://github.com/theme-next/hexo-theme-next/blob/master/docs/cn/INSTALLATION.md
-[docs-data-files-url]: https://github.com/theme-next/hexo-theme-next/blob/master/docs/cn/DATA-FILES.md
-[docs-update-5-1-x-url]: https://github.com/theme-next/hexo-theme-next/blob/master/docs/cn/UPDATE-FROM-5.1.X.md
+[docs-installation-url]: https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-Hans/INSTALLATION.md
+[docs-data-files-url]: https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-Hans/DATA-FILES.md
+[docs-update-5-1-x-url]: https://github.com/theme-next/hexo-theme-next/blob/master/docs/zh-Hans/UPDATE-FROM-5.1.X.md
