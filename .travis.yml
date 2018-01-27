@@ -20,6 +20,9 @@ script:
 - npm run clean
 - npm run generate
 - npm run deploy
+- docker login -u "$DOCKER_USERNAME" -p "$DOCKER_PASSWORD"
+- docker build -t khs1994/khs1994 .
+- docker push khs1994/khs1994
 branches:
   only:
   - hexo
