@@ -257,8 +257,7 @@ wechat_subscriber:
 # Declare license on posts
 post_copyright:
   enable: true
-  license: CC BY-NC-SA 3.0
-  license_url: https://creativecommons.org/licenses/by-nc-sa/3.0/
+  license: <a href="https://creativecommons.org/licenses/by-nc-sa/3.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 3.0</a>
 
 
 # ---------------------------------------------------------------
@@ -830,4 +829,4 @@ js: js
 images: images
 
 # Theme version
-version: 6.0.1
+version: 6.0.3
