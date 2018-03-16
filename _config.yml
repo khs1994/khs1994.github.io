@@ -10,6 +10,9 @@ author: khs1994
 language: zh-CN
 timezone: Asia/Shanghai
 
+# Set default keywords (Use a comma to separate)
+keywords: "khs1994 khs1994.com 康怀帅"
+
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: https://www.khs1994.com
