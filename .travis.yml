@@ -14,7 +14,8 @@ before_install:
 - echo ServerAliveInterval 60 >> ~/.ssh/config
 - echo StrictHostKeyChecking no >> ~/.ssh/config
 - echo UserKnownHostsFile /dev/null >> ~/.ssh/config
-- ./build.sh git
+- chmod +x ./bin/*
+- ./bin/build.sh git
 install:
 - ls -la
 #- npm install
