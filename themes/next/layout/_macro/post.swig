@@ -37,6 +37,7 @@
     "@id":"{{ config.url }}{{ url_for(post.path) }}",
     "appid":"1582772278694886",
     "title":"{{ post.title }}",
+    "isOriginal":"1",
     "pubDate":"{{ moment(post.date).format('YYYY-MM-DD') }}T{{ moment(post.date).format('HH:mm:ss') }}"
     }
     </script>
