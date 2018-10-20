@@ -9,9 +9,11 @@
 
 
 {% block content %}
-
+  {% include '_custom/xiongzhang_head.swig' %}
   <div id="posts" class="posts-expand">
     {{ post_template.render(page) }}
+    {% include '_custom/xiongzhang_tail.swig' %}
+    {% include '_custom/google_adsense.swig' %}
   </div>
 
 {% endblock %}

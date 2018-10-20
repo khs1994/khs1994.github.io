@@ -22,6 +22,7 @@
     {### PAGE BLOCK ###}
     {##################}
     <div class="post-block page">
+      {% include '_custom/xiongzhang_head.swig' %}
       {% include '_partials/page-header.swig' %}
       {#################}
       {### PAGE BODY ###}

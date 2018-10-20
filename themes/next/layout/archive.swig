@@ -12,6 +12,7 @@
   {### ARCHIVE BLOCK ###}
   {#####################}
   <div class="post-block archive">
+    {% include '_custom/xiongzhang_head.swig' %}
     <div id="posts" class="posts-collapse">
       <span class="archive-move-on"></span>
 

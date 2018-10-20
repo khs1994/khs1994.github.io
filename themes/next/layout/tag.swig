@@ -20,6 +20,7 @@
       </div>
 
       {% for post in page.posts %}
+        {% include '_custom/xiongzhang_head.swig' %}
         {{ post_template.render(post) }}
       {% endfor %}
     </div>

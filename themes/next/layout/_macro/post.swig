@@ -27,6 +27,20 @@
       <meta itemprop="image" content="{{ url_for( theme.avatar.url | default(theme.images + '/avatar.gif') ) }}">
     </span>
 
+    <!--baidu-ldjson-->
+    <!--问题容易出在@id上-->
+    <!--以下是新添加的内容-->
+    <!--http://www.fogsail.net/2018/03/03/20180303/-->
+    <script type="application/ld+json">
+    {
+    "@context":"https://ziyuan.baidu.com/contexts/cambrian.jsonld",
+    "@id":"{{ config.url }}{{ url_for(post.path) }}",
+    "appid":"1582772278694886",
+    "title":"{{ post.title }}",
+    "pubDate":"{{ moment(post.date).format('YYYY-MM-DD') }}T{{ moment(post.date).format('HH:mm:ss') }}"
+    }
+    </script>
+
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
       <meta itemprop="name" content="{{ title }}">
     </span>

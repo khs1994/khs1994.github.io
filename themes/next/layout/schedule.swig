@@ -21,5 +21,6 @@
 {% endblock %}
 
 {% block sidebar %}
+  {% include '_custom/xiongzhang_head.swig' %}
   {{ sidebar_template.render(false) }}
 {% endblock %}
