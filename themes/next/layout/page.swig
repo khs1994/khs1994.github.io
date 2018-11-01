@@ -71,6 +71,7 @@
     {######################}
     {### END PAGE BLOCK ###}
     {######################}
+    {% include '_custom/aliyun.swig' %}
   </div>
 
 {% endblock %}

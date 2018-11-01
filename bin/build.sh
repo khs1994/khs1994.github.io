@@ -4,6 +4,7 @@ DOCS_REPO=https://github.com/khs1994-website/docs.git
 PHP_DOCS_REPO=https://github.com/khs1994-website/php-docs.git
 GO_DOCS_REPO=https://github.com/khs1994-website/go-docs.git
 REPO=https://github.com/khs1994/khs1994.github.io.git
+NEWS_REPO=https://github.com/khs1994-website/news.git
 
 if [ "$1" = git ];then
   git ls-files | while read file; do touch -d $(git log -1 --format="@%ct" "$file") "$file" > /dev/null 2>&1; done
@@ -29,6 +30,14 @@ if [ "$1" = git ];then
   git ls-files | while read file; do touch -d $(git log -1 --format="@%ct" "$file") "$file" > /dev/null 2>&1; done
   rm -rf _book node_modules .DS_Store *.json *.md .deploy_git *.txt .github
   cd ..
+
+  rm -rf news
+  git clone --depth=1 "$NEWS_REPO" news
+  cd news
+  git ls-files | while read file; do touch -d $(git log -1 --format="@%ct" "$file") "$file" > /dev/null 2>&1; done
+  rm -rf _book node_modules .DS_Store *.json *.md .deploy_git *.txt .github
+  cd ..
+
   exit 0
 fi
 
