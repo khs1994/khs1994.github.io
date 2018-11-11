@@ -4,7 +4,7 @@ pipeline:
   install:
     image: khs1994/php:7.2.12-fpm-alpine
     shell: bash
-    command:
+    commands:
       - pwd
       - chmod +x ./bin/*
       - ./bin/build.sh git
