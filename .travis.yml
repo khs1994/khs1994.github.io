@@ -31,9 +31,10 @@ script:
 
 deploy:
   provider: pages
-  local_dir: public
+  local-dir: public
   github-token: $GITHUB_TOKEN
-  target_branch: master
+  target-branch: master
+  skip-clean: true
   on:
     branch: hexo
 
