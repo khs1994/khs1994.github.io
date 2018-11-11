@@ -31,11 +31,6 @@ script:
 branches:
   only:
   - hexo
-env:
-  global:
-  - REPO_DOCS: git@github.com:khs1994-website/docs.git
-  - REPO_PHP_DOCS: git@github.com:khs1994-website/php-docs.git
-  - REPO: git@github.com:khs1994/khs1994.github.io.git
 addons:
   ssh_known_hosts:
   - code.aliyun.com

@@ -1,0 +1,37 @@
+language: node_js
+
+pipeline:
+  install:
+    image: khs1994/php:7.2.12-fpm-alpine
+    shell: bash
+    command:
+      - pwd
+      - chmod +x ./bin/*
+      - ./bin/build.sh git
+
+  script:
+    image: node:alpine
+    commands:
+      - pwd
+      - npm install --production
+      - npx hexo g
+      # - npm hexo deploy
+
+  deploy:
+    image: khs1994/pages
+    shell: bash
+    when:
+      status: success
+      event: [push, tag]
+    environment:
+      - keep_history=true
+      - target_branch=master
+      - git_url=gitee.com/khs1994/khs1994.github.io
+      - local_dir=public
+      - email=khs1994@khs1994.com
+      - name=khs1994
+      # please set `git_token` in settings pages or by pcit cli
+      # - git_token=git_token
+
+branches:
+  include: hexo
