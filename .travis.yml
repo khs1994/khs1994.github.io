@@ -24,10 +24,19 @@ install:
 script:
 - npm run clean
 - npm run generate
-- npm run deploy
+# - npm run deploy
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 - docker build -t khs1994/khs1994 .
 - docker push khs1994/khs1994
+
+deploy:
+  provider: pages
+  local_dir: public
+  github-token: $GITHUB_TOKEN
+  target_branch: master
+  on:
+    branch: hexo
+
 branches:
   only:
   - hexo
