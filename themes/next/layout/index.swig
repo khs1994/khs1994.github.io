@@ -10,12 +10,11 @@
 
 {% block content %}
   <section id="posts" class="posts-expand">
-    {% include '_custom/xiongzhang_head.swig' %}
     {% for post in page.posts %}
       {{ post_template.render(post, true) }}
     {% endfor %}
   </section>
-  {% include '_custom/aliyun.swig' %}
+
   {% include '_partials/pagination.swig' %}
 {% endblock %}
 

@@ -2,7 +2,7 @@ language: node_js
 
 pipeline:
   install:
-    image: khs1994/php:7.2.12-fpm-alpine
+    image: khs1994/php:7.2.13-composer-alpine
     shell: bash
     commands:
       - pwd

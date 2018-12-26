@@ -172,9 +172,6 @@ social_icons:
   enable: true
   icons_only: false
   transition: false
-  # Dependencies: exturl: true in Tags Settings section below.
-  # To encrypt links above use https://www.base64encode.org
-  # Example encoded link: `GitHub: aHR0cHM6Ly9naXRodWIuY29tL3RoZW1lLW5leHQ= || github`
   exturl: false
 
 # Follow me on GitHub banner in right-top corner.
@@ -215,10 +212,12 @@ toc:
   wrap: false
 
 # Creative Commons 4.0 International License.
-# http://creativecommons.org/
+# https://creativecommons.org/share-your-work/licensing-types-examples/
 # Available: by | by-nc | by-nc-nd | by-nc-sa | by-nd | by-sa | zero
-#creative_commons: by-nc-sa
-#creative_commons:
+creative_commons:
+  license: by-nc-sa
+  sidebar: false
+  post: true
 
 sidebar:
   # Sidebar Position, available value: left | right (only for Pisces | Gemini).
@@ -323,11 +322,6 @@ related_posts:
     #isImage: false
     #isExcerpt: false
 
-# Declare license on posts
-post_copyright:
-  enable: true
-  license: <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="external nofollow" target="_blank">CC BY-NC-SA 4.0</a>
-
 # Post edit
 # Dependencies: https://github.com/hexojs/hexo-deployer-git
 post_edit:
@@ -361,16 +355,6 @@ highlight_theme: normal
 
 # Enable "cheers" for archive page.
 cheers_enabled: true
-
-# Manual define the max content width
-# !!Only available for Gemini Scheme currently
-# Leave it empty for the default 75% (suggest not less than 1000px)
-#max_content_width: 1000px
-
-# Manual define the sidebar width
-# !!Only available for Gemini Scheme currently
-# Leave it empty for the default 240
-sidebar_width:
 
 # ---------------------------------------------------------------
 # Font Settings
@@ -842,7 +826,13 @@ pace_theme: pace-theme-minimal
 
 # Canvas-nest
 # Dependencies: https://github.com/theme-next/theme-next-canvas-nest
-canvas_nest: false
+canvas_nest:
+  enable: false
+  onmobile: true # display on mobile or not
+  color: '0,0,255' # RGB values, use ',' to separate
+  opacity: 0.5 # the opacity of line: 0~1
+  zIndex: -1 # z-index property of the background
+  count: 99 # the number of lines
 
 # JavaScript 3D library.
 # Dependencies: https://github.com/theme-next/theme-next-three
