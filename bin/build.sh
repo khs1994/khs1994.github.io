@@ -2,7 +2,6 @@
 
 DOCS_REPO=https://github.com/khs1994-website/docs.git
 PHP_DOCS_REPO=https://github.com/khs1994-website/php-docs.git
-GO_DOCS_REPO=https://github.com/khs1994-website/go-docs.git
 REPO=https://github.com/khs1994/khs1994.github.io.git
 NEWS_REPO=https://github.com/khs1994-website/news.git
 
@@ -20,13 +19,6 @@ if [ "$1" = git ];then
   rm -rf php
   git clone -b gitbook --depth=1 "$PHP_DOCS_REPO" php
   cd php
-  git ls-files | while read file; do touch -d $(git log -1 --format="@%ct" "$file") "$file" > /dev/null 2>&1; done
-  rm -rf _book node_modules .DS_Store *.json *.md .deploy_git *.txt .github
-  cd ..
-
-  rm -rf golang
-  git clone -b gitbook --depth=1 "$GO_DOCS_REPO" golang
-  cd golang
   git ls-files | while read file; do touch -d $(git log -1 --format="@%ct" "$file") "$file" > /dev/null 2>&1; done
   rm -rf _book node_modules .DS_Store *.json *.md .deploy_git *.txt .github
   cd ..
@@ -55,14 +47,6 @@ rm -rf php/*
 cp -a ../../../php-docs/* php/
 echo -e "\033[32mINFO\033[0m  Success move php-source TO [$PWD/php]"
 cd php
-rm -rf _book node_modules .DS_Store *.json *.md .deploy_git *.txt .github
-cd ..
-
-echo -e "\033[32mINFO\033[0m  Remove Golang folder[$PWD/golang]"
-rm -rf golang/*
-cp -a ../../../go-docs/* golang/
-echo -e "\033[32mINFO\033[0m  Success move go-source TO [$PWD/golang]"
-cd golang
 rm -rf _book node_modules .DS_Store *.json *.md .deploy_git *.txt .github
 cd ..
 
