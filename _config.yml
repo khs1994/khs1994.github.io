@@ -3,8 +3,8 @@
 ## Source: https://github.com/hexojs/hexo/
 
 # Site
-title: 康怀帅个人博客
-subtitle: www.khs1994.com
+title: 康怀帅技术博客
+subtitle: blog.khs1994.com
 description: 康怀帅技术博客，包括PHP、Python、Docker、Linux、macOS、数据库、开发工具等内容。欢迎大家访问！
 author: khs1994
 language: zh-CN
@@ -15,7 +15,7 @@ keywords: "khs1994 khs1994.com 康怀帅"
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://www.khs1994.com
+url: https://blog.khs1994.com
 root: /
 permalink: :title.html
 permalink_defaults:
