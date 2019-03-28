@@ -1,6 +1,6 @@
 # 康怀帅技术博客
 
-[![Build Status](https://travis-ci.org/khs1994/khs1994.github.io.svg?branch=hexo)](https://travis-ci.org/khs1994/khs1994.github.io)
+[![Build Status](https://travis-ci.org/khs1994/khs1994.github.io.svg?branch=hexo)](https://travis-ci.org/khs1994/khs1994.github.io) [![Build Status](https://ci.khs1994.com/github/khs1994/khs1994.github.io/status?branch=master)](https://ci.khs1994.com/github/khs1994/khs1994.github.io)
 
 * https://blog.khs1994.com
 
