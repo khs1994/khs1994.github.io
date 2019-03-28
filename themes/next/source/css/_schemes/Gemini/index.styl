@@ -3,8 +3,6 @@
 @import "../Pisces/_menu";
 @import "../Pisces/_sub-menu";
 @import "../Pisces/_sidebar";
-// Import _posts if want to justify text-align on mobile.
-//@import "../Pisces/_posts";
 
 // =================================================
 // Rewrite _layout.styl
@@ -247,8 +245,7 @@ use_seo = hexo-config('seo');
 
     // Components inside Posts.
     .post-button {
-      margin-top: $sidebar-offset;
-      //padding-bottom : 15px;
+      margin: $sidebar-offset 0px;
     }
     img {
       padding: initial !important;
@@ -279,5 +276,4 @@ use_seo = hexo-config('seo');
   .pagination {
     margin: $content-mobile-padding 0 0;
   }
-
 }
