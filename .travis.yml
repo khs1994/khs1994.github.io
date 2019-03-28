@@ -1,8 +1,11 @@
 language: node_js
+
 node_js: stable
+
 cache:
   directories:
   - node_modules
+
 before_install:
 - git config --global user.name "khs1994"
 - git config --global user.email "khs1994@khs1994.com"
@@ -16,18 +19,20 @@ before_install:
 - echo UserKnownHostsFile /dev/null >> ~/.ssh/config
 - chmod +x ./bin/*
 - ./bin/build.sh git
+
 install:
 - ls -la
 #- npm install
 - npm update
 - npm run version
+
 script:
 - npm run clean
 - npm run generate
 # - npm run deploy
 - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-- docker build -t khs1994/khs1994 .
-- docker push khs1994/khs1994
+- docker build -t khs1994/blog .
+- docker push khs1994/blog
 
 deploy:
   provider: pages
@@ -41,6 +46,7 @@ deploy:
 branches:
   only:
   - hexo
+
 addons:
   ssh_known_hosts:
   - code.aliyun.com
