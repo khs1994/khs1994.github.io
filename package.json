@@ -27,6 +27,6 @@
     "hexo-renderer-stylus": "0.3.3"
   },
   "devDependencies": {
-    "hexo-server": "0.3.3"
+    "hexo-server": "1.0.0"
   }
 }
