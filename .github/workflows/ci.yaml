@@ -1,0 +1,38 @@
+on:
+  push:
+    tags:
+    branches:
+    - hexo
+  pull_request:
+
+name: Hexo
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+        with:
+          fetch-depth: 2
+      - name: Fetch md source
+        run: $PWD/bin/build.sh git
+      - name: SSH settings
+        uses: Homebrew/actions/git-ssh@master
+        with:
+          git_user: Kang Huaishuai
+          git_email: khs1994@khs1994.com
+          key_name: key_rsa
+          key: ${{ secrets.SSH_KEY }}
+      - name: Hexo Build
+        uses: docker://khs1994/hexo
+      - name: Hexo Deploy
+        if: github.event_name == 'push'
+        run: |
+          docker run -i --rm \
+            -v $PWD:/srv/hexo-src \
+            -v ~/.ssh:/root/.ssh \
+            -e GIT_USERNAME="Kang Huaishuai" \
+            -e GIT_USEREMAIL=khs1994@khs1994.com \
+            khs1994/hexo \
+            deploy

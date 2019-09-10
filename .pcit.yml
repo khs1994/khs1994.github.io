@@ -6,7 +6,6 @@ pipeline:
     shell: bash
     commands:
       - pwd
-      - chmod +x ./bin/*
       - ./bin/build.sh git
 
   script:
