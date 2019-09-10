@@ -18,6 +18,7 @@ jobs:
       - name: Fetch md source
         run: $PWD/bin/build.sh git
       - name: SSH settings
+        if: github.event_name == 'push'
         uses: Homebrew/actions/git-ssh@master
         with:
           git_user: Kang Huaishuai
