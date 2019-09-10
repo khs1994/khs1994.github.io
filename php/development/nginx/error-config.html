@@ -1,0 +1,1350 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <meta name="msvalidate.01" content="091E32560781583695D5921C69F6EF8B">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="NGINX 配置陷阱。">
+<meta name="keywords" content="NGINX">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NGINX 配置陷阱和常见错误(转载)">
+<meta property="og:url" content="https://blog.khs1994.com/php/development/nginx/error-config.html">
+<meta property="og:site_name" content="康怀帅技术博客">
+<meta property="og:description" content="NGINX 配置陷阱。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-11-11T08:16:02.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NGINX 配置陷阱和常见错误(转载)">
+<meta name="twitter:description" content="NGINX 配置陷阱。">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.khs1994.com/php/development/nginx/error-config.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>NGINX 配置陷阱和常见错误(转载) | 康怀帅技术博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f7e8103e6889b467899735d682c1b6d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">康怀帅技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">blog.khs1994.com</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/khs1994" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.khs1994.com/php/development/nginx/error-config.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="khs1994">
+      <meta itemprop="description" content="康怀帅技术博客，包括PHP、Python、Docker、Linux、macOS、数据库、开发工具等内容。欢迎大家访问！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="康怀帅技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">NGINX 配置陷阱和常见错误(转载)
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2016-09-17 12:00:00" itemprop="dateCreated datePublished" datetime="2016-09-17T12:00:00+08:00">2016-09-17</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-11-11 16:16:02" itemprop="dateModified" datetime="2018-11-11T16:16:02+08:00">2018-11-11</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/" itemprop="url" rel="index"><span itemprop="name">PHP</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/PHP/NGINX/" itemprop="url" rel="index"><span itemprop="name">NGINX</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/php/development/nginx/error-config.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/php/development/nginx/error-config.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/php/development/nginx/error-config.html" class="leancloud_visitors" data-flag-title="NGINX 配置陷阱和常见错误(转载)">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>NGINX 配置陷阱。</p>
+<a id="more"></a>
+
+<p>原文：<a href="https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/" target="_blank" rel="noopener">https://www.nginx.com/resources/wiki/start/topics/tutorials/config_pitfalls/</a></p>
+<p>翻译：<a href="http://www.7rack.info/Nginx-Config-Pitfalls.html" target="_blank" rel="noopener">http://www.7rack.info/Nginx-Config-Pitfalls.html</a></p>
+<h1 id="关于本指南"><a href="#关于本指南" class="headerlink" title="关于本指南"></a>关于本指南</h1><p>最常见的是有人试图从其他指南拷贝配置片段。并非所有的指南是错误的，但绝大部分是有问题的。 甚至 Linode library 的质量也不高，NGINX 社区成员有义务去尝试更正。这些文档由社区成员创建并审核。存在该指南的意义在于社区成员常见及反复出现的问题。</p>
+<!--more-->
+
+<h1 id="我的问题未列出"><a href="#我的问题未列出" class="headerlink" title="我的问题未列出"></a>我的问题未列出</h1><p>你遇到的问题在这里没有看到，也许我们在这里没有指明你经历的问题。不要以为你无缘无故的浏览到该页面，你看到这些是因为你做错的事情列在这里。</p>
+<p>当涉及到支持许多用户的很多问题，社区成员不想去支持未遵守约定的配置。通过阅读以下指南，修复你的配置。</p>
+<h1 id="Chmod-777"><a href="#Chmod-777" class="headerlink" title="Chmod 777"></a>Chmod 777</h1><p>绝不使用 777。它可能是个漂亮的号码，即使在测试中也表现的你没有任何线索在做什么。在整个路径中 查看权限，想想会发生什么。</p>
+<p>轻松的显示路径权限，可以使用：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ namei -om /path/to/check</span><br></pre></td></tr></table></figure>
+
+<h1 id="Root-在-Location-区块"><a href="#Root-在-Location-区块" class="headerlink" title="Root 在 Location 区块"></a>Root 在 Location 区块</h1><h2 id="BAD"><a href="#BAD" class="headerlink" title="BAD"></a>BAD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">server_name</span> www.example.com;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">root</span> /var/www/nginx-default/;</span><br><span class="line">        <span class="comment"># [...]</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="attribute">location</span> /foo &#123;</span><br><span class="line">        <span class="attribute">root</span> /var/www/nginx-default/;</span><br><span class="line">        <span class="comment"># [...]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> /bar &#123;</span><br><span class="line">        <span class="attribute">root</span> /var/www/nginx-default/;</span><br><span class="line">        <span class="comment"># [...]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这有效。把 root 放在 location 区块可以生效而且完全有效。错误之处在于开始添加 location 区块，如果你在每个 location 区块添加 root 指令，没有匹配 location 区块将没有 root。下面看看正确的配置。</p>
+<h2 id="GOOD"><a href="#GOOD" class="headerlink" title="GOOD"></a>GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">server_name</span> www.example.com;</span><br><span class="line">    <span class="attribute">root</span> /var/www/nginx-default/;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="comment"># [...]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> /foo &#123;</span><br><span class="line">        <span class="comment"># [...]</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> /bar &#123;</span><br><span class="line">        <span class="comment"># [...]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="多重-Index-指令"><a href="#多重-Index-指令" class="headerlink" title="多重 Index 指令"></a>多重 Index 指令</h1><h2 id="BAD-1"><a href="#BAD-1" class="headerlink" title="BAD"></a>BAD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">index</span> index.php index.htm index.html;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">server_name</span> www.example.com;</span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">index</span> index.php index.htm index.html;</span><br><span class="line">            <span class="comment"># [...]</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">server_name</span> example.com;</span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="attribute">index</span> index.php index.htm index.html;</span><br><span class="line">            <span class="comment"># [...]</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="attribute">location</span> /foo &#123;</span><br><span class="line">            <span class="attribute">index</span> index.php;</span><br><span class="line">            <span class="comment"># [...]</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>为什么在不需要时重复那么多行。简单的使用一次 index 指令。仅仅需要添加到 http{} 区块，将会被继承。</p>
+<h2 id="GOOD-1"><a href="#GOOD-1" class="headerlink" title="GOOD"></a>GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">http</span> &#123;</span><br><span class="line">    <span class="attribute">index</span> index.php index.htm index.html;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">server_name</span> www.example.com;</span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="comment"># [...]</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="section">server</span> &#123;</span><br><span class="line">        <span class="attribute">server_name</span> example.com;</span><br><span class="line">        <span class="attribute">location</span> / &#123;</span><br><span class="line">            <span class="comment"># [...]</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="attribute">location</span> /foo &#123;</span><br><span class="line">            <span class="comment"># [...]</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="使用-If"><a href="#使用-If" class="headerlink" title="使用 If"></a>使用 If</h1><p>有几个页面介绍使用 if 语句。它叫做 IfIsEvil，你真的应该看看。让我们看看使用 if 的坏处。<a href="https://www.nginx.com/resources/wiki/start/topics/depth/ifisevil/" target="_blank" rel="noopener">If Is Evil</a></p>
+<h1 id="Server-Name-if"><a href="#Server-Name-if" class="headerlink" title="Server Name (if)"></a>Server Name (if)</h1><h2 id="BAD-2"><a href="#BAD-2" class="headerlink" title="BAD"></a>BAD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">server_name</span> example.com <span class="regexp">*.example.com</span>;</span><br><span class="line">        <span class="attribute">if</span> (<span class="variable">$host</span> <span class="regexp">~* ^www\.(.+))</span> &#123;</span><br><span class="line">            <span class="attribute">set</span> <span class="variable">$raw_domain</span> <span class="variable">$1</span>;</span><br><span class="line">            <span class="attribute">rewrite</span><span class="regexp"> ^/(.*)$</span> <span class="variable">$raw_domain</span>/<span class="variable">$1</span> <span class="literal">permanent</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment"># [...]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里有3个问题。第一个是 if，我们关心的。当 NGINX 接受一个请求不管是子域名 <a href="http://www.example.com" target="_blank" rel="noopener">www.example.com</a> 还是 example.com，if 指令总是会判断。因为你要求 NGINX 检查每个请求的 Host 头。 这样效率低下，你应该避免。像下面一样使用 2 个 server 指令。</p>
+<h2 id="GOOD-2"><a href="#GOOD-2" class="headerlink" title="GOOD"></a>GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">server_name</span> www.example.com;</span><br><span class="line">    <span class="attribute">return</span> <span class="number">301</span> <span class="variable">$scheme</span>://example.com<span class="variable">$request_uri</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">server_name</span> example.com;</span><br><span class="line">    <span class="comment"># [...]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>除了配置文件更易于阅读，这种方法减少 NGINX 处理需求。我们摆脱了虚假的 if，同时使用 $scheme,没有硬编码 URI 的结构，可以是 http 或者 https。</p>
+<h1 id="检查文件-if-存在"><a href="#检查文件-if-存在" class="headerlink" title="检查文件 (if) 存在"></a>检查文件 (if) 存在</h1><p>使用 if 去检查文件是否存在是糟糕的。如果你使用最新版本的 NGINX ，应该看看 try_files,更易使用。</p>
+<h2 id="BAD-3"><a href="#BAD-3" class="headerlink" title="BAD"></a>BAD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">root</span> /var/www/example.com;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">if</span> (!-f <span class="variable">$request_filename</span>) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="GOOD-3"><a href="#GOOD-3" class="headerlink" title="GOOD"></a>GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">root</span> /var/www/example.com;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里我们判断 $uri 是否存在不再需要 if。使用 try_files 意味着可以依序测试。 如果 $uri 不存在，尝试 $uri/，如果还不存在，尝试备用的 location。</p>
+<p>在这个案例中，会先查看 $uri 文件是否存在，存在就返回。如果不存在，就检查该目录是否存在。 如果不存在，将返回 index.html,你必须确定存在该文件。</p>
+<h1 id="Front-Controller-模式-WEB-应用"><a href="#Front-Controller-模式-WEB-应用" class="headerlink" title="Front Controller 模式 WEB 应用"></a>Front Controller 模式 WEB 应用</h1><p>“Front Controller 模式”设计是受欢迎的，且用在许多最流行的 PHP 软件包中。 很多实例比应有的更复杂。让 Drupal, Joomla 等运行，使用：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.php?q=<span class="variable">$uri</span>&amp;<span class="variable">$args</span>;</span><br></pre></td></tr></table></figure>
+
+<p>注解 - 参数名称根据你使用的包是不同的。例如</p>
+<ul>
+<li>“q” 是 Drupal、Joomla、WordPress 使用的参数</li>
+<li>“page” 是 CMS Made Simple 使用的参数</li>
+</ul>
+<p>一些软件甚至不用查询字符串，而且可以从 REQUEST_URI 读取（ WordPress 支持，例如）：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.php;</span><br></pre></td></tr></table></figure>
+
+<p>当然你的情况可能不同，你可能根据需求添加复杂的规则，但一个基本的网站，这些将完美的工作。 你可以从简单的开始。</p>
+<p>如果你不在乎目录是否存在，你也可以决定跳过目录检查，从中删除 $uri/。</p>
+<h1 id="把不受控制的请求给-PHP"><a href="#把不受控制的请求给-PHP" class="headerlink" title="把不受控制的请求给 PHP"></a>把不受控制的请求给 PHP</h1><p>很多对 PHP 的 NGINX 配置样例把每个以 .php 结尾的 URI 给 PHP 解释器。请注意在大多数 PHP 设置中，这将是个严重的安全问题，因为它允许任意第三方代码执行。</p>
+<p>出问题的区域通常如下：</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">fastcgi_pass</span> backend;</span><br><span class="line">    <span class="comment"># [...]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>这里每一个以 .php 结尾文件的请求将会给 FastCGI 后端。 这里的问题是如果全路径并不指向文件系统上实际的文件，默认的 PHP 配置会试图猜测你需要执行哪个文件。</p>
+<p>例如，如果请求不存在的文件 /forum/avatar/1232.jpg/file.php，但 /forum/avatar/1232.jpg 存在， PHP 解释器将处理 /forum/avatar/1232.jpg。如果它包含 PHP 代码，这段代码将相应的执行。</p>
+<p>下面的选项可以避免上述情况：</p>
+<ul>
+<li>在 php.ini 中设置 cgi.fix_pathinfo=0。使得 PHP 解释器仅尝试给出的路径，如果文件没有找到就停止处理。</li>
+<li>保证 NGINX 仅传给后端指定的 PHP</li>
+</ul>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">location</span> <span class="regexp">~* (file_a|file_b|file_c)\.php$</span> &#123;</span><br><span class="line">    <span class="attribute">fastcgi_pass</span> backend;</span><br><span class="line">    <span class="comment"># [...]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">   <span class="comment"># 特别地在任何包含用户上传的目录中禁用 PHP 文件的执行</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">location</span> /uploaddir &#123;</span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;<span class="attribute">return</span> <span class="number">403</span>;&#125;</span><br><span class="line">    <span class="comment"># [...]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用try_files指令过滤</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~* \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">try_files</span> <span class="variable">$uri</span> =<span class="number">404</span>;</span><br><span class="line">    <span class="attribute">fastcgi_pass</span> backend;</span><br><span class="line">    <span class="comment"># [...]</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment"># 使用嵌套的 location 过滤</span></span><br><span class="line"></span><br><span class="line"><span class="attribute">location</span> <span class="regexp">~* \.php$</span> &#123;</span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ \..*/.*\.php$</span> &#123;<span class="attribute">return</span> <span class="number">404</span>;&#125;</span><br><span class="line">    <span class="attribute">fastcgi_pass</span> backend;</span><br><span class="line">    <span class="comment"># [...]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Script-Filename-中的-FastCGI-Path"><a href="#Script-Filename-中的-FastCGI-Path" class="headerlink" title="Script Filename 中的 FastCGI Path"></a>Script Filename 中的 FastCGI Path</h1><p>一些指南倾向使用绝对路径得到信息。这在 PHP 区块很常见。当你从源安装 NGINX ，通常你能够把 include fastcgi_params;加入到配置中。该文件通常在 NGINX 配置目录/etc/nginx/。</p>
+<h2 id="GOOD-4"><a href="#GOOD-4" class="headerlink" title="GOOD"></a>GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fastcgi_param</span>  SCRIPT_FILENAME    <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="BAD-4"><a href="#BAD-4" class="headerlink" title="BAD"></a>BAD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">fastcgi_param</span>  SCRIPT_FILENAME    /var/www/yoursite.com/<span class="variable">$fastcgi_script_name</span>;</span><br></pre></td></tr></table></figure>
+
+<p>$document_root在哪里设置？是通过 root 指令在 server 区块设置。root 指令没有配置？看看 第一个陷阱。</p>
+<h1 id="繁杂的-Rewrites"><a href="#繁杂的-Rewrites" class="headerlink" title="繁杂的 Rewrites"></a>繁杂的 Rewrites</h1><p>不要感觉糟糕，正则表达式容易让人困惑。实际上，我们应该努力保持整洁、简单，不增加繁琐的东西，这容易做到。</p>
+<h2 id="BAD-5"><a href="#BAD-5" class="headerlink" title="BAD"></a>BAD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rewrite</span><span class="regexp"> ^/(.*)$</span> http://example.com/<span class="variable">$1</span> <span class="literal">permanent</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="GOOD-5"><a href="#GOOD-5" class="headerlink" title="GOOD"></a>GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rewrite</span><span class="regexp"> ^</span> http://example.com<span class="variable">$request_uri</span>? <span class="literal">permanent</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="BETTER"><a href="#BETTER" class="headerlink" title="BETTER"></a>BETTER</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">return</span> <span class="number">301</span> http://example.com<span class="variable">$request_uri</span>;</span><br></pre></td></tr></table></figure>
+
+<p>第一个 rewrite 捕获在第一个/之后的 URI。通过使用内建变量 $request_uri，我们可以有效的避免做任何捕获或者匹配。</p>
+<h1 id="Rewrite-丢失-http"><a href="#Rewrite-丢失-http" class="headerlink" title="Rewrite 丢失 http://"></a>Rewrite 丢失 http://</h1><p>rewrite 是简单，记得添加scheme。</p>
+<h2 id="BAD-6"><a href="#BAD-6" class="headerlink" title="BAD"></a>BAD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rewrite</span><span class="regexp"> ^</span> example.com <span class="literal">permanent</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="GOOD-6"><a href="#GOOD-6" class="headerlink" title="GOOD"></a>GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">rewrite</span><span class="regexp"> ^</span> http://example.com <span class="literal">permanent</span>;</span><br></pre></td></tr></table></figure>
+
+<p>在上面可以看到，我们在 rewrite 添加了http://。简单有效。</p>
+<h1 id="代理一切"><a href="#代理一切" class="headerlink" title="代理一切"></a>代理一切</h1><h2 id="BAD-7"><a href="#BAD-7" class="headerlink" title="BAD"></a>BAD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">server_name</span> _;</span><br><span class="line">    <span class="attribute">root</span> /var/www/site;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">include</span> fastcgi_params;</span><br><span class="line">        <span class="attribute">fastcgi_param</span> SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span> unix:/tmp/phpcgi.socket;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>令人讨厌的，在这种情况下把所有的请求都给 PHP 处理。为什么？Apache 也许是这样做，但你不必。让我这么说吧… try_files 指令存在的原因，它按特定的顺序尝试文件。意味着 NGINX 可以先尝试提供静态内容。如果不能，继续尝试。 这样 PHP 根本不参与，快的多。特别是如果你通过 PHP 提供 1MB 图片的时间是直接提供的1000倍，让我们看看该怎么做。</p>
+<h2 id="GOOD-7"><a href="#GOOD-7" class="headerlink" title="GOOD"></a>GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">server_name</span> _;</span><br><span class="line">    <span class="attribute">root</span> /var/www/site;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ <span class="variable">@proxy</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> <span class="variable">@proxy</span> &#123;</span><br><span class="line">        <span class="attribute">include</span> fastcgi_params;</span><br><span class="line">        <span class="attribute">fastcgi_param</span> SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span> unix:/tmp/phpcgi.socket;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="Also-GOOD"><a href="#Also-GOOD" class="headerlink" title="Also GOOD"></a>Also GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">server_name</span> _;</span><br><span class="line">    <span class="attribute">root</span> /var/www/site;</span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.php;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="attribute">location</span> <span class="regexp">~ \.php$</span> &#123;</span><br><span class="line">        <span class="attribute">include</span> fastcgi_params;</span><br><span class="line">        <span class="attribute">fastcgi_param</span> SCRIPT_FILENAME <span class="variable">$document_root</span><span class="variable">$fastcgi_script_name</span>;</span><br><span class="line">        <span class="attribute">fastcgi_pass</span> unix:/tmp/phpcgi.socket;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>很简单，是不是？如果请求的 URI 存在，NGINX 直接提供。如果不存在，检查目录是否存在。如果不存在，传递给你的代理。 只有当 NGINX 不能直接服务请求的 URI，你的代理将参与开销。</p>
+<p>现在想想你的多少请求是静态资源，比如 images、css、javascript 等。你可能节省很多开销。</p>
+<h1 id="配置更改没有生效"><a href="#配置更改没有生效" class="headerlink" title="配置更改没有生效"></a>配置更改没有生效</h1><p>浏览器缓存。你的配置也许是很棒的，但你会坐在那，撞墙一个月。问题出在你的浏览器缓存。 当你下载了东西，你的浏览器会保存下来。同时也保存了文件是如何提供的。如果你配置有 types 区块，你会遇到这情况。</p>
+<p>处理方法：</p>
+<ul>
+<li>在 Firefox 浏览器中按 Ctrl+Shift+Delete，检查缓存，点击 Clear Now。其他浏览器，可搜索下方法。 每次更改之后都清除下，会为你节省不少麻烦。</li>
+<li>使用 curl。</li>
+</ul>
+<h1 id="VirtualBox"><a href="#VirtualBox" class="headerlink" title="VirtualBox"></a>VirtualBox</h1><p>如果这不起作用,而且你在 VirtualBox 中的虚拟机中运行 NGINX，也许是 sendfile()引起的问题。 简单的注释掉 sendfile 指令，或者设置为 off。</p>
+<p>sendfile off;</p>
+<h1 id="缺失的-HTTP-头"><a href="#缺失的-HTTP-头" class="headerlink" title="缺失的 HTTP 头"></a>缺失的 HTTP 头</h1><p>如果你没有明确的设置 underscores_in_headers on，NGINX 将会默默地忽略掉带有下划线的头信息（根据 HTTP 标准是完全有效的）。 这样做为了防止头信息映射到 CGI 变量过程中破折号和下划线都映射成下划线引起歧义。</p>
+<h1 id="没有使用标准的-Document-Root-Locations"><a href="#没有使用标准的-Document-Root-Locations" class="headerlink" title="没有使用标准的 Document Root Locations"></a>没有使用标准的 Document Root Locations</h1><p>有些目录在任何文件系统中不应该用于托管数据。其中包括 <code>/</code> 和 <code>/root</code>。你不应该使用这些作为网站根目录。</p>
+<p>这样作让你的隐私数据毫无预期的返回给请求。</p>
+<p>永远不要这样做！！！</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">root</span> /;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">try_files</span> /web/<span class="variable">$uri</span> <span class="variable">$uri</span> <span class="variable">@php</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> <span class="variable">@php</span> &#123;</span><br><span class="line">        <span class="comment"># [...]</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>当一个请求 /foo，因为文件找不到将代理到 php 。这看起来正常，直到请求 /etc/passwd。是的，你给了服务器上所有用户列表。 在某些情况下，Nginx 服务器进程被设置以 root 用户运行。是的，我们现在有你的用户列表以及密码 hash 密码，以及如何 hash 的。</p>
+<p>文件系统层级标准定义了数据应该存在哪里。你应该看看。 简而言之，你的 web 内容可以存放在/var/www/、/srv、/usr/share/www。</p>
+<h1 id="使用默认的-Document-Root"><a href="#使用默认的-Document-Root" class="headerlink" title="使用默认的 Document Root"></a>使用默认的 Document Root</h1><p>Ubuntu、Debian 等其他操作系统中 NGINX 包，作为易于安装的包会提供默认的配置文件用作一个例子，而且会包含网站根目录存储基本的 HTML 文件。</p>
+<p>多数系统包不检查默认的 Document Root中文件是否存在或者修改。这样会在软件包升级时导致代码丢失。经验丰富的系统管理员没有期望在 升级期间默认的 document root 内容保持不变。</p>
+<p>你不应该对将网站的关键文件使用默认的 document root。在你的系统升级或者更新 NGINX 包时有很大可能性会导致默认的 document root 内容会改变。</p>
+<h1 id="使用-Hostname-去解析地址"><a href="#使用-Hostname-去解析地址" class="headerlink" title="使用 Hostname 去解析地址"></a>使用 Hostname 去解析地址</h1><h2 id="BAD-8"><a href="#BAD-8" class="headerlink" title="BAD"></a>BAD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> &#123;</span><br><span class="line">    <span class="attribute">server</span> http://someserver;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> myhostname:<span class="number">80</span>;</span><br><span class="line">    <span class="comment"># [...]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>你不应该在 listen 指令中使用 hostname。也许这样有效，也将会有大量的问题。 其中一个问题是在服务启动或者重启时 hostname 不能解析。这会引起 NGINX 无法绑定到特定的 TCP 端口，最终 NGINX 启动失败。</p>
+<p>更安全的做法是知道需要绑定的 IP 地址，并使用 IP 而不是 hostname。 阻止 NGINX 需要查找 IP ，不依赖内部或者外部的解析。</p>
+<p>upstream 区块也有同样的问题。并不是总要在 upstream 区块避免使用 hostname，这不是好的做法，使用时要考虑清楚。</p>
+<h2 id="GOOD-8"><a href="#GOOD-8" class="headerlink" title="GOOD"></a>GOOD</h2><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">upstream</span> &#123;</span><br><span class="line">    <span class="attribute">server</span> http://10.48.41.12;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">127.0.0.16:80</span>;</span><br><span class="line">    <span class="comment"># [...]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="HTTPS-中使用-SSLv3"><a href="#HTTPS-中使用-SSLv3" class="headerlink" title="HTTPS 中使用 SSLv3"></a>HTTPS 中使用 SSLv3</h1><p>由于 SSLv3 的 POODLE 漏洞，建议在 SSL 的网站不启用 SSLv3。你可以很简单的禁用 SSLv3，只提供 TLS 协议。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ssl_protocols</span> TLSv1 TLSv1.<span class="number">1</span> TLSv1.<span class="number">2</span>;</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/NGINX/" rel="tag"># NGINX</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/php/development/nginx/config.html" rel="next" title="NGINX 配置">
+                <i class="fa fa-chevron-left"></i> NGINX 配置
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/php/development/nginx/https.html" rel="prev" title="NGINX HTTPS 配置">
+                NGINX HTTPS 配置 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">晋ICP备16007512号 </a>&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">khs1994</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+  <div class="footer-custom">LNMP by <a href="https://github.com/khs1994-docker/lnmp" class="theme-link" rel="noopener" target="_blank">khs1994-docker/lnmp</a></div>
+
+
+        
+
+
+  <script>
+    var _mtac = {};
+    (function() {
+      var mta = document.createElement("script");
+      mta.src = "https://pingjs.qq.com/h5/stats.js";
+      mta.setAttribute("name", "MTAH5");
+      mta.setAttribute("sid", "500439913");
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(mta, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: 'XIHxBRQs1ijkKrdjHvb5DJa7-gzGzoHsz',
+    appKey: 'GtQLQEn98uwVGhni3IhveGkc',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

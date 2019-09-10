@@ -1,0 +1,2132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <url>
+    <loc>https://blog.khs1994.com/about/index.html</loc>
+    
+    <lastmod>2019-09-10T15:40:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/categories/index.html</loc>
+    
+    <lastmod>2019-09-10T15:40:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tags/index.html</loc>
+    
+    <lastmod>2019-09-10T15:40:48.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/compare.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cloud/minio.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cms/netlify.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cms/pages.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/build-image.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/cloud.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/compose-mirror.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/compose.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/development.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/docker_practice.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/dockerd.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/dockerfile.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/issues.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/linuxkit.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/lnmp.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/mac_docker_api.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/machine.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/manage-application-data.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/multistage-builds.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/network.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/overview.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/production.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/prune.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/registry-config.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/registry.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/store.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/swarm.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/wsl-run-docker-cli.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/cn.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/git-svn.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/gitbook.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/gitlab.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/gogs.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/lfs.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/svn.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/golang/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/alpine.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/ansible.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/centos.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/crontab.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/download.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/fedora.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/ubuntu.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/macos/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/macos/brew.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/macos/gdb.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/macos/story3.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/nodejs/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/nodejs/npm.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/nodejs/yarn.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/python/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/python/basic.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/python/mysql.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/python/oop.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/raspberry-pi3/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/raspberry-pi3/arm64v8.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/raspberry-pi3/build-kernel.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/raspberry-pi3/docker.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/raspberry-pi3/mysql.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/aria2.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/atom.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/editorconfig.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/firefox.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/hyper.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/postman.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/sqlectron.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/terminal-rec.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/vim.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/tools/youget.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/vm/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/vm/ubuntu-efi.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/vm/xhyve.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/dom.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/form.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/macos/story.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/macos/story2.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/memcached/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/memcached/quickstart.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/cluster.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/config.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/hash.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/key.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/list.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/other.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/persistence.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/sentinel.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/replication.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/set.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/sorted-set.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cache/redis/string.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/codecov/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/drone/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/drone/gitbook.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/drone/hexo.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/drone/php.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/drone/usage.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/jenkins/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/pcit/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/pcit/microservice.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/pcit/nodejs.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/pcit/why.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/styleci/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/travis-ci/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/travis-ci/gitbook.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/ci/travis-ci/hexo.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cms/hexo/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cms/typecho/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/cms/wordpress/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mongodb/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mongodb/config.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mongodb/quickstart.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/alter.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/cluster.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/config.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/create.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/function.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/insert_update.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/join.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/mysql-index.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/mysqldump.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/nosql.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/remote.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/select.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/types.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/postgresql/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/postgresql/config.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/boot-ipxe.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/boot-pxe-new.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/configuration-v2_2-experimental.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/etcd.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/ignition.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/install-disk-new.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/install-server.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/migrating-from-fleet-to-kubernetes.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/coreos/update.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/k8s/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/k8s/helm.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/k8s/install.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/k8s/kubectl-cn-mirror.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/k8s/minikube.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/rkt/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/github/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/git/github/api.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/delete.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/drop.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/database/mysql/engine.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/css/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/css/less_sass.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/fish-shell/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/fish-shell/completion.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/network/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/package_management/apk.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/package_management/apt.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/package_management/yum.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/server/dhcp.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/server/dns.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/server/email.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/server/pxe.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/shell/date.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/shell/echo-read.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/shell/function.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/shell/if-case-etc.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/shell/patch.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/shell/set.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/ssh/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/ssh/proxy.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/ssl/cfssl.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/ssl/file-enc.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/systemd/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/systemd/journal.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/systemd/timer.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/other/android/android-studio-linux32.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/other/android/nexus.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/other/c/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/other/ios/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/other/java/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/other/java/gradle.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/other/java/maven.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/other/powershell/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/other/swift/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/python/django/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/vm/hyperv/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/ajax.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/eslint.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/html.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/jquery.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/object.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/oop.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/pm2.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/react.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/webAssembly.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/vue.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/webpack.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/ssl/https/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/linux/ssl/https/self-signed-ssl-certificates.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/html/js/typescript/README.html</loc>
+    
+    <lastmod>2018-12-26T02:24:17.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/auth/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/auth/encrypt.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/auth/jwt.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/auth/oauth.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/cli.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/const.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/control_structures.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/cookie.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/curl.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/date.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/error_exception.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/function.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/json_xml.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/namespace.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/outcontrol.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/pcntl.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/session.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/shell.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/sse.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/storage.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/variables_constants.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/websocket.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/composer/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/design_pattern/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/build.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/config.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/configure.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/docker.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/extension.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/mnamp.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/phpstorm-docker.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/wnamp.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/wsl.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/xdebug.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/http/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/doctrineCache.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/dotenv.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/guzzle.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/monolog.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/php-pm.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/php-cs-fixer.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/phpmailer.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/pimple.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/library/sami.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/oop/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/oop/abstract.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/oop/interface.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/oop/override.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/oop/polymorphism.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/oop/trait.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/phpdoc/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/phpdoc/tag.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/phpunit/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/phpunit/database.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/phpunit/mock.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/rabbitmq/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/restful/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/spl/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/gd/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/pdo/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/preg/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/types/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/types/array.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/types/string.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/design_pattern/container/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/apache/build.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/apache/config.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/apache/php.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/nginx/build.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/nginx/config.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/nginx/configure.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/nginx/error-config.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/nginx/https.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/nginx/lets-encrypt.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/development/nginx/unit.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/framework/laravel/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/framework/laravel/env.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/framework/laravel/ide.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/framework/thinkphp/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/release/7.0/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/release/7.1/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/release/7.2/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/release/7.2/mcrypt.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/basic/pdo/mysql/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/framework/laravel/database/README.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/php/framework/laravel/database/create.html</loc>
+    
+    <lastmod>2018-11-11T08:16:02.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/news/2017/lnmp-docker.html</loc>
+    
+    <lastmod>2018-10-22T02:34:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/news/2018/pcit.html</loc>
+    
+    <lastmod>2018-10-22T02:34:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/news/2018/tencent-ai.html</loc>
+    
+    <lastmod>2018-10-22T02:34:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/news/2018/tencent-mail.html</loc>
+    
+    <lastmod>2018-10-22T02:34:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/news/2018/work.html</loc>
+    
+    <lastmod>2018-10-22T02:34:24.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://blog.khs1994.com/docker/docker-with-k8s.html</loc>
+    
+    <lastmod>2018-06-01T05:00:00.000Z</lastmod>
+    
+  </url>
+  
+</urlset>

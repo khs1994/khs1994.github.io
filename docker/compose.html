@@ -1,0 +1,1471 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <meta name="msvalidate.01" content="091E32560781583695D5921C69F6EF8B">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Define application stacks built using multiple containers, services, and swarm configurations. GitHub: https://github.com/docker/compose">
+<meta name="keywords" content="Docker">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Docker Compose version 3 使用详解">
+<meta property="og:url" content="https://blog.khs1994.com/docker/compose.html">
+<meta property="og:site_name" content="康怀帅技术博客">
+<meta property="og:description" content="Define application stacks built using multiple containers, services, and swarm configurations. GitHub: https://github.com/docker/compose">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-26T02:24:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Docker Compose version 3 使用详解">
+<meta name="twitter:description" content="Define application stacks built using multiple containers, services, and swarm configurations. GitHub: https://github.com/docker/compose">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.khs1994.com/docker/compose.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Docker Compose version 3 使用详解 | 康怀帅技术博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f7e8103e6889b467899735d682c1b6d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">康怀帅技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">blog.khs1994.com</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/khs1994" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.khs1994.com/docker/compose.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="khs1994">
+      <meta itemprop="description" content="康怀帅技术博客，包括PHP、Python、Docker、Linux、macOS、数据库、开发工具等内容。欢迎大家访问！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="康怀帅技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Docker Compose version 3 使用详解
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-08-04 12:00:00" itemprop="dateCreated datePublished" datetime="2017-08-04T12:00:00+08:00">2017-08-04</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-26 10:24:17" itemprop="dateModified" datetime="2018-12-26T10:24:17+08:00">2018-12-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/Docker/" itemprop="url" rel="index"><span itemprop="name">Docker</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/docker/compose.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/docker/compose.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/docker/compose.html" class="leancloud_visitors" data-flag-title="Docker Compose version 3 使用详解">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Define application stacks built using multiple containers, services, and swarm configurations.</p>
+<p>GitHub: <a href="https://github.com/docker/compose" target="_blank" rel="noopener">https://github.com/docker/compose</a></p>
+<a id="more"></a>
+
+<h1 id="install"><a href="#install" class="headerlink" title="install"></a>install</h1><p>Docker CE for Windows 10 、Docker CE for Mac 自带 <code>docker-compose</code>，官方建议随 Docker 版本升级。</p>
+<p>Linux 请在 <a href="https://github.com/docker/compose/releases" target="_blank" rel="noopener">GitHub releases</a> 处下载二进制文件，移入 <code>PATH</code> 并赋予可执行权限。</p>
+<p>或者执行以下命令进行下载安装。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$ DOCKER_COMPOSE_VERSION=1.18.0</span><br><span class="line"></span><br><span class="line">$ curl -L https://github.com/docker/compose/releases/download/<span class="variable">$&#123;DOCKER_COMPOSE_VERSION&#125;</span>/docker-compose-`uname -s`-`uname -m` &gt; docker-compose</span><br><span class="line"></span><br><span class="line">$ chmod +x docker-compose</span><br><span class="line"></span><br><span class="line">$ sudo mv docker-compose /usr/<span class="built_in">local</span>/bin</span><br><span class="line"></span><br><span class="line">$ docker-compose --version</span><br></pre></td></tr></table></figure>
+
+<p>或者通过 <code>Python</code> 包管理工具 <code>pip</code> 安装。</p>
+<h2 id="Command-line-completion"><a href="#Command-line-completion" class="headerlink" title="Command-line completion"></a>Command-line completion</h2><h3 id="fish"><a href="#fish" class="headerlink" title="fish"></a>fish</h3><p><code>~/.config/fish/completions</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wget https://raw.githubusercontent.com/docker/compose/master/contrib/completion/fish/docker-compose.fish</span><br></pre></td></tr></table></figure>
+
+<h3 id="bash"><a href="#bash" class="headerlink" title="bash"></a>bash</h3><p>官方文档：<a href="https://docs.docker.com/compose/completion/" target="_blank" rel="noopener">https://docs.docker.com/compose/completion/</a></p>
+<h1 id="Compose-file-reference"><a href="#Compose-file-reference" class="headerlink" title="Compose file reference"></a>Compose file reference</h1><h2 id="build"><a href="#build" class="headerlink" title="build"></a>build</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  webapp:</span></span><br><span class="line"><span class="attr">    build:</span></span><br><span class="line">      <span class="comment"># Dockerfile 目录或 git 仓库网址</span></span><br><span class="line"><span class="attr">      context:</span> <span class="string">./dir</span> <span class="string">| .</span></span><br><span class="line"><span class="string">      # Dockerfile 文件名称</span></span><br><span class="line"><span class="string"></span><span class="attr">      dockerfile:</span> <span class="string">Dockerfile-alternate</span></span><br><span class="line">      <span class="comment"># 3.2</span></span><br><span class="line"><span class="attr">      cache_from:</span></span><br><span class="line"><span class="attr">        - alpine:</span><span class="string">latest</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">corp/web_app:3.14</span></span><br><span class="line">      <span class="comment"># 3.3  </span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line">        <span class="string">com.example.description:</span> <span class="string">"Accounting webapp"</span></span><br><span class="line">        <span class="string">com.example.department:</span> <span class="string">"Finance"</span></span><br><span class="line">        <span class="string">com.example.label-with-empty-value:</span> <span class="string">""</span>  </span><br><span class="line">      <span class="comment"># 构建时变量，相当于 docker build --build-arg list</span></span><br><span class="line"><span class="attr">      args:</span></span><br><span class="line"><span class="attr">        buildno:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">      args:</span></span><br><span class="line"><span class="bullet">        -</span> <span class="string">buildno=1</span></span><br><span class="line">      <span class="comment"># 3.5  </span></span><br><span class="line"><span class="attr">      shm_size:</span> <span class="string">'2gb'</span>  </span><br><span class="line"><span class="attr">    image:</span> <span class="attr">webapp:tag</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Dockerfile</code> 中包含变量</p>
+<figure class="highlight docker"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ARG</span> buildno</span><br><span class="line"><span class="keyword">ARG</span> password</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> <span class="built_in">echo</span> <span class="string">"Build number: <span class="variable">$buildno</span>"</span></span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> script-requiring-password.sh <span class="string">"<span class="variable">$password</span>"</span></span></span><br></pre></td></tr></table></figure>
+
+<h2 id="cap-add-cap-drop"><a href="#cap-add-cap-drop" class="headerlink" title="cap_add, cap_drop"></a>cap_add, cap_drop</h2><p>没用过，不了解。</p>
+<p>Add or drop container capabilities. See <code>man 7 capabilities</code> for a full list.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cap_add:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">ALL</span></span><br><span class="line"></span><br><span class="line"><span class="attr">cap_drop:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">NET_ADMIN</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">SYS_ADMIN</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="command"><a href="#command" class="headerlink" title="command"></a>command</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">command:</span> <span class="string">bundle</span> <span class="string">exec</span> <span class="string">thin</span> <span class="bullet">-p</span> <span class="number">3000</span></span><br><span class="line"></span><br><span class="line"><span class="attr">command:</span> <span class="string">["bundle",</span> <span class="string">"exec"</span><span class="string">,</span> <span class="string">"thin"</span><span class="string">,</span> <span class="string">"-p"</span><span class="string">,</span> <span class="string">"3000"</span><span class="string">]</span></span><br><span class="line"></span><br><span class="line"><span class="attr">command:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">bundle</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">exec</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">thin</span></span><br><span class="line"><span class="bullet">  -</span> <span class="bullet">-p</span></span><br><span class="line"><span class="bullet">  -</span> <span class="number">3000</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="configs"><a href="#configs" class="headerlink" title="configs"></a>configs</h2><p>3.3</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.3"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  redis:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">redis:latest</span></span><br><span class="line"><span class="attr">    deploy:</span></span><br><span class="line"><span class="attr">      replicas:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">    configs:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">my_config</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">my_other_config</span></span><br><span class="line"></span><br><span class="line"><span class="attr">configs:</span></span><br><span class="line"><span class="attr">  my_config:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">./my_config.txt</span></span><br><span class="line">  <span class="comment"># 使用外部的 config，使用 docker config create 命令创建的 config  </span></span><br><span class="line"><span class="attr">  my_other_config:</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.3"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  redis:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">redis:latest</span></span><br><span class="line"><span class="attr">    deploy:</span></span><br><span class="line"><span class="attr">      replicas:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">    configs:</span></span><br><span class="line"><span class="attr">      - source:</span> <span class="string">my_config</span></span><br><span class="line"><span class="attr">        target:</span> <span class="string">/redis_config</span></span><br><span class="line"><span class="attr">        uid:</span> <span class="string">'103'</span></span><br><span class="line"><span class="attr">        gid:</span> <span class="string">'103'</span></span><br><span class="line"><span class="attr">        mode:</span> <span class="number">0440</span></span><br><span class="line"></span><br><span class="line"><span class="attr">configs:</span></span><br><span class="line"><span class="attr">  my_config:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">./my_config.txt</span></span><br><span class="line"><span class="attr">  my_other_config:</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="cgroup-parent"><a href="#cgroup-parent" class="headerlink" title="cgroup_parent"></a>cgroup_parent</h2><p>Specify an optional parent cgroup for the container.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">cgroup_parent:</span> <span class="string">m-executor-abcd</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="container-name"><a href="#container-name" class="headerlink" title="container_name"></a>container_name</h2><p>不建议使用，此项配置的话，服务将不能扩展。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">container_name:</span> <span class="string">my-web-container</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="credential-spec"><a href="#credential-spec" class="headerlink" title="credential_spec"></a>credential_spec</h2><p>没用过，不了解。</p>
+<p>3.3</p>
+<p>仅用于 Windows 容器。</p>
+<h2 id="deploy"><a href="#deploy" class="headerlink" title="deploy"></a>deploy</h2><p>仅用于 <code>Swarm mode</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  redis:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">redis:alpine</span></span><br><span class="line"><span class="attr">    deploy:</span></span><br><span class="line">      <span class="comment"># 集群中运行该服务的容器个数</span></span><br><span class="line"><span class="attr">      mode:</span> <span class="string">replicated</span></span><br><span class="line"><span class="attr">      replicas:</span> <span class="number">6</span></span><br><span class="line"><span class="attr">      update_config:</span></span><br><span class="line"><span class="attr">        parallelism:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">        delay:</span> <span class="number">10</span><span class="string">s</span></span><br><span class="line"><span class="attr">      restart_policy:</span></span><br><span class="line"><span class="attr">        condition:</span> <span class="string">on-failure</span></span><br><span class="line"><span class="attr">      labels:</span></span><br><span class="line">        <span class="string">com.example.description:</span> <span class="string">"This label will appear on the web service"</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="endpoint-mode"><a href="#endpoint-mode" class="headerlink" title="endpoint_mode"></a>endpoint_mode</h3><p>3.3</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  endpoint_mode:</span> <span class="string">vip</span></span><br><span class="line"><span class="attr">  endpoint_mode:</span> <span class="string">dnsrr</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="mode"><a href="#mode" class="headerlink" title="mode"></a>mode</h3><p><a href="https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/#replicated-and-global-services" target="_blank" rel="noopener">https://docs.docker.com/engine/swarm/how-swarm-mode-works/services/#replicated-and-global-services</a></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="comment"># 每个节点一个容器 exactly one container per swarm node</span></span><br><span class="line"><span class="attr">  mode:</span> <span class="string">global</span></span><br><span class="line">  <span class="comment"># 指定数量的容器 a specified number of containers</span></span><br><span class="line"><span class="attr">  mode:</span> <span class="string">replicated</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="placement"><a href="#placement" class="headerlink" title="placement"></a>placement</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  placement:</span></span><br><span class="line"><span class="attr">    constraints:</span></span><br><span class="line">      <span class="comment"># 运行在管理节点</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">node.role</span> <span class="string">==</span> <span class="string">manager</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">engine.labels.operatingsystem</span> <span class="string">==</span> <span class="string">ubuntu</span> <span class="number">14.04</span></span><br><span class="line"><span class="attr">    preferences:</span></span><br><span class="line"><span class="attr">      - spread:</span> <span class="string">node.labels.zone</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="resources"><a href="#resources" class="headerlink" title="resources"></a>resources</h3><p>资源限制</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line"><span class="attr">  resources:</span></span><br><span class="line"><span class="attr">    limits:</span></span><br><span class="line"><span class="attr">      cpus:</span> <span class="string">'0.50'</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">50</span><span class="string">M</span></span><br><span class="line"><span class="attr">    reservations:</span></span><br><span class="line"><span class="attr">      cpus:</span> <span class="string">'0.25'</span></span><br><span class="line"><span class="attr">      memory:</span> <span class="number">20</span><span class="string">M</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="restart-policy"><a href="#restart-policy" class="headerlink" title="restart_policy"></a>restart_policy</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  redis:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">redis:alpine</span></span><br><span class="line"><span class="attr">    deploy:</span></span><br><span class="line"><span class="attr">      restart_policy:</span></span><br><span class="line"><span class="attr">        condition:</span> <span class="string">none</span> <span class="string">| on-failure | any (默认)</span></span><br><span class="line"><span class="string">        # 等待时间</span></span><br><span class="line"><span class="string"></span><span class="attr">        delay:</span> <span class="number">5</span><span class="string">s</span></span><br><span class="line">        <span class="comment"># 最大尝试次数</span></span><br><span class="line"><span class="attr">        max_attempts:</span> <span class="number">3</span></span><br><span class="line">        <span class="comment"># How long to wait before deciding if a restart has succeeded, specified as a duration (default: decide immediately)</span></span><br><span class="line"><span class="attr">        window:</span> <span class="number">120</span><span class="string">s</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="update-config"><a href="#update-config" class="headerlink" title="update_config"></a>update_config</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.4'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  vote:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">dockersamples/examplevotingapp_vote:before</span></span><br><span class="line"><span class="attr">    depends_on:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">redis</span></span><br><span class="line"><span class="attr">    deploy:</span></span><br><span class="line"><span class="attr">      replicas:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">      update_config:</span></span><br><span class="line">        <span class="comment"># 同时升级 config 的容器个数</span></span><br><span class="line"><span class="attr">        parallelism:</span> <span class="number">2</span></span><br><span class="line"><span class="attr">        delay:</span> <span class="number">10</span><span class="string">s</span></span><br><span class="line"><span class="attr">        failure_action:</span> <span class="string">continue</span> <span class="string">| rollback | pause (默认)</span></span><br><span class="line"><span class="string"></span><span class="attr">        monitor:</span></span><br><span class="line"><span class="attr">        max_failure_ration:</span></span><br><span class="line">        <span class="comment"># 3.4</span></span><br><span class="line"><span class="attr">        order:</span> <span class="string">stop-first</span> <span class="string">(默认)</span> <span class="string">| start-first</span></span><br></pre></td></tr></table></figure>
+
+<p><code>docker stack deploy</code> 不支持以下参数</p>
+<p><code>build</code></p>
+<p><code>cgroup_parent</code></p>
+<p><code>container_name</code></p>
+<p><code>devices</code></p>
+<p><code>tmpfs</code></p>
+<p><code>external_links</code></p>
+<p><code>links</code></p>
+<p><code>network_mode</code></p>
+<p><code>security_opt</code></p>
+<p><code>stop_signal</code></p>
+<p><code>sysctls</code></p>
+<p><code>userns_mode</code></p>
+<h2 id="devices"><a href="#devices" class="headerlink" title="devices"></a>devices</h2><p>List of device mappings. Uses the same format as the –device docker client create option.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">devices:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"/dev/ttyUSB0:/dev/ttyUSB0"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="depends-on"><a href="#depends-on" class="headerlink" title="depends_on"></a>depends_on</h2><p>保证依赖的服务完全启动之后才启动 <a href="https://docs.docker.com/compose/startup-order/" target="_blank" rel="noopener">https://docs.docker.com/compose/startup-order/</a></p>
+<p>依赖关系</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    build:</span> <span class="string">.</span></span><br><span class="line"><span class="attr">    depends_on:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">db</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">redis</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  redis:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">redis</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  db:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">postgres</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="dns"><a href="#dns" class="headerlink" title="dns"></a>dns</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dns:</span> <span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dns:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="number">8.8</span><span class="number">.8</span><span class="number">.8</span></span><br><span class="line"><span class="bullet">  -</span> <span class="number">9.9</span><span class="number">.9</span><span class="number">.9</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="dns-search"><a href="#dns-search" class="headerlink" title="dns_search"></a>dns_search</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">dns_search:</span> <span class="string">example.com</span></span><br><span class="line"></span><br><span class="line"><span class="attr">dns_search:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">dc1.example.com</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">dc2.example.com</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="tmpfs"><a href="#tmpfs" class="headerlink" title="tmpfs"></a>tmpfs</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">tmpfs:</span> <span class="string">/run</span></span><br><span class="line"></span><br><span class="line"><span class="attr">tmpfs:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">/run</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">/tmp</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="entrypoint"><a href="#entrypoint" class="headerlink" title="entrypoint"></a>entrypoint</h2><p>入口文件</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">entrypoint:</span> <span class="string">/code/entrypoint.sh</span></span><br><span class="line"></span><br><span class="line"><span class="attr">entrypoint:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">php</span></span><br><span class="line"><span class="bullet">    -</span> <span class="bullet">-d</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">zend_extension=/usr/local/lib/php/extensions/no-debug-non-zts-20100525/xdebug.so</span></span><br><span class="line"><span class="bullet">    -</span> <span class="bullet">-d</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">memory_limit=-1</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">vendor/bin/phpunit</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="env-file"><a href="#env-file" class="headerlink" title="env_file"></a>env_file</h2><p>从文件读取变量写入镜像 <code>环境变量</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">env_file:</span> <span class="string">.env</span></span><br><span class="line"></span><br><span class="line"><span class="attr">env_file:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">./common.env</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">./apps/web.env</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">/opt/secrets.env</span></span><br></pre></td></tr></table></figure>
+
+<p>若变量重复，后边文件的变量会覆盖后边的。</p>
+<p><code>env</code> 文件内容举例</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 支持 # 号注释</span></span><br><span class="line"><span class="string">RACK_ENV=development</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="environment"><a href="#environment" class="headerlink" title="environment"></a>environment</h2><p>设置环境变量</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">environment:</span></span><br><span class="line"><span class="attr">  RACK_ENV:</span> <span class="string">development</span></span><br><span class="line"><span class="attr">  SHOW:</span> <span class="string">'true'</span></span><br><span class="line"><span class="attr">  SESSION_SECRET:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">environment:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">RACK_ENV=development</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">SHOW=true</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">SESSION_SECRET</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="expose"><a href="#expose" class="headerlink" title="expose"></a>expose</h2><p>内部暴露端口</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">expose:</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"3000"</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"8000"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="external-links"><a href="#external-links" class="headerlink" title="external_links"></a>external_links</h2><p>链接外部容器。不建议使用，建议通过网络进行连接！</p>
+<p><code>CONTAINER:ALIAS</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">external_links:</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">redis_1</span></span><br><span class="line"><span class="attr"> - project_db_1:</span><span class="string">mysql</span></span><br><span class="line"><span class="attr"> - project_db_1:</span><span class="string">postgresql</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="extra-hosts"><a href="#extra-hosts" class="headerlink" title="extra_hosts"></a>extra_hosts</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">extra_hosts:</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"somehost:162.242.195.82"</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"otherhost:50.31.209.229"</span></span><br></pre></td></tr></table></figure>
+
+<p>在容器内 <code>/etc/hosts</code> 写入下面的内容</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">162.242.195.82  somehost</span><br><span class="line">50.31.209.229   otherhost</span><br></pre></td></tr></table></figure>
+
+<h2 id="healthcheck"><a href="#healthcheck" class="headerlink" title="healthcheck"></a>healthcheck</h2><p>健康检查</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">healthcheck:</span></span><br><span class="line"><span class="attr">  test:</span> <span class="string">["CMD",</span> <span class="string">"curl"</span><span class="string">,</span> <span class="string">"-f"</span><span class="string">,</span> <span class="string">"http://localhost"</span><span class="string">]</span></span><br><span class="line">  <span class="comment"># 间隔</span></span><br><span class="line"><span class="attr">  interval:</span> <span class="number">1</span><span class="string">m30s</span></span><br><span class="line">  <span class="comment"># 超时时间</span></span><br><span class="line"><span class="attr">  timeout:</span> <span class="number">10</span><span class="string">s</span></span><br><span class="line">  <span class="comment"># 重试次数</span></span><br><span class="line"><span class="attr">  retries:</span> <span class="number">3</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Hit the local web app</span></span><br><span class="line"><span class="attr">test:</span> <span class="string">["CMD",</span> <span class="string">"curl"</span><span class="string">,</span> <span class="string">"-f"</span><span class="string">,</span> <span class="string">"http://localhost"</span><span class="string">]</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># As above, but wrapped in /bin/sh. Both forms below are equivalent.</span></span><br><span class="line"><span class="attr">test:</span> <span class="string">["CMD-SHELL",</span> <span class="string">"curl -f http://localhost &amp;&amp; echo 'cool, it works'"</span><span class="string">]</span></span><br><span class="line"><span class="attr">test:</span> <span class="string">curl</span> <span class="bullet">-f</span> <span class="attr">https://localhost</span> <span class="string">&amp;&amp;</span> <span class="string">echo</span> <span class="string">'cool, it works'</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="image"><a href="#image" class="headerlink" title="image"></a>image</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">image:</span> <span class="string">redis</span></span><br><span class="line"><span class="attr">image:</span> <span class="attr">ubuntu:14.04</span></span><br><span class="line"><span class="attr">image:</span> <span class="string">tutum/influxdb</span></span><br><span class="line"><span class="attr">image:</span> <span class="string">example-registry.com:4000/postgresql</span></span><br><span class="line"><span class="attr">image:</span> <span class="string">a4bc65fd</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="isolation"><a href="#isolation" class="headerlink" title="isolation"></a>isolation</h2><p><a href="https://docs.docker.com/engine/reference/commandline/run/#specify-isolation-technology-for-container---isolation" target="_blank" rel="noopener">https://docs.docker.com/engine/reference/commandline/run/#specify-isolation-technology-for-container---isolation</a></p>
+<p>Specify a container’s isolation technology. On Linux, the only supported value is <code>default</code>. On Windows, acceptable values are <code>default</code>, <code>process</code>and <code>hyperv</code>.</p>
+<h2 id="labels"><a href="#labels" class="headerlink" title="labels"></a>labels</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">labels:</span></span><br><span class="line">  <span class="string">com.example.description:</span> <span class="string">"Accounting webapp"</span></span><br><span class="line">  <span class="string">com.example.department:</span> <span class="string">"Finance"</span></span><br><span class="line">  <span class="string">com.example.label-with-empty-value:</span> <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="attr">labels:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"com.example.description=Accounting webapp"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"com.example.department=Finance"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"com.example.label-with-empty-value"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="links"><a href="#links" class="headerlink" title="links"></a>links</h2><p>不建议使用！</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">web:</span></span><br><span class="line"><span class="attr">  links:</span></span><br><span class="line"><span class="bullet">   -</span> <span class="string">db</span></span><br><span class="line"><span class="attr">   - db:</span><span class="string">database</span></span><br><span class="line"><span class="bullet">   -</span> <span class="string">redis</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="logging"><a href="#logging" class="headerlink" title="logging"></a>logging</h2><p>日志配置</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">logging:</span></span><br><span class="line"><span class="attr">  driver:</span> <span class="string">syslog</span></span><br><span class="line"><span class="attr">  options:</span></span><br><span class="line"><span class="attr">    syslog-address:</span> <span class="string">"tcp://192.168.0.42:123"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">driver:</span> <span class="string">"json-file"</span></span><br><span class="line"><span class="attr">driver:</span> <span class="string">"syslog"</span></span><br><span class="line"><span class="attr">driver:</span> <span class="string">"none"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">options:</span></span><br><span class="line"><span class="attr">  max-size:</span> <span class="string">"200k"</span></span><br><span class="line"><span class="attr">  max-file:</span> <span class="string">"10"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  some-service:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">some-service</span></span><br><span class="line"><span class="attr">    logging:</span></span><br><span class="line"><span class="attr">      driver:</span> <span class="string">"json-file"</span></span><br><span class="line"><span class="attr">      options:</span></span><br><span class="line"><span class="attr">        max-size:</span> <span class="string">"200k"</span></span><br><span class="line"><span class="attr">        max-file:</span> <span class="string">"10"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="network-mode"><a href="#network-mode" class="headerlink" title="network_mode"></a>network_mode</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">network_mode:</span> <span class="string">"bridge"</span></span><br><span class="line"><span class="attr">network_mode:</span> <span class="string">"host"</span></span><br><span class="line"><span class="attr">network_mode:</span> <span class="string">"none"</span></span><br><span class="line"><span class="attr">network_mode:</span> <span class="string">"service:[service name]"</span></span><br><span class="line"><span class="attr">network_mode:</span> <span class="string">"container:[container name/id]"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="networks"><a href="#networks" class="headerlink" title="networks"></a>networks</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  some-service:</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">some-network</span></span><br><span class="line"><span class="bullet">     -</span> <span class="string">other-network</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="aliases"><a href="#aliases" class="headerlink" title="aliases"></a>aliases</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  some-service:</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="attr">      some-network:</span></span><br><span class="line"><span class="attr">        aliases:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">alias1</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">alias3</span></span><br><span class="line"><span class="attr">      other-network:</span></span><br><span class="line"><span class="attr">        aliases:</span></span><br><span class="line"><span class="bullet">         -</span> <span class="string">alias2</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    build:</span> <span class="string">./web</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">new</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  worker:</span></span><br><span class="line"><span class="attr">    build:</span> <span class="string">./worker</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">legacy</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  db:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">mysql</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="attr">      new:</span></span><br><span class="line"><span class="attr">        aliases:</span></span><br><span class="line"><span class="bullet">          -</span> <span class="string">database</span></span><br><span class="line"><span class="attr">      legacy:</span></span><br><span class="line"><span class="attr">        aliases:</span></span><br><span class="line"><span class="bullet">          -</span> <span class="string">mysql</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  new:</span></span><br><span class="line"><span class="attr">  legacy:</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ipv4-address-ipv6-address"><a href="#ipv4-address-ipv6-address" class="headerlink" title="ipv4_address ipv6_address"></a>ipv4_address ipv6_address</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2.1'</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  app:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">busybox</span></span><br><span class="line"><span class="attr">    command:</span> <span class="string">ifconfig</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="attr">      app_net:</span></span><br><span class="line"><span class="attr">        ipv4_address:</span> <span class="number">172.16</span><span class="number">.238</span><span class="number">.10</span></span><br><span class="line"><span class="attr">        ipv6_address:</span> <span class="number">2001</span><span class="string">:3984:3989::10</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  app_net:</span></span><br><span class="line"><span class="attr">    driver:</span> <span class="string">bridge</span></span><br><span class="line"><span class="attr">    enable_ipv6:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    ipam:</span></span><br><span class="line"><span class="attr">      driver:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">      config:</span></span><br><span class="line"><span class="bullet">      -</span></span><br><span class="line"><span class="attr">        subnet:</span> <span class="number">172.16</span><span class="number">.238</span><span class="number">.0</span><span class="string">/24</span></span><br><span class="line"><span class="bullet">      -</span></span><br><span class="line"><span class="attr">        subnet:</span> <span class="number">2001</span><span class="string">:3984:3989::/64</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="pid"><a href="#pid" class="headerlink" title="pid"></a>pid</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">pid:</span> <span class="string">"host"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ports"><a href="#ports" class="headerlink" title="ports"></a>ports</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ports:</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"3000"</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"3000-3005"</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"8000:8000"</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"9090-9091:8080-8081"</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"49100:22"</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"127.0.0.1:8001:8001"</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"127.0.0.1:5000-5010:5000-5010"</span></span><br><span class="line"><span class="bullet"> -</span> <span class="string">"6060:6060/udp"</span></span><br></pre></td></tr></table></figure>
+
+<p>3.2 开始支持长格式</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ports:</span></span><br><span class="line"><span class="attr">  - target:</span> <span class="number">80</span></span><br><span class="line"><span class="attr">    published:</span> <span class="number">8080</span></span><br><span class="line"><span class="attr">    protocol:</span> <span class="string">tcp</span></span><br><span class="line"><span class="attr">    mode:</span> <span class="string">host</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="secrets"><a href="#secrets" class="headerlink" title="secrets"></a>secrets</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.1"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  redis:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">redis:latest</span></span><br><span class="line"><span class="attr">    deploy:</span></span><br><span class="line"><span class="attr">      replicas:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">    secrets:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">my_secret</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">my_other_secret</span></span><br><span class="line"><span class="attr">secrets:</span></span><br><span class="line"><span class="attr">  my_secret:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">./my_secret.txt</span></span><br><span class="line"><span class="attr">  my_other_secret:</span></span><br><span class="line">    <span class="comment"># 使用外部 secret</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>长格式</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.1"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  redis:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">redis:latest</span></span><br><span class="line"><span class="attr">    deploy:</span></span><br><span class="line"><span class="attr">      replicas:</span> <span class="number">1</span></span><br><span class="line"><span class="attr">    secrets:</span></span><br><span class="line"><span class="attr">      - source:</span> <span class="string">my_secret</span></span><br><span class="line"><span class="attr">        target:</span> <span class="string">redis_secret</span></span><br><span class="line"><span class="attr">        uid:</span> <span class="string">'103'</span></span><br><span class="line"><span class="attr">        gid:</span> <span class="string">'103'</span></span><br><span class="line"><span class="attr">        mode:</span> <span class="number">0440</span></span><br><span class="line"><span class="attr">secrets:</span></span><br><span class="line"><span class="attr">  my_secret:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">./my_secret.txt</span></span><br><span class="line"><span class="attr">  my_other_secret:</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="security-opt"><a href="#security-opt" class="headerlink" title="security_opt"></a>security_opt</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">security_opt:</span></span><br><span class="line"><span class="attr">  - label:</span><span class="attr">user:USER</span></span><br><span class="line"><span class="attr">  - label:</span><span class="attr">role:ROLE</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="stop-grace-period"><a href="#stop-grace-period" class="headerlink" title="stop_grace_period"></a>stop_grace_period</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stop_grace_period:</span> <span class="number">1</span><span class="string">s</span></span><br><span class="line"><span class="attr">stop_grace_period:</span> <span class="number">1</span><span class="string">m30s</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="stop-signal"><a href="#stop-signal" class="headerlink" title="stop_signal"></a>stop_signal</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">stop_signal:</span> <span class="string">SIGUSR1</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="sysctls"><a href="#sysctls" class="headerlink" title="sysctls"></a>sysctls</h2><p>Kernel parameters to set in the container. You can use either an array or a dictionary.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">sysctls:</span></span><br><span class="line">  <span class="string">net.core.somaxconn:</span> <span class="number">1024</span></span><br><span class="line">  <span class="string">net.ipv4.tcp_syncookies:</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line"><span class="attr">sysctls:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">net.core.somaxconn=1024</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">net.ipv4.tcp_syncookies=0</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="ulimits"><a href="#ulimits" class="headerlink" title="ulimits"></a>ulimits</h2><p>Override the default ulimits for a container. You can either specify a single limit as an integer or soft/hard limits as a mapping.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ulimits:</span></span><br><span class="line"><span class="attr">  nproc:</span> <span class="number">65535</span></span><br><span class="line"><span class="attr">  nofile:</span></span><br><span class="line"><span class="attr">    soft:</span> <span class="number">20000</span></span><br><span class="line"><span class="attr">    hard:</span> <span class="number">40000</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="userns-mode"><a href="#userns-mode" class="headerlink" title="userns_mode"></a>userns_mode</h2><p>Disables the user namespace for this service, if Docker daemon is configured with user namespaces. See dockerd for more information.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">userns_mode:</span> <span class="string">"host"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="volumes"><a href="#volumes" class="headerlink" title="volumes"></a>volumes</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.2"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">nginx:alpine</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="attr">      - type:</span> <span class="string">volume</span></span><br><span class="line"><span class="attr">        source:</span> <span class="string">mydata</span></span><br><span class="line"><span class="attr">        target:</span> <span class="string">/data</span></span><br><span class="line"><span class="attr">        volume:</span></span><br><span class="line"><span class="attr">          nocopy:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">      - type:</span> <span class="string">bind</span></span><br><span class="line"><span class="attr">        source:</span> <span class="string">./static</span></span><br><span class="line"><span class="attr">        target:</span> <span class="string">/opt/app/static</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  db:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">postgres:latest</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"/var/run/postgres/postgres.sock:/var/run/postgres/postgres.sock"</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"dbdata:/var/lib/postgresql/data"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  mydata:</span></span><br><span class="line"><span class="attr">  dbdata:</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">volumes:</span></span><br><span class="line">  <span class="comment"># Just specify a path and let the Engine create a volume</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">/var/lib/mysql</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Specify an absolute path mapping</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">/opt/data:/var/lib/mysql</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Path on the host, relative to the Compose file</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">./cache:/tmp/cache</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># User-relative path</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">~/configs:/etc/configs/:ro</span></span><br><span class="line"></span><br><span class="line">  <span class="comment"># Named volume</span></span><br><span class="line"><span class="attr">  - datavolume:</span><span class="string">/var/lib/mysql</span></span><br><span class="line"></span><br><span class="line">  <span class="comment">#</span></span><br><span class="line"></span><br><span class="line"><span class="attr">  - source:</span><span class="string">/target:constraints</span> <span class="string">(默认)</span> <span class="string">| cached (宿主机优先)| delegated (容器优先)</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3.2"</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">nginx:alpine</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">      -</span> <span class="string">"80:80"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  webnet:</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  - type:</span> <span class="string">volume</span></span><br><span class="line"><span class="attr">    source:</span> <span class="string">mydata</span></span><br><span class="line"><span class="attr">    target:</span> <span class="string">/data</span></span><br><span class="line"><span class="attr">    volume:</span></span><br><span class="line"><span class="attr">      nocopy:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  - type:</span> <span class="string">bind</span></span><br><span class="line"><span class="attr">    source:</span> <span class="string">./static</span></span><br><span class="line"><span class="attr">    target:</span> <span class="string">/opt/app/static</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="restart"><a href="#restart" class="headerlink" title="restart"></a>restart</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">restart:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">restart:</span> <span class="string">on-failure</span></span><br><span class="line"><span class="attr">restart:</span> <span class="string">unless-stopped</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="domainname-hostname-ipc-mac-address-privileged-read-only-shm-size-stdin-open-tty-user-working-dir"><a href="#domainname-hostname-ipc-mac-address-privileged-read-only-shm-size-stdin-open-tty-user-working-dir" class="headerlink" title="domainname, hostname, ipc, mac_address, privileged, read_only, shm_size, stdin_open, tty, user, working_dir"></a>domainname, hostname, ipc, mac_address, privileged, read_only, shm_size, stdin_open, tty, user, working_dir</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">user:</span> <span class="string">postgresql</span></span><br><span class="line"><span class="attr">working_dir:</span> <span class="string">/code</span></span><br><span class="line"></span><br><span class="line"><span class="attr">domainname:</span> <span class="string">foo.com</span></span><br><span class="line"><span class="attr">hostname:</span> <span class="string">foo</span></span><br><span class="line"><span class="attr">ipc:</span> <span class="string">host</span></span><br><span class="line"><span class="attr">mac_address:</span> <span class="number">02</span><span class="string">:42:ac:11:65:43</span></span><br><span class="line"></span><br><span class="line"><span class="attr">privileged:</span> <span class="literal">true</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="attr">read_only:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">shm_size:</span> <span class="number">64</span><span class="string">M</span></span><br><span class="line"><span class="attr">stdin_open:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">tty:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Specifying-durations"><a href="#Specifying-durations" class="headerlink" title="Specifying durations"></a>Specifying durations</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">2.5</span><span class="string">s</span></span><br><span class="line"><span class="number">10</span><span class="string">s</span></span><br><span class="line"><span class="number">1</span><span class="string">m30s</span></span><br><span class="line"><span class="number">2</span><span class="string">h32m</span></span><br><span class="line"><span class="number">5</span><span class="string">h34m56s</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Volume-configuration-reference"><a href="#Volume-configuration-reference" class="headerlink" title="Volume configuration reference"></a>Volume configuration reference</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">"3"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  db:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">db</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="attr">      - data-volume:</span><span class="string">/var/lib/db</span></span><br><span class="line"><span class="attr">  backup:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">backup-service</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="attr">      - data-volume:</span><span class="string">/var/lib/backup/data</span></span><br><span class="line"></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  data-volume:</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">driver:</span> <span class="string">foobar</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">driver_opts:</span></span><br><span class="line"><span class="attr">  foo:</span> <span class="string">"bar"</span></span><br><span class="line"><span class="attr">  baz:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  data:</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">labels:</span></span><br><span class="line">  <span class="string">com.example.description:</span> <span class="string">"Database volume"</span></span><br><span class="line">  <span class="string">com.example.department:</span> <span class="string">"IT/Ops"</span></span><br><span class="line">  <span class="string">com.example.label-with-empty-value:</span> <span class="string">""</span></span><br><span class="line"></span><br><span class="line"><span class="attr">labels:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"com.example.description=Database volume"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"com.example.department=IT/Ops"</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">"com.example.label-with-empty-value"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  data:</span></span><br><span class="line"><span class="attr">    external:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">actual-name-of-volume</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="name"><a href="#name" class="headerlink" title="name"></a>name</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.4'</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  data:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">my-app-data</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.4'</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  data:</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">my-app-data</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Network-configuration-reference"><a href="#Network-configuration-reference" class="headerlink" title="Network configuration reference"></a>Network configuration reference</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">driver:</span> <span class="string">overlay</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="host-OR-none"><a href="#host-OR-none" class="headerlink" title="host OR none"></a>host OR none</h3><p>用于 <code>docker stack</code>，如果使用 <code>docker-compose</code> 请使用 <code>network_mode</code>。</p>
+<p>类似于 <code>docker run --net=host</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line">    <span class="string">...</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="attr">      hostnet:</span> <span class="string">&#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  hostnet:</span></span><br><span class="line"><span class="attr">    external:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">host</span></span><br></pre></td></tr></table></figure>
+
+<p>类似于 <code>docker run --net=none</code></p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line">    <span class="string">...</span></span><br><span class="line"><span class="attr">    networks:</span></span><br><span class="line"><span class="attr">      nonet:</span> <span class="string">&#123;&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  nonet:</span></span><br><span class="line"><span class="attr">    external:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">none</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="driver-opts"><a href="#driver-opts" class="headerlink" title="driver_opts"></a>driver_opts</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">driver_opts:</span></span><br><span class="line"><span class="attr">  foo:</span> <span class="string">"bar"</span></span><br><span class="line"><span class="attr">  baz:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="attachable"><a href="#attachable" class="headerlink" title="attachable"></a>attachable</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  mynet1:</span></span><br><span class="line"><span class="attr">    driver:</span> <span class="string">overlay</span></span><br><span class="line"><span class="attr">    attachable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ipam"><a href="#ipam" class="headerlink" title="ipam"></a>ipam</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">ipam:</span></span><br><span class="line"><span class="attr">  driver:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">  config:</span></span><br><span class="line"><span class="attr">    - subnet:</span> <span class="number">172.28</span><span class="number">.0</span><span class="number">.0</span><span class="string">/16</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="name-1"><a href="#name-1" class="headerlink" title="name"></a>name</h3><p>3.5</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.5'</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  network1:</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">my-app-net</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3.5'</span></span><br><span class="line"><span class="attr">networks:</span></span><br><span class="line"><span class="attr">  network1:</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">my-app-net</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="configs-configuration-reference"><a href="#configs-configuration-reference" class="headerlink" title="configs configuration reference"></a>configs configuration reference</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">configs:</span></span><br><span class="line"><span class="attr">  my_first_config:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">./config_data</span></span><br><span class="line"><span class="attr">  my_second_config:</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>3.5</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">configs:</span></span><br><span class="line"><span class="attr">  my_first_config:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">./config_data</span></span><br><span class="line"><span class="attr">  my_second_config:</span></span><br><span class="line"><span class="attr">    external:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">redis_config</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="secrets-configuration-reference"><a href="#secrets-configuration-reference" class="headerlink" title="secrets configuration reference"></a>secrets configuration reference</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">secrets:</span></span><br><span class="line"><span class="attr">  my_first_secret:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">./secret_data</span></span><br><span class="line"><span class="attr">  my_second_secret:</span></span><br><span class="line"><span class="attr">    external:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<p>3.5</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">secrets:</span></span><br><span class="line"><span class="attr">  my_first_secret:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">./secret_data</span></span><br><span class="line"><span class="attr">  my_second_secret:</span></span><br><span class="line"><span class="attr">    external:</span></span><br><span class="line"><span class="attr">      name:</span> <span class="string">redis_secret</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Variable-substitution"><a href="#Variable-substitution" class="headerlink" title="Variable substitution"></a>Variable substitution</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">db:</span></span><br><span class="line"><span class="attr">  image:</span> <span class="string">"postgres:$&#123;POSTGRES_VERSION&#125;"</span></span><br></pre></td></tr></table></figure>
+
+<p>从 <code>.env</code> 文件或系统变量中读取变量，来替换 compose 文件中的变量。</p>
+<p><code>docker stack deploy</code> 不支持变量读取。</p>
+<p><code>$VAR</code> <code>${VAR}</code> 这两种格式都支持。</p>
+<p><code>${VARIABLE:-default}</code> 如果 <code>VARIABLE</code> 被 <code>unset</code> 或为空 (<code>empty</code>) 时设置为 <code>default</code>。</p>
+<p><code>${VARIABLE-default}</code> 如果 <code>VARIABLE</code> 被 <code>unset</code> 时设置为 <code>default</code>。</p>
+<p>使用 <code>$$</code> 避免解析变量</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">web:</span></span><br><span class="line"><span class="attr">  build:</span> <span class="string">.</span></span><br><span class="line"><span class="attr">  command:</span> <span class="string">"$$VAR_NOT_INTERPOLATED_BY_COMPOSE"</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="Extension-fields"><a href="#Extension-fields" class="headerlink" title="Extension fields"></a>Extension fields</h2><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2.1'</span></span><br><span class="line"><span class="attr">x-custom:</span></span><br><span class="line"><span class="attr">  items:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">a</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">b</span></span><br><span class="line"><span class="attr">  options:</span></span><br><span class="line"><span class="attr">    max-size:</span> <span class="string">'12m'</span></span><br><span class="line"><span class="attr">  name:</span> <span class="string">"custom"</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">logging:</span></span><br><span class="line"><span class="attr">  options:</span></span><br><span class="line"><span class="attr">    max-size:</span> <span class="string">'12m'</span></span><br><span class="line"><span class="attr">    max-file:</span> <span class="string">'5'</span></span><br><span class="line"><span class="attr">  driver:</span> <span class="string">json-fi</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2.1'</span></span><br><span class="line"><span class="attr">x-logging:</span></span><br><span class="line">  <span class="string">&amp;default-logging</span></span><br><span class="line"><span class="attr">  options:</span></span><br><span class="line"><span class="attr">    max-size:</span> <span class="string">'12m'</span></span><br><span class="line"><span class="attr">    max-file:</span> <span class="string">'5'</span></span><br><span class="line"><span class="attr">  driver:</span> <span class="string">json-file</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">myapp/web:latest</span></span><br><span class="line"><span class="attr">    logging:</span> <span class="string">*default-logging</span></span><br><span class="line"><span class="attr">  db:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="attr">mysql:latest</span></span><br><span class="line"><span class="attr">    logging:</span> <span class="string">*default-logging</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'2.1'</span></span><br><span class="line"><span class="attr">x-volumes:</span></span><br><span class="line">  <span class="string">&amp;default-volume</span></span><br><span class="line"><span class="attr">  driver:</span> <span class="string">foobar-storage</span></span><br><span class="line"></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  web:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">myapp/web:latest</span></span><br><span class="line"><span class="attr">    volumes:</span> <span class="string">["vol1",</span> <span class="string">"vol2"</span><span class="string">,</span> <span class="string">"vol3"</span><span class="string">]</span></span><br><span class="line"><span class="attr">volumes:</span></span><br><span class="line"><span class="attr">  vol1:</span> <span class="string">*default-volume</span></span><br><span class="line"><span class="attr">  vol2:</span></span><br><span class="line">    <span class="string">&lt;&lt;</span> <span class="string">:</span> <span class="string">*default-volume</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">volume02</span></span><br><span class="line"><span class="attr">  vol3:</span></span><br><span class="line">    <span class="string">&lt;&lt;</span> <span class="string">:</span> <span class="string">*default-volume</span></span><br><span class="line"><span class="attr">    driver:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">    name:</span> <span class="string">volume-local</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="More-Information"><a href="#More-Information" class="headerlink" title="More Information"></a>More Information</h1><ul>
+<li><p><a href="https://docs.docker.com/compose/install/" target="_blank" rel="noopener">https://docs.docker.com/compose/install/</a></p>
+</li>
+<li><p><a href="https://docs.docker.com/compose/compose-file/" target="_blank" rel="noopener">https://docs.docker.com/compose/compose-file/</a></p>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Docker/" rel="tag"># Docker</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/docker/coreos/boot-ipxe.html" rel="next" title="iPXE 模式启动 CoreOS（简单、推荐使用）">
+                <i class="fa fa-chevron-left"></i> iPXE 模式启动 CoreOS（简单、推荐使用）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/docker/registry.html" rel="prev" title="Docker 私有仓库安装配置 (Registry v2)">
+                Docker 私有仓库安装配置 (Registry v2) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">晋ICP备16007512号 </a>&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">khs1994</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+  <div class="footer-custom">LNMP by <a href="https://github.com/khs1994-docker/lnmp" class="theme-link" rel="noopener" target="_blank">khs1994-docker/lnmp</a></div>
+
+
+        
+
+
+  <script>
+    var _mtac = {};
+    (function() {
+      var mta = document.createElement("script");
+      mta.src = "https://pingjs.qq.com/h5/stats.js";
+      mta.setAttribute("name", "MTAH5");
+      mta.setAttribute("sid", "500439913");
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(mta, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: 'XIHxBRQs1ijkKrdjHvb5DJa7-gzGzoHsz',
+    appKey: 'GtQLQEn98uwVGhni3IhveGkc',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>

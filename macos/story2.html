@@ -1,0 +1,1378 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next mist" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+  <meta http-equiv="Cache-Control" content="no-transform">
+  <meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+  <meta name="msvalidate.01" content="091E32560781583695D5921C69F6EF8B">
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.0.1">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon.ico?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon.ico?v=7.0.1">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon.ico?v=7.0.1">
+
+
+  <link rel="mask-icon" href="/favicon.ico?v=7.0.1" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.0.1',
+    sidebar: {"position":"left","display":"remove","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":false,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Mac OS X 背后的故事（九）半导体的丰收半导体的丰收（上）　　在美国宾夕法尼亚州的东部，有一个风景秀美的城市叫费城。在这个城市诞生了一系列改变世界的奇迹：第一个三权分立的国家——美立坚合众国，就在第五街的路口诞生；举世闻名的费城交响乐团，1900年在市中心的 Academy of Music 奏响了他们的第一个音符。而写这篇文章时，我正坐在三十四街的宾夕法尼亚大学计算机系的一楼实验室，面前摆">
+<meta name="keywords" content="macOS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Mac OS X 背后的故事（下）">
+<meta property="og:url" content="https://blog.khs1994.com/macos/story2.html">
+<meta property="og:site_name" content="康怀帅技术博客">
+<meta property="og:description" content="Mac OS X 背后的故事（九）半导体的丰收半导体的丰收（上）　　在美国宾夕法尼亚州的东部，有一个风景秀美的城市叫费城。在这个城市诞生了一系列改变世界的奇迹：第一个三权分立的国家——美立坚合众国，就在第五街的路口诞生；举世闻名的费城交响乐团，1900年在市中心的 Academy of Music 奏响了他们的第一个音符。而写这篇文章时，我正坐在三十四街的宾夕法尼亚大学计算机系的一楼实验室，面前摆">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-12-26T02:24:17.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Mac OS X 背后的故事（下）">
+<meta name="twitter:description" content="Mac OS X 背后的故事（九）半导体的丰收半导体的丰收（上）　　在美国宾夕法尼亚州的东部，有一个风景秀美的城市叫费城。在这个城市诞生了一系列改变世界的奇迹：第一个三权分立的国家——美立坚合众国，就在第五街的路口诞生；举世闻名的费城交响乐团，1900年在市中心的 Academy of Music 奏响了他们的第一个音符。而写这篇文章时，我正坐在三十四街的宾夕法尼亚大学计算机系的一楼实验室，面前摆">
+
+
+
+
+
+
+  <link rel="canonical" href="https://blog.khs1994.com/macos/story2.html">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Mac OS X 背后的故事（下） | 康怀帅技术博客</title>
+  
+
+
+
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f7e8103e6889b467899735d682c1b6d1";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">康怀帅技术博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">blog.khs1994.com</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/khs1994" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+    <div class="reading-progress-bar"></div>
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://blog.khs1994.com/macos/story2.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="khs1994">
+      <meta itemprop="description" content="康怀帅技术博客，包括PHP、Python、Docker、Linux、macOS、数据库、开发工具等内容。欢迎大家访问！">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="康怀帅技术博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Mac OS X 背后的故事（下）
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2017-01-03 12:00:00" itemprop="dateCreated datePublished" datetime="2017-01-03T12:00:00+08:00">2017-01-03</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2018-12-26 10:24:17" itemprop="dateModified" datetime="2018-12-26T10:24:17+08:00">2018-12-26</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/macOS/" itemprop="url" rel="index"><span itemprop="name">macOS</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/macos/story2.html#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/macos/story2.html" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+            <span id="/macos/story2.html" class="leancloud_visitors" data-flag-title="Mac OS X 背后的故事（下）">
+              <span class="post-meta-divider">|</span>
+              <span class="post-meta-item-icon">
+                <i class="fa fa-eye"></i>
+              </span>
+              
+                <span class="post-meta-item-text">阅读次数：</span>
+              
+                <span class="leancloud-visitors-count"></span>
+            </span>
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="Mac-OS-X-背后的故事（九）半导体的丰收"><a href="#Mac-OS-X-背后的故事（九）半导体的丰收" class="headerlink" title="Mac OS X 背后的故事（九）半导体的丰收"></a>Mac OS X 背后的故事（九）半导体的丰收</h1><h2 id="半导体的丰收（上）"><a href="#半导体的丰收（上）" class="headerlink" title="半导体的丰收（上）"></a>半导体的丰收（上）</h2><p>　　在美国宾夕法尼亚州的东部，有一个风景秀美的城市叫费城。在这个城市诞生了一系列改变世界的奇迹：第一个三权分立的国家——美立坚合众国，就在第五街的路口诞生；举世闻名的费城交响乐团，1900年在市中心的 Academy of Music 奏响了他们的第一个音符。而写这篇文章时，我正坐在三十四街的宾夕法尼亚大学计算机系的一楼实验室，面前摆放着世界上第一台电子计算机——ENIAC。</p>
+<a id="more"></a>
+
+<p>　　1946年 2 月 14 日，ENIAC 问世，每秒可运行 5000 次加法运算或 500 次乘法运算，面积达 170 平方米，重约 30 吨，拉开了计算机处理器革命的序幕。这场革命是各处理器厂商长达数十年的竞赛，而摩尔定律从一开始就准确地预测了这场比赛的走势。根据摩尔定律，同样价格的集成电路上可容纳的晶体管数目，每隔约 18 个月便会增加一倍，性能也将提升一倍。但事实上，并无法用老路子来保持这个增长速度，因为会遇到包括能耗、散热等各种技术瓶颈。所以每隔几年就会有用来绕过这些瓶颈的新一代产品推出。如采用超纯量（superscala）、指令管线化、快取等。这些技术通过一定程度的高效并行来挖掘计算机处理器的速度所能达到的高度，以促使用户更新换代。</p>
+<p>世界上第一台计算机 ENIAC，1946年 2 月 14 日诞生于宾夕法尼亚大学</p>
+<p>　　和 66 年前的 ENIAC 相比，今天的处理器已有了质的飞越。而 21 世纪的前十年，我们更是见证了个人计算机处理器的三次重大革命——64位处理器、多核心和高效图形处理器在个人电脑出现。在这样的背景下，乔布斯在 2008 年 WWDC（苹果全球开发者大会）上，宣布下一代 Mac 操作系统 Mac OS X 10.6 将被命名为 Snow Leopard（雪豹）来适应硬件架构的革新。就在那天下午，Bertrand Serlet 在一场开发者内部讲座上透露，和先前两个发行版包含大量的新功能（10.4 Tiger 包含 150 个新功能，10.5 Leopard 包含 300 个新功能）不同，Snow Leopard 不含任何新功能，仅是对 Leopard 中诸多技术的重大更新，以使其在现代架构上更稳定、高效。 在这十年的最后一年，2009 年 8 月 28 日，苹果发布了 Mac OS X 10.6 来有效地支持这三项技术，而本文将为读者介绍其对应的三项软件技术——64位架构、Grand Central Dispatch，以及 OpenCL。 其他 Mac OS X 10.6 技术更新，如全新的 QuickTime X 和跳票的 ZFS，有着更复杂的历史背景（以后再为读者介绍）。</p>
+<h2 id="64-位架构出现的缘由"><a href="#64-位架构出现的缘由" class="headerlink" title="64 位架构出现的缘由"></a>64 位架构出现的缘由</h2><p>　　前文提到，根据摩尔定律，同样价格的集成电路上可容纳的晶体管数目，约每隔 18 个月便会增加一倍，性能也将提升一倍。事实上，存储器的容量增长可能更快，每过 15 个月就会翻一番。有了更快更强的电脑，可能会让数值计算的科学家们喜出望外，但对普通大众来说，摩尔定律给普通消费者一个假象——如果你觉得 1000 美元的苹果电脑太贵，那等上 18 个月就可以用 500 美元买到同样的电脑。十年前你在用电脑写 Word 文档，十年后你还在用电脑写 Word 文档，反正计算机不是耗材，一台电脑只要不坏，就不用去买新的。计算机产业的巨头们自然知道摩尔定律对他们造成的致命打击，因此，一个阴谋被以 Intel 和 Microsoft 为首的巨头们构想出来——Intel 负责把硬件越做越快，而 Microsoft 则负责把自己的软件越做越臃肿、越做越慢——至于你信不信，反正我是信的。因此，使用软件、服务等，直接促进计算机产业的消费，使得计算机产业走上可持续发展的道路。这在计算机产业被称为 Andy-Bill 定律，分别以 Intel 和 Microsoft 总裁的名字命名。</p>
+<p>　　当然，软件公司未必真心欺骗消费者，故意把软件做大做慢——为了实现一个新功能，软件势必会比原先庞大。但现代软件的速度、大小和其增加的功能并不成比例。比如对最终用户来讲，Windows Vista 到底比 Windows XP 多了多少功能呢？可能只有 20%<del>30%。Word 2007 对比 Word 2003 多了多少功能呢？可能也只有 20%</del>30%。但 Windows Vista、Word 2007 占用的 CPU、内存、磁盘空间，却比 Windows XP 和 Word 2003 翻了几番。究其原因，为了能赶快把新功能带给用户，我们不惜使用更方便但低效的编程语言（.NET、Java 等依赖虚拟机的语言就要比 C 慢许多，Python 等动态语言比 C 慢的不是一星半点）、快速开发（我们原先处理一个大文本，先分块，一点一点读到内存中，然后把处理完的部分写回磁盘，清空内存；而现在直接把它全读进来处理，开发方便，执行也快）。而用户必须为这些新功能买不成比例的单。64 位就是在这个背景下迅速走入寻常百姓家的——程序占用越来越多的内存，而 32 位的寻址空间已不能满足软件运行的需要了。</p>
+<p>　　64位 CPU 是指 CPU 内部的通用寄存器的宽度为 64bit，支持整数的 64bit 宽度的算术与逻辑运算。早在 1960 年代，64位架构便已存在于当时的超级电脑，且早在 1990 年代，就有以 RISC 为基础的工作站和服务器。2003 年才以 x86-64 和 64 位元 PowerPC 处理器架构（在此之前是 32 位元）的形式引入到个人电脑领域。从 32 位元到 64 位元架构的改变是一个根本的改变，因为大多数操作系统必须进行全面性修改以取得新架构的优点。</p>
+<h2 id="成功的迁移"><a href="#成功的迁移" class="headerlink" title="成功的迁移"></a>成功的迁移</h2><p>　　苹果向 64 位处理器的迁移花了整整 6 年时间，远长于该公司其他技术的迁移——向 Intel 的迁移仅用了一年时间，从经典 Mac OS 到 Mac OS X 也仅用了三年时间。总而言之，这场迁移是非常成功的：一方面，用户基本无痛苦，老的 32 位程序在目前最新版的 Mac OS X Lion 中依然可以完全兼容地执行；另一方面，对开发者而言，基本只需做微小的调整，重新编译程序，而且若干技术如 Universal Binary，使他们发布程序非常方便。当然，对于某些大量使用过时技术的公司，如 Adobe 和 Microsoft，这场迁移则要折腾得多。</p>
+<p>　　这场迁移整整用了四个发行版的时间（10.3 至 10.6），不同于 Windows 或 Linux，Mac OS X 对 64 位的迁移自下而上，再自上而下。先是内核扩展，逐渐上升至 Unix 空间，然后上升至用户界面，再上升至整个应用程序生态，最后完成内核的迁移。要提醒读者的是，Mac OS X 的 32 位和 64 位内核空间与用户空间的分配和实现，和 Windows 存在本质的区别，但在本期介绍中，我们尽可能少地把 Mac OS X 的 64 位迁移和 Windows 进行比较，不拘泥于技术细节，对此区别有兴趣的读者，请移步 AppleInsider 的系列专题。</p>
+<p>　　2003 年，苹果发布了其第一款 64 位计算机工作站 Power Mac G5。同期发布的 Mac OS X 10.3 也因此增加了非常简单的 64 位支持，于是 XNU 内核开始支持 64 位的寄存器和整数计算。但对于用户空间而言，程序可见的地址依然是 32 位的。程序当然可以使用大于 4GB 的内存（Power Mac G5 最高可达 8GB 寻址空间），但这要求程序手动地在两个 32 位内存空间中来回转换。</p>
+<p>　　两年后，苹果发布了当时最成功的 Mac OS X 发行版 Mac OS X 10.4 Tiger。10. 4 的内核是革命性的，除了增加对内核并行多线程的支持，它把用户空间可见的地址空间扩展到了 64 位，因此理论上用户程序可以以 64 位方式执行。当然，在这个时期，几乎系统内的所有程序，哪怕是内核，依然是 32 位的。系统中唯一带的 64 位二进制文件是名为 libSystem.dylib 的系统库。它是 Mac OS X 上对 C 标准和 POSIX 标准的支持库，由 libc、libinfo、libkvm、libm 和 libpthread 五部分组成。但这仅有的 libSystem.dylib 理论上就能让所有仅使用 C 标准库和 POSIX 标准库的程序以 64 位模式运行。当时，用户对 64 位的需求较少，主要限于科学计算或图形处理等需要大数组的领域。因此，10.4 能较好地满足这部分用户的需求。但如果程序需要调用除 BSD Unix 以外的系统调用，比如想用 Cocoa 来画图形界面，那么该程序仅能以 32 位方式运行了。对于一些需要 64 位寻址空间的科学计算程序，比如 Mathematica，就需要采用一些比较麻烦的做法：用一个进程调用 32 位的 Cocoa 画图形界面，用另一个进程调用 64 位的 libSystem 来进行运算和 Unix 系统调用，并用 Unix 管道或进程间通信的方式管理两个进程间的输入/输出。</p>
+<p>　　苹果在 Mac OS X 10.4 发布同期的另一项重要决策是向 Intel 平台 x86 及 x86_64架构的迁移。为了帮助开发者和用户顺利迁移，苹果正式公布了 Universal Binary。Universal Binary 技术是 Mach-O 二进制文件早就具有的特性，只是在这个场合作为一个商业词汇进行宣传。NeXT 时代 NeXTSTEP 操作系统就支持许多种不同的硬件架构，自然可以要求开发者对每个平台发布一个独立的版本，但这样的分发模式很麻烦，消费者也需要搞清到底购买哪种平台的软件。因此 NeXT 的 Mach 内核所支持的 Mach-O 二进制文件格式引入了一种叫 fat binary 的特性，说白了就是在一个平台架构上分别交叉编译所有平台的二进制格式文件，然后把每个文件都打包成一个文件。Universal Binary 就是指同时打包 Intel 平台和 PowerPC 平台的二进制文件。Mac OS X 10.4 最终支持四个平台的 BSD 系统调用——32 位 Power PC、64 位 PowerPC、32 位 x86 和 64 位 x86_64。作为最终用户，无须搞清这些区别，因为使用 Universal Binary 技术，买回来的软件直接会解出相应平台程序的二进制文件并执行。这是苹果很成功的一步——不像 Windows 系统中要用不同的路径（\Windows\System、\Windows\System32、\Windows\System64）分别存放不同架构的二进制库，并且用户还需在 32 位版和 64 位版之间犹豫不决。</p>
+<p>　　Mac OS X 10.5 Leopard 经过一系列跳票终于在 2007 年末发布，跳票主要原因是当时苹果投入了大量人力和物力去做 iPhone，以至于 10.5 跳票了整整一年。10.5 包含了约 300 项新功能，而最重要的一项是苹果把对 64 位的支持带入了 Cocoa 层面。因此，几乎系统中所有的库都有四个平台的版本。在 WWDC 上乔布斯亲自向与会者介绍迁移到 64 位的好处，而能使用更大的内存自然是一项重要优势，程序可以申请更大的内存，把所有数据一并读入内存中操作，而无须分块后来来回回地在内存和磁盘搬运数据。另外，对 Intel 平台来说，x86 架构只有 8 个寄存器，而 x86_64 平台有 16 个寄存器，这也就意味着，对该平台来说，只要重新编译程序，程序就能自由调度比原先翻倍的寄存器数量而无须快取或在内存中来回查找和读写。根据粗略估算，一般涉及大量数值计算的程序会加快一倍。所以他很开心地劝说所有的开发者都迁移到 64 位架构。</p>
+<p>历时整整 6 年时间，苹果完成了向 64 位处理器的迁移，同时这也给苹果提供了良好的清理门户的机会——清理过时的技术和 API。</p>
+<h2 id="彻底的清理"><a href="#彻底的清理" class="headerlink" title="彻底的清理"></a>彻底的清理</h2><p>　　同时，苹果做出了一个大胆的举动——Carbon 框架并未出现在这次迁移中。Carbon 是 Mac OS X 诞生之初为了帮助 Mac OS 开发者把老程序迁移到新的 Mac OS X 操作系统上所提出的一个兼容 API，这套 API 长得很像经典 Mac OS 的 API，但能够得到 Mac OS X 平台提供的一切新特性，Adobe、Microsoft 等都是通过 Carbon 把它们经典的 Mac OS 程序移植到 Mac OS X 上的。苹果的本意是希望开发者用 Carbon 迁移老程序，用 Cocoa 开发新程序，但在 Carbon 诞生之初，其受关注度远大于 Cocoa，据 TeXShop 开发者 Dick Koch 回忆，在 Mac OS X 刚诞生的开发者大会上，Carbon 讲座的教室挤满了人，而 Cocoa 相关的讲座上听者无几。维护两套雷同的 API 的代价自然很高，所以砍掉一个是大势所趋。Carbon 和 Java 的热度甚至一度让苹果产生索性把 Cocoa 或 Objective-C 砍掉的想法。大量苹果自家的程序如 Finder、iTunes、Final Cut、QuickTime 等也都是用 Carbon 写成的。不过在此后由于大量涌现在 Mac OS X 平台上的新程序都是 Cocoa 写的，导致 Cocoa 技术不断走高。2007年的 iPhone 也完全依赖于 Objective-C 和 Cocoa 的一个裁剪版 Cocoa Touch。因此在 WWDC 2006 上，苹果在 Mas OS X Leopard 10.5 的开发预览版中包含了测试版本的 64 位 Carbon 库，甚至还有讲座教如何开发 64 位的 Carbon 程序。但苹果却在 2007 年告诉 Carbon 开发者，他们的程序将不可能再被编译成 64 位，要做到这点，必需先把程序用 Cocoa 重写。</p>
+<p>　　这个突然的决定激怒了很多开发者，尤其是以 Microsoft 和 Adobe 这些巨头为代表的公司。Adobe 全套的 Creative Suite 和 Microsoft 全套的 Microsoft Office 是很多苹果用户必备的软件，数百万行代码全是用 Carbon 写的。所以直到今天，除了 Adobe Photoshop 等少数程序终于在 2010 年全面移植到 Cocoa 后做出了 64 位版，其他大部分程序依然停留在 Carbon 的 32 位模式。</p>
+<p>　　苹果也花了很长时间来重写 Finder、FinalCut、iTunes、QuickTime 等程序或技术，耗费了大量精力。当 Adobe 发布 64 位的 Lightroom 2.0 时，苹果还在手忙脚乱地重写 Aperture。不过公正地讲，长痛不如短痛，砍掉对 Carbon 的支持能够使苹果把更多精力放在该做的事上，也使得 Mac OS X 的结构更简洁，并且事实上，64 位的迁移为苹果提供一个砍去老 API 的机遇，哪怕对 Cocoa 也是。一方面，Cocoa 框架中很多类不是使用类似 Carbon 的 API，就是依赖于用 Carbon 实现（注意，和传统观念不同，Carbon 和 Cocoa 在早期 Mac OS X 上是相互依赖的，比如菜单 NSMenu 就使用了 Carbon 的菜单管理器），这些 API 在 64 位得到了彻底清理，QuickTime 相关的 C 接口全被砍去。Cocoa 经过很长时间的发展，自然也保留了很多过时的 API 以保证和原先的产品兼容，而这次机会给苹果足够的理由彻底推翻原先的设计。在 Mac OS X 10.5 中， Objective-C 的运行库 libobjc 更新到 2.0，提供了全新的并发、异常处理、自动内存回收、属性（property）等新机制，其中很多新特性只供64位享用。同时，所有 int 都被改为 NSInteger，Core Graphics 中的 float 都改为 CGFloat，以保持 API 统一，这些都是 64 位架构上的改动。因此 64 位迁移给苹果一个很好的清理门户的机会。</p>
+<p>　　作为相反的例子，这次清理也有不彻底的地方。比如从老版 Mac OS 中混进来的 Keychain 库，甚至具有 Pascal 风格的 API，由于没有替代品，它也得到了 64 位的更新。所以类似 keychain 这样的库成了现在 Mac OS X 程序员的噩梦。我每次用到 Keychain 都有痛不欲生的感觉。</p>
+<p>　　而 2009 年发布的 Mac OS X 10.6 Snow Leopard 则是对 64 位真正完整的支持。Unix 层虽然 10.4 就提供了 64 位的 libSystem，但所有的 Unix 用户空间工具包括 ls、Python 等，以及 Xcode 中的 gcc，也都是以 32 位二进制的模式发布的。图形界面层，在 10.5 Leopard 中，虽然整个系统的库都迁移到 64 位，以 32 位和 64 位的混合模式发布，但用户应用程序依然是 32 位的。只有 Chess、Java、Xcode 套件等少数程序以 64 位编译。但在 10.6 中，基本所有的应用程序都被迁移到 64 位，不管是 Safari、Mail、Dock，还是 TextEdit。当然，各种 Unix 工具包括 LLVM、GCC 等也都以 64 位的模式发布。10.6 只有四个 Carbon 程序（Front Row、iTunes、DVD Player 以及 Grapher）未得到 64 位升级【2009 年查阅，现页面已更新至 10.7】。其中， Front Row 在 Mac OS X 10.7 Lion 中被砍掉， iTunes 在 10.7 发布时依然以 32 位模式发布，在 2011 年末的更新中才迁至 64 位。</p>
+<p>　　为了使应用支持 64 位，苹果不遗余力地改写了大量代码，Snow Leopard 中最重要的重写当属 Finder，这个程序自 Mac OS X 发布以来就一直是一个 Carbon 程序，并且苹果一直不停地改进它以展示 Carbon 无所不能。但自从 10.5 时代苹果下决心砍掉 Carbon 后，该程序被完整地重写。新的 Finder 和 Carbon 版的 Finder 看上去并没有太大差别，但 Finder 使用 Cocoa 重写后，不仅速度更快，而且增加了许多 Cocoa 新特性，比如加入了更多的 Core Animation 特效来平滑过渡动画。总之，虽然苹果在 10.6 期间没有提供太多新功能，但这样大规模的重写，为今后代码的可维护性奠定了良好的基础。</p>
+<p>　　Mac OS X 10.6 发行版也完成了 64 位化的最后一步——内核的 64 位化。</p>
+<h2 id="半导体的丰收（中）"><a href="#半导体的丰收（中）" class="headerlink" title="半导体的丰收（中）"></a>半导体的丰收（中）</h2><p>　　经过 6 年时间，4 个发行版，苹果终于完成了向 64 位的迁移，并随着 Snow Leopard 的发布推出了解决并行编程问题的 Grand Central Dispatch（简称 GCD）技术，释放了多核系统的潜力。<br>　　和 10.5 一样，在 10.6 Snow Leopard 中，苹果继续利用 64 位的迁移砍掉了诸多老技术，很多新技术仅以 64 位的模式被支持。例如重写的 QuickTime X 框架，虽然 QuickTime X 应用程序以 32 位和 64 位的模式发布，但其 API 仅暴露给 64 位。另一个例子是 Objective-C 2.1 的运行库，快速 Vtable 调度，新的和 C++ 统一的异常处理模型，以及彻底解决对象的 FBI 问题等，都仅限 64 位程序使用。</p>
+<h2 id="内核的-64-位化"><a href="#内核的-64-位化" class="headerlink" title="内核的 64 位化"></a>内核的 64 位化</h2><p>　　读者应该发现，经过这 4 个发行版，Mac OS X 自下而上地对整个系统向 64 位迁移。10.3 内核空间提供了 64 位整数运算的支持。10.4 允许程序以 64 位模式运行在用户空间，并且提供了 64 位的 libSystem 使得开发者可以开发 64 位的 Unix 程序，而 10.5 中系统所有未废弃的函数库、框架都提供 64 位版本，到了 10.6，所有用户空间的程序，包括 Unix 层和图型界面层，基本都更新到 64 位。细心的读者不禁会问—那内核是 64 位的吗？是的，自下而上支持 64 位后，10.6 又从上往下，迁移了整个系统中最后一个也是最重要的部分—内核。</p>
+<h2 id="内核-64-位化的意义"><a href="#内核-64-位化的意义" class="headerlink" title="内核 64 位化的意义"></a>内核 64 位化的意义</h2><p>　　对于 Windows、Linux，以及 FreeBSD 等操作系统，64位实现的第一步是实现 64 位的内核。然而 Mac OS X 却反其道而行。主要原因是，反正 32 位的内核也能以非模拟、非兼容的方式原生地运行 64 位用户空间程序，而内核和与内核动态链接的驱动，很少需要用到 64 位的寻址空间（你什么时候见过内核本身使用 4GB 内存？），所以该问题可以暂缓。</p>
+<p>　　但要记住，用户空间的内存是由内核管理的，虚拟内存、内存分页等机制，都是由内核一一实现的。一旦在不久的将来，随着用户空间的内存占用越来越多，虚拟内存的分页比也会不断膨胀。比方说，一个用户程序使用 4GB 的空间，每个分页包含 4KB 的页面，那么总共有 1M 个页面。因此，假设一个页面需要 64B 的 PTE 来记录该页的位置，那总共也就需要 64MB 的内核空间来记录这个用户空间程序的虚拟内存，不算太多。而在不久的将来，如果一个 64 位用户程序使用 128GB 的空间，则需要 32M 个页面，每个页面 64B 的 PTE 会导致 2GB 的内核地址空间来寻址（暂不考虑大分页）。32 位的内核就显得非常紧张。</p>
+<p>　　另外，上一期我们也提到 64 位的 Intel 架构提供了比 32 位多一倍的寄存器，因此，用户空间程序对 64 位内核的系统调用也会更快。根据苹果的数据，系统调用的响应速度比原先快了 250%，而用户空间和内核空间的数据交换也快了 70%，因此，64位内核要比 32 位内核更快。</p>
+<h2 id="内核完成-64-位迁移"><a href="#内核完成-64-位迁移" class="headerlink" title="内核完成 64 位迁移"></a>内核完成 64 位迁移</h2><p>　　虽然在 Mac OS X 10.6 中，苹果提供了 64 位模式运行的内核，但在大部分苹果计算机上，这个特性并不默认启用。其原因是，虽然 64 位程序和 32 位程序可以在计算机上同时运行，但 64 位的程序只可以加载 64 位的库或插件，32位程序只能加载 32 位的库或插件。因此，如果默认使用 64 位模式启动，则诸多第三方的 32 位驱动或内核模块将无法使用。当然，用户可以通过修改 com.apple.Boot.plist、nvram，或开机按住 6 和 4 强制加载 64 位内核，不过苹果并不推荐这样的方式。直到 Mac OS X 10.7 时，第三方内核扩展已趋完善，大部分的 Mac 才默认使用 64 位内核模式启动。</p>
+<p>　　苹果用了整整 6 年的时间完成 64 位的迁移，在 2009 年 WWDC 的一个讲座上，Bertrand Serlet 告诉开发者，我们这个 64 位技术的讲座，只针对 Mac OS X，而 iPhone、iPad 等 iOS 设备，由于使用 ARM 平台，在可预见的未来可能并不会支持 64 位技术。</p>
+<p>　　不过两年之后的 2011 年 10 月 27 日，ARM v8 发布，ARM 正式宣布支持 64 位。未来会不会出现基于 ARM 的 Mac，或是 64 位的 iPad，除了苹果，谁知道呢？</p>
+<p>Bertrand Serlet 在 WWDC 2009 上介绍 Snow Leopard 的 64 位和 Grand CentralDispatch 技术</p>
+<h2 id="GCD-Grand-Central-Dispatch-来临"><a href="#GCD-Grand-Central-Dispatch-来临" class="headerlink" title="GCD(Grand Central Dispatch) 来临"></a>GCD(Grand Central Dispatch) 来临</h2><p>　　很长一段时间以来，处理器靠更快的运行时钟来获得更高的效率。软件开发者无需改动或重新编译他们的代码，就能得到摩尔定律许诺他们的好处，因为处理器顺序地执行计算机指令，新一代的处理器就自动会跑得比原先更快。后来每每达到一个技术极限时，总有一些聪明的方法绕过这些极限，比如超纯量、指令管线化、快取等，不是悄无声息地把多条互相独立的指令同时运行，就是隐藏掉数据读写的延时。<br>GCD 出现的缘由</p>
+<p>　　到了 21 世纪，能想的办法基本都想尽了——现代处理器已经足够并行了，也采取了各项优化来不断提升各种预测器的准确率，而时钟频率却是不能无限提高的——提高时钟频率会极大地增加处理器的产热，使得服务器机房或笔记本的散热成为一个头痛的问题。同时对于便携设备而言，高频也意味着短得多的电池时间，因此摩尔定律正在经受重大的考验。</p>
+<p>　　因此大约在 21 世纪头十年过掉一半时，“多核”处理器，终于开始跃入普通消费者的视线。“多核”顾名思义，就是把原先单核的半导体线路复制多份排于同一裸片上，每个核相互独立，又能彼此通信。多核处理器的出现，有效缓解了计算机处理器生产商的设计和制造压力，从而达到忽悠消费者买更新款产品这一不可告人的目的。</p>
+<p>　　但这一次技术革新，并不如之前那么顺利，因为程序并不会自动在多核系统上跑得更快，甚至有很多程序每一步都有前后依赖，不能高效地并行运行。即使能够高效并行的程序，也需要大规模改写才能充分利用多核所带来的优势。</p>
+<p>　　传统的并发编程模式，就是学习使用线程和锁。这听起来很简单，几句话能说明白：<br>把每个任务独立成一个线程；<br>不允许两个线程同时改动某个变量，因此得把变量“锁”起来；<br>手动管理线程的先后并发顺序和并发数量，让它们均匀地占满系统资源；<br>最好系统中只有这个程序在运行，否则你精心设计好的线程管理算法往往不能达到原来该有的效果；<br>最后祈祷程序在用户那儿不出问题。</p>
+<p>　　但是实际操作起来，多线程程序的编写要比单线程难上不止一个数量级。一方面，调用大量内存和数据反复的加解锁本身效率就非常低下；另一个重要原因在于，由于多线程程序可能以任意的次序交错执行，程序再也无法像顺序执行时那样产生确定的结果。多线程程序看似容易编写，但难分析、难调试，更容易出错。即使是最熟练的开发者，在茫茫线程和锁之间，也会迷失方向。且程序的错误在很多时候甚至是不可重现的。所以，程序员使用线程和锁机制编写并行程序的代价是很高的。</p>
+<p>　　GCD 就是在这种背景下被苹果提出来的。2008年最初提出但未公布细节时，很多人怀疑它是 FreeBSD 的 ULE 调度器在 Mac OS X 上的实现。ULE 是 FreeBSD 当时最新的内核调度器，用来替换掉老一代的 4BSD 调度器，当时使 FreeBSD 上跑多线程程序的效率获得了重大的性能提高，远高于同期 Linux 和 Solaris 的算法效率。但当时我就认为 GCD 依赖 FreeBSD 这项技术的可能性不大，因为 Mac OS X 中管理进程和线程主要用的是 Mach 而不是 BSD。不过后来证实我只猜对了一半，GCD 的实现，实际上是依赖于 FreeBSD 的另一项技术 kqueue。kqueue 是一个由 FreeBSD 4 时代引入的新功能，内核级别地支持消息通信管理。GCD 的队列，其实就是用 kqueue 实现的。<br>GCD 出现的意义</p>
+<p>　　在 GCD 中，开发者不再管理和创建线程，而是将要实现的运算抽象成一个个任务，一起扔给操作系统，转而让操作系统管理，这在计算机科学中，被称为线程池管理模式。</p>
+<p>　　在 GCD 中，开发者使用很简单的方式就能描述清应用程序所需执行的任务，以及任务之间的相互关联。每一个任务在代码中被描述成块（block），然后开发者把一个一个块显式地按顺序扔到队列（queue）中。使用块和队列两个抽象的表述，开发者无须创建线程，也无须管理线程，更无须考虑数据的加解锁。换之而来的，是更简短可读的代码。剩下的事，全都扔给操作系统去完成。</p>
+<p>　　在操作系统那边，GCD 在程序运行时，管理着一定数量的线程，线程的数量是自动分配的，取决于用户计算机的配置和用户程序运行时的负载。多核工作站每个程序配到的线程，自然就会比单核手机或双核笔记本来得多。而且这个线程的数量是会动态变化的。当程序非常忙时，线程数会相应增多，而当程序闲置时，系统会自动减少其线程数量。然后，GCD 会一一从队列中读入需要执行的块，然后扔到线程上并发执行。<br>　　相信读者已经看出 GCD 和传统线程-锁机制的区别来了。传统的方式按劳分配，强调程序自由独立地管理，妄想通过“无形的手”把系统资源平均分配，走的是资本主义市场经济的道路。而 GCD 按需分配，真正实现了社会主义计划经济管理模式。因此在政治上 GCD 就是一个代表先进生产力的计算机技术（我被自己雷了，但事实就是这样）。</p>
+<p>　　GCD 是一个自底向上的技术，它实际上由以下 6 个部分组成。</p>
+<p>编译器层面，LLVM 为 C、Objective-C 和 C++ 提供了块语法，这个内容等下会介绍。</p>
+<p>运行库方面，有一个高效分配管理线程的运行库 libdispatch。</p>
+<p>内核方面，主要基于 XNU 内核 Mach 部分提供的 Mach semaphores 和 BSD 部分提供的 kqueue () 机制。</p>
+<p>dispatch/dispatch.h 提供了丰富的底层编程接口。</p>
+<p>在 Cocoa 层面，NSOperation 被重写，因为使用 libdispatch，所以先前使用 NSOperation 的程序不需改动，就自动享受 Grand Central Dispatch 的最新特性。<br>Instruments 和 GDB 提供了非常完整的分析和调试工具。</p>
+<p>　　GCD 还有一些工程上的优势。首先，程序的响应速度会更快。GCD 让程序员更方便地写多线程程序，因此写一个多线程程序来实现前后台简单多了，极大改善了 Mac OS X 上应用程序的生态环境。而且 GCD 的代码块队列开销很小，比传统线程轻量得多。统计表明，传统的 Mac OS X 上使用的 POSIX 线程需要数百个计算机汇编指令，占用 512KB 的内存，而一个代码块队列才用 256 字节的长度，把块加入队列，只需要 15 个计算机汇编指令，因此开成百上千个也不费什么事。</p>
+<p>　　其次，线程模式是一种静态的模式，一旦程序被执行，其运行模式就被固定下来了。但用户的计算机配置各不相同，运行时别的程序有可能耗用大量的计算资源。这些都会影响该程序的运行效率。而动态分配系统资源则能很好地解决这个问题。苹果自然也是不遗余力地忽悠开发者使用 GCD，因为各个软件共享多核运算的资源，如果 GCD 被更多的开发者采用，整个苹果平台的生态也就更健康。</p>
+<p>　　而最重要的，还是 GCD 采用的线程池模式极大简化了多线程编程，也降低了出错的可能性。著名 FreeBSD 开发者 Robert Watson 还发布了一个他修改过的 Apache，并释出了补丁，声称只需原先 1/3 至 1/2 的代码量，就实现了原先的多线程模块，并比原先的效率更好。</p>
+<p>如何应用 GCD</p>
+<p>当然，老王卖瓜，自卖自夸，没有实际的例子，是不能让读者信服的。下面我们就来简单讲解 GCD 的技术。</p>
+<p>首先是块状语法，是一个对 C、C++ 和 Objective-C 语言的扩展。用来描述一个任务，用^引导的大括号括起来。比如最简单的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x = ^&#123; <span class="built_in">printf</span> (“hello world\n”);&#125;</span><br></pre></td></tr></table></figure>
+
+<p>则 x 就变成了一个块。如果执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">x ();</span><br></pre></td></tr></table></figure>
+
+<p>那么程序会打印 hello world 出来。当然，blcok 像函数一样，可以跟参数，比如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">int spec = 4;</span><br><span class="line">int (^MyBlock)(int) = ^(int aNum)&#123;</span><br><span class="line">  <span class="built_in">return</span> aNum * spec;</span><br><span class="line">&#125;;</span><br><span class="line">spec = 0;</span><br><span class="line"><span class="built_in">printf</span> (“Block value is%d”,</span><br><span class="line">MyBlock (4));</span><br></pre></td></tr></table></figure>
+
+<p>这里 MyBlock 是一个带参数的代码块。读者看到这里不禁要问，块到底有什么好处？它和 C 的函数指针有什么不同？我们依然用上面的例子来说明问题，虽然后面我们把 spec 变量改为 0，但事实上在 MyBlock 创立时，已经生成了一个闭包，因此它最后输出的结果，仍是 16，不受 spec 值改动的影响。这对于搞函数式编程的人来说再熟悉不过了，因此很多开发者亲切地称呼块语法的 C 扩展为“带 lambda 的C”。</p>
+<p>　　有了闭包功能的 C 顿时牛起来——你可以把函数和数据包装在一起——这就是块的真正功能。因为只要一个闭包包含了代码和数据，它的数据就不会被别的闭包轻易改动，所以在它执行时，你根本不用为数据上锁解锁。</p>
+<p>有了一系列的代码块后，接下来的事是把代码块扔到队列里。比如最简单的：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_queue_t queue = dispatch_get_global_queue (0,0);</span><br></pre></td></tr></table></figure>
+
+<p>来创建一个轻量级的队列，然后</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dispatch_async (queue,^&#123;<span class="built_in">printf</span> (“hello world\n”);&#125;);</span><br></pre></td></tr></table></figure>
+
+<p>　　那这个代码块就被扔进 queue 这个队列中了。你可以手动依次添加任意多个项目，比如“带着老婆”、“出了城”、“吃着火锅”、“唱着歌”、“突然就被麻匪劫了”等。当然在更多的场合，你会更倾向于使用自动事件源，每当一个事件触发时（比如定时器到点、网络传来包裹，或者用户点击了按钮），相应的代码块被自动添加到队列中。</p>
+<p>　　一旦队列不是空的，GCD 就开始分配任务到线程中。拿上面的例子来说，“老婆”、“城”等变量可是封在闭包里的，所以在运行时，不用考虑它们被某个别的闭包改掉（当然也有方法来实现这个功能）。总体而言，这个模式比线程-锁模型简单太多——它的执行是并行的，但思维却是传统的异步思维，对没有学习过系统多线程编程的开发者来说，依然能很容易地掌握。</p>
+<p>　　读者可能要问，如果闭包之间有复杂的依赖关系，需要申明某两个操作必须同步或异步怎么办？比如“出了城”必须在“吃着火锅”之前。在 GCD 中，可以使用 dispatch_async 和 dispatch_sync 来描述这样的依赖关系，而在 Cocoa 层面，NSOperation 中的队列依赖关系甚至可以被描述成有向图。<br>GCD 得到广泛应用</p>
+<p>　　GCD 一经推出就得到了广泛的应用。苹果自家的软件 Final Cut Pro X、Mail 等软件，都采用 GCD 来实现任务并发和调度，因此 Mac OS X 10.6 成为了有史以来最快的发行版。从 iOS 4 开始，iPhone 和 iPad 也加入了 GCD 的支持。更别提原来使用 Cocoa 的 NSOperation 相关接口的程序，无需改动即享受 GCD 的优惠。</p>
+<p>　　GCD 在 Mac OS X 10.6 发布后，又以 libdispatch 为名，作为一个独立的开源项目发布。 所需的外围代码，如编译器的块支持、运行库的块支持、内核的支持，也都能在 LLVM 和 XNU 等开源项目代码中找到，所以很快被别的操作系统采用。作为 Mac OS X 的近亲， FreeBSD 在一个月后即完整移植了整套 GCD 技术，并最终在 FreeBSD 9.0 和 8.1 中出现。诸多 Linux 发行版也提供 libdispatch 的包，使用 Linux 内核的 epoll 来模拟 FreeBSD 的 kqueue。2011年 5 月 5 日， Windows 的移植工作也宣告完成。</p>
+<p>　　另外，GCD 也成为拯救动态语言的重要法宝。由于受 GIL（全局解释锁）的限制，动态语言虽然有操作系统原生线程，但不能在多核处理器上并行执行。而 GCD 成功绕开了这个限制，如加入 GCD 支持的 Ruby 实现 MacRuby 就能在多核处理器上高效执行。 因此，在苹果生态圈以外，GCD 也会得到越来越多的应用。</p>
+<h2 id="半导体的丰收（下）"><a href="#半导体的丰收（下）" class="headerlink" title="半导体的丰收（下）"></a>半导体的丰收（下）</h2><p>　　随着 CPU 与 GPU 合并成技术发展的趋势，苹果开发出了 OpenCL 框架，能够进行高速并行处理的能力使 OpenCL 成为了业界标准，被广泛应用。</p>
+<p>　　最近几年，GPU 的发展吸引了很多来自科学计算界人士的目光。GPU 有稳定的市场推动力——公众喜闻乐见的电子游戏产生了源源不断的升级 GPU 的需求——因此比 CPU 的更新步伐更快。从技术上讲，GPU 本身就是多核架构，高端显卡往往有五百多个核心，即使低端的集成 GPU 也有二三十个核心，所以能够通过并行来高效处理成千上万的线程。同时，对于科学技算中的浮点计算，GPU 往往通过硬件加速使其效率比传统 CPU 更高，因为图形渲染等工作基本都是浮点计算。</p>
+<h2 id="GPGPU-浮出水面"><a href="#GPGPU-浮出水面" class="headerlink" title="GPGPU 浮出水面"></a>GPGPU 浮出水面</h2><p>　　早期的 GPU 只能执行固定的程序，而不开放给程序员编程。随着时代的发展，图像处理有时需要对着色器进行编程以实现一些特效，因此需要程序员可以使用 GPU 的汇编语言写简单的着色程序。这自然对程序员要求过高，所以一些高阶的着色语言又被 GPU 厂商开发出来。比如微软和 NVIDIA 共同开发的 Cg 语言，就能为顶点和像素编写专门的着色程序。这类技术虽然面向图形渲染工作者，却吸引了一小簇科学计算研究者的兴趣。以计算流体力学为例，它是用纳维斯托克斯方程【注：把牛顿第二定律和质量守恒应用到流体后，所得到的偏微分方程】来求解流体力学问题的一种算法，广泛用于天气预报、F1 方程式赛车设计等工程领域。同时，对于电影制片特效，计算流体力学也是最基本的用来模拟流体流动特放的算法，皮克斯动画工作室的《寻找尼莫》中的海洋流动和水花等，都是使用纳维斯托克斯方程来模拟的。</p>
+<p>　　首先，对于一个几何空间进行网格化，每个网格中的流体，都可以列出纳维斯托克斯方程，把这些方程联立起来进行求解，即可得到各点的温度、压力、湿度、速度等流体信息。整个求解过程可以高度并行，因为每个网格的控制方程是完全一样的；同时也牵涉大量的浮点运算。但 Cg 这类语言并非面向普通的计算，其变量都是颜色、顶点、像素等图形学专用变量。来自北卡罗莱那大学教堂山分校的 Mark Harris 突发奇想：可以把流体力学中每个网格的速度、压力等变量，存成 RGBA 颜色后让 Cg 去处理，所以他在《GPU Gems》中著名的一章，公布了使用 Cg 来高速实现计算流体力学运算的成果，吸引了大量计算界的目光。然而，这种编程模式对科技工作者来说很不友好，因为这要求一个学力学的、学生物的、学化学的学生，先要明白复杂的 GPU 渲染原理，了解图形学中材质、顶点、合成、像素、光栅化、光线跟踪等深奥的理论，才能编写他们专业相关的 GPU 程序。</p>
+<p>　　GPU 生产厂商洞察到了 GPU 高速并行浮点数运算的潜力，所以 GPGPU（General Purposed Graphics Processing Unit）概念终于浮出水面。一方面 GPU 设计一代比一代可编程化，另一方面各公司也在加紧研制新一代 GPU 编程语言。新一代的语言对比 Cg，去掉了对于渲染相关的知识要求，独立于图形学之外，是纯粹的普通语言，比如变量不再是像素、顶点、面等类型，而是 C/C++ 语言开发者喜闻乐见的浮点数组、整形数组等。这一时期为代表的语言，主要是 CUDA（Compute Unified Device Architecture）。CUDA 是 NVIDIA 在 2007 年公布的一项面对科学计算工作者的编程框架。通过该技术，使用者可利用 NVIDIA 的 GeForce 8 以后的 GPU 和较新的 Quadro GPU 进行高性能编程。用户先编写一个特殊的 C++ 代码文件，扩展名为 cu，文件中需要申明创建的变量、GPU 计算核心（kernel）以及使用给定的编程接口来实现变量在 CPU 和 GPU 中的传送。然后通过 NVIDIA 自家的编译器编译这个代码，链接到 NVIDIA 自家的库上，即可把该运算核心编译为 GPU 汇编语句扔到特定型号的 GPU 上高度执行。其他厂家也紧随其后，比如 AMD 为 ATI 生产的 GPU 卡提供了一个类似的框架叫 Stream SDK（先前被命名为 CTM, Close to Metal， ATI Stream Computing – Technical Overview， 03/20/2009 <a href="http://en.wikipedia.org/wiki/Close_to_Metal" target="_blank" rel="noopener">http://en.wikipedia.org/wiki/Close_to_Metal</a> ）。而微软更是趁 Vista 和 Win7 推出了 DirectCompute，作为旗下 DirectX 技术的一部分。</p>
+<h2 id="CUDA-并不完美"><a href="#CUDA-并不完美" class="headerlink" title="CUDA 并不完美"></a>CUDA 并不完美</h2><p>　　对科学工作者来说，CUDA 比 Cg 友好太多。使用 CUDA 加速流体力学运算相关的论文更是雨后春笋般涌现。然而不久后，我发现它存在许多问题。</p>
+<p>　　首先，对初学者来说，CUDA 编程模式很容易学混。因为一个 GPU 数组和一个 CPU 数组在 CUDA 中的表述都是同样的C指针，但对于 GPU 数组和 CPU 数组，CUDA 的处理模式完全不同，CPU 数组使用常规的 malloc 来初始化，而 GPU 数组得使用 CUDA 提供的 malloc。所以程序写着写着，就忘了一个变量到底是给 CPU 用的还是给 GPU 用的，这无疑增加了学习难度。同时，CUDA 对 C/C++ 语言进行了一系列扩展，这不但意味着写的程序不再具有 C/C++ 那样良好的可移植性，而且这种计算核心和传统 C 程序混写的编程语言很不美观。</p>
+<p>　　其次，CUDA 这类语言的实现各自为政。如果你写了一个 CUDA 程序，就意味着这个代码只能运行在 NVIDIA 的显卡上。如果想使用 ATI 的显卡呢？没门，请用 ATI Stream SDK 重写。</p>
+<p>　　再次，CUDA 是在编译时就静态产生 GPU 代码的，所以只能产生特定的 GPU 代码。如果你发布了一个 CUDA 程序，它仅对某几种 NVIDIA 显卡进行特定的代码优化。如果 NVIDIA 自家出了一种新显卡，很抱歉，哪怕新显卡可能兼容老显卡的汇编指令而你的程序恰巧可以在新显卡上跑起来，你也无法发挥新显卡的所有特性。必须用针对新显卡的编译器重新编译源代码，才能够保证程序在新显卡上高效执行。</p>
+<p>　　最后，CUDA 这类语言仅能产生高效的 GPU 代码，而无法产生 CPU 代码，即：写完的代码只能跑在 GPU 上，在 CPU 上只能“模拟执行”，仅供调试用。所以在一台不具备给定 GPU 的机器上，无法高效运行 CUDA 程序。同样，如果你有一个性能很强的工作站，那么你的 CPU 亳无用处——CUDA 不可能分配一部分任务给 CPU 完成。</p>
+<p>　　另外还有未来计算机架构的不确定性。当时，GPU 越来越一般化，可以跑多种数值计算程序，而 CPU 随着多核成为主流也越来越像 GPU。所以很多厂家在考虑 CPU 和 GPU 合并的可能性。</p>
+<p>　　当时轰动一时的热门事件，是 CPU 厂商 AMD 买下了 GPU 厂商 ATI，来开发下一代处理器 AMD Fusion，把 GPU 和 CPU 合并到一起。Intel 自然不甘示弱，做出了 Nehalem 平台，在该平台上，CPU 和集成 GPU 处于同一个包装中，外界一度猜测这样可使合并后的 CPU 具有图形处理工能，从而用户购置计算机就不用再考虑配一块 GPU 了。</p>
+<p>　　更强大的是，当时 Intel 还公布了 Larrabee 计划，让 GPU 支援 x86 指令，使得一个常规的 x86 平台的程序不需要修改和重新编译便可在 GPU 上运行。</p>
+<p>　　虽然事实和这些预期有稍许出入，但当时的技术趋势是：在将来可能出现一种新的合并 GPU/CPU 的技术，能够并行高速地运行一般的计算机程序，而面对这样新的可能的平台，我们如何准备？</p>
+<h2 id="OpenCL-诞生"><a href="#OpenCL-诞生" class="headerlink" title="OpenCL 诞生"></a>OpenCL 诞生</h2><p>　　OpenCL 则是苹果为这个新局面画下的蓝图。这项技术初期全称为 Open Computing Library（如果留意苹果早期宣传广告的话），后改名为 Open Computing Language。这项技术从本质上来说，和 CUDA 并没有太多的两样，但由于苹果在借鉴他人技术并把他人技术改得更棒这一点上是出了名的，所以 OpenCL 很好地解决了以上所有问题。</p>
+<p>　　下面简单介绍一下这个框架。OpenCL 技术的结构十分清晰，对程序员来说，它是一个 Mac OS X 的 Framework，定义了两套标准，一套是一个 C 语言的编程界面（API），使得开发者创建、拷贝、回收 GPU 使用的对象，同时也包含检测处理器、为该处理器编译并调用核心程序（kernel）相关的接口；另一套是 OpenCL 核心程序语言的定义，是一套基于 C99 发展而来的语言。</p>
+<p>　　例如我们有两个大数组，1024 维的 a 和 1024 维的 b（当然，1024不算大，OpenCL 往往用来处理十万、百万数量级的任务），我们把两个数组对应的元素加和，结果是一个 1024 维的数组c。C 程序员很容易能写出下面的程序：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (int i = 0; i &lt; 1024; i++)</span><br><span class="line">　　 c[i]=a[i]+b[i];</span><br></pre></td></tr></table></figure>
+
+<p>OpenCL 的核心程序，则是取每个独立的可并行的循环分支，即上面程序中的 c[i]=a[i]+b[i]。所以核心程序大概是下面这样：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">__kernel add (<span class="built_in">float</span> *a, <span class="built_in">float</span> *b, <span class="built_in">float</span> *c)&#123;</span><br><span class="line"></span><br><span class="line">int i = get_global_id (0);</span><br><span class="line"></span><br><span class="line">c[i]=a[i]+b[i];&#125;</span><br></pre></td></tr></table></figure>
+
+<p>　　其中，get_global_id () 函数可以返回当前函数是全局中的第几个元素。把该程序保存为 add.cl，就是一个 OpenCL 的核心程序，为 C99 语言的一个子集。</p>
+<p>　　使用 OpenCL 的 API 就能调用这个核心程序。每个 OpenCL 程序基本上是模式化地照搬下面流程：</p>
+<p>　　1. 探测硬件（用 clGetDeviceIDs 函数护取计算设备（可以指定使用 GPU 或是 CPU），用 clCreateContext 函数来新建一个上下文（context），用 clCreateCommandQueue 函数针对设备和上下文新建一个命令队列）；</p>
+<p>　　2. 编译核心（读入 add.cl，用 clCreateProgram-WithSource 和 clBuildProgram 以及 clCreateKernel 来编译读进来的字符串，产生一个核心程序）；</p>
+<p>　　3. 写入数组（用 clCreateBuffer 创建a、b、c三个内存对象，用 clEnqueueWriteBuffer 把 C 数组写到内存对象中）；</p>
+<p>　　4. 运行核心（把内存对象作为核心程序函数的输入参数执行这个核心，程序会并发为 1024 个线程，每个线程执行一次相应的加法运算）；</p>
+<p>　　5. 读出结果（用 clEnqueueReadBuffer 读取c内存对向，写为C的数组）；</p>
+<p>　　6. 回收内存。</p>
+<h2 id="OpenCL-之美"><a href="#OpenCL-之美" class="headerlink" title="OpenCL 之美"></a>OpenCL 之美</h2><p>　　让我们逐条来看前面那些问题是如何被解决的。</p>
+<p>　　首先，OpenCL Framework 由 C API 和 OpenCL 语言组成，泾渭分明，所有的 GPU 变量在 C API 中，都是内存对象的形式出现，有别于 C 自建的数组。因此，你永远不会搞混两者。同理，OpenCL 核心程序是独立在 C 源程序之外的，不仅美观，也能保证你的 C 程序能被所有 C 编译器编译，因为调用 OpenCL 库和调用其他 C 的函数库没有任何不同。</p>
+<p>　　其次，苹果开发出 OpenCL 后，觉得该技术甚好，索性联合 AMD、ARM、ATI、TI、Intel、IBM、Nokia 等公司，把它做成一个由 Khronos 组织主持的开放标准。不管电脑上用的显卡是 ATI 的还是 NVIDIA 的，OpenCL 都能像 OpenGL 那样在你的设备上无缝运行。事实上，OpenCL 已同 OpenAL 和 OpenGL 一样，成为 Khronos Group 旗下的三大业界标准。</p>
+<p>　　再次，CUDA 是在编译时就静态产生 GPU 代码的，所以只能产生特定的 GPU 代码。而 OpenCL 的核心程序（kernel）是在运行时被编译成 GPU 指令的。由于 kernel 所用的 OpenCL 语言，仅是 C99 的一个子集，所以负责编译这个程序的是 OpenCL 运行库自带的 LLVM-Clang。这样做的好处是明显的，举例来说，如果用户有一堆 OpenCL 的程序，比如苹果最新的 Final Cut Pro X 就在许多地方采用了 OpenCL，如果某一天硬件厂商发布了一个全新的 GPU 架构，那么用户安装显卡后，只要下载或更新相关的驱动程序和运行库即可，而不需要再求软件厂商发布一个新版本的 Final Cut Pro X。因为 OpenCL 在运行时，会根据显卡厂商提供的驱动和新运行库自动优化程序到特定架构上。所以，程序兼容性问题也被圆满解决。</p>
+<p>　　最后，由于 OpenCL 是个开放标准，也支持 CPU 和其他任何计算设备，比如数字信号处理芯片（DSPs）和各种专门的处理器架构。所以只要有相关的驱动和运行库，OpenCL 程序可以高效地并行运行在任何架构的运算设备上。由于 OpenCL 和 GCD 的编程模式是一样的，因此当 OpenCL 程序在 CPU 上执行时，是跑在 GCD 队列上的。</p>
+<p>　　由于 OpenCL 能高速地进行并行处理（如 <a href="http://macresearch.org/opencl_episode1" target="_blank" rel="noopener">http://macresearch.org/opencl_episode1</a> 的演示，OpenCL 编写的 GPU 程序比单核 CPU 能快上数十至数百倍，笔者的论文 Yue Wang, Ali Malkawi, Yun Yi, Implementing CFD (Computational Fluid Dynamics) in OpenCL for Building Simulation, 12th Conference of International Building Performance Simulation Association, 2011 也得出了类似的结论），OpenCL 被广泛地使用在很多产品中，苹果也是 OpenCL 的主要用户之一。如上面提到的 Final Cut Pro X 就是个典范，使用 GCD 和 OpenCL 进行大量并行的流媒体处理。在老版本 Final Cut 中，每当用户执行一次流媒体操作，都会弹出一个进度条来告诉用户剩余的处理时间，而 Final Cut Pro X 优化后的速度是如此实时，以至于这个进度条被去除了。Mac OS X 许多的底层库也使用 OpenCL 重写，如 Core Image，本身也是一个 GPU 加速库，使用 OpenCL 后相比原来，依然获得了可观的性能提升。</p>
+<p>　　Snow Leopard 的发布标志着第一个 OpenCL 框架的完整实现，OpenCL 成为业界标准后，AMD 抛弃了原先的策略，投入开放标准的怀抱，一连放出了几个测试版本的集成 OpenCL 的 ATI Stream SDK，并在 2009 年年底发布了稳定版，2011年 8 月 8 日宣布废除原先的 Close to Metal 相关技术。NVIDIA 也是早早地在 CUDA SDK 中加入了 OpenCL 相关的库。CUDA 越来越不被看好，所以 NVIDIA 索性把 CUDA 发布为一个开源项目，并把 CUDA 架构在 LLVM 之上。这和 OpenCL 近几年的走强有很大关系。<br>开发者的瓶颈</p>
+<p>　　目前看来，OpenCL 虽然解决了上面的所有问题且速度飞快，但对普通程序员来说，依然是非常底层的技术。而且由于硬件的限制（显卡不支持指针运算），很多 C 的标准并未在 OpenCL 中出现，写链表还需要用整数去模拟地址。程序员需要手动管理内存，处理底层的核心调用以及数据读写。而显卡厂商也大多不愿公开 GPU 的技术细节，因此不像 CPU 程序很容易通过汇编指令分析计算机底层干了什么，显卡对于开发者纯粹是个黑盒，把整个问题分成多少个线程并发也没有一个规律可循，有可能不起眼的改动会使程序运行瞬间变快或变慢数十倍，开发者也不知道其中的原因，只能凭经验操作。而且由于不存在良好的调试工具，所以很难改正程序的错误。</p>
+<p>　　显卡作为系统最为重要的共享资源之一，不像现代操作系统那样提供内存保护机制，因此一个用户 OpenCL 程序的错误很容易导致整个计算机崩溃，所以经常是程序跑一遍后发现操作系统挂了，重启后发现了一个可能的错误，改完后编译运行，操作系统又挂了。我用 OpenCL 编写科学计算程序时，大量时间是在重启电脑而不是写程序。这些问题仍然阻碍着 OpenCL 被广泛采纳，不过，在科学计算界，已经涌现出了越来越多相关的论文和技术，相信在不久的将来，情况会有所改观。</p>
+<p>结语</p>
+<p>　　当写完这篇技术长文时，天色已晚，走出教室，和 ENIAC 擦肩而过。ENIAC 的出现激励了之后一次次的处理器革命。2009 年发布的 Snow Leopard 可能在整个 Mac OS X 发行版历史中不算最出彩，却是对于半导体集成电路革命的一次重大收获。</p>
+<h1 id="Mac-OS-X背后的故事（十）Mac-OS-X-文件系统的来龙去脉"><a href="#Mac-OS-X背后的故事（十）Mac-OS-X-文件系统的来龙去脉" class="headerlink" title="Mac OS X背后的故事（十）Mac OS X 文件系统的来龙去脉"></a>Mac OS X背后的故事（十）Mac OS X 文件系统的来龙去脉</h1><p>　　HFS+ 和 UFS 文件系统同时被引入早期的 Mac OS X，随着若干年的发展，HFS+ 提供的功能已超越 UFS，使其在 Mac OS X 10.5 之后成为成为唯一正式的 Mac OS X 系统，但因为其背负许多的历史包袱，为考虑兼容性，这些陈旧的设计并不能被推翻重来，所以苹果开始秘密研发下一代的文件系统。</p>
+<p>著名 BSD 开发者 Marshall Kirk McKusick</p>
+<h2 id="UFS：经典的-Unix-文件系统"><a href="#UFS：经典的-Unix-文件系统" class="headerlink" title="UFS：经典的 Unix 文件系统"></a>UFS：经典的 Unix 文件系统</h2><p>　　在 Unix 系统刚诞生的远古时期，文件系统被简单地称为 FS。FS 只包括启动块、超级块（处于硬盘分区开头用来保存文件系统信息）、inodes（索引节点）及数据。FS 文件系统在 Unix 系统刚诞生时还能满足新老客户的需求，但随着科学技术的进步，FS 已不能符合现代文件系统的需求，且会导致抖动等一系列问题。当时还是加州大学伯克利分校研究生，后成为著名 BSD 开发者 Marshall Kirk McKusick 在 BSD 4.1b 上承接传统的 FS 文件系统实现了 FFS（Fast File System），妥善地解决了这一难题，把先前整块的磁盘文件系统分为小块，每块包含自已的索引节点和数据，因而增加了文件的局部性，减少了寻道时间。由于 Marshall Kirk McKusick 的 FFS 文件系统很好很强大，所以立即被各大 Unix 系统所使用。SunOS/Solaris、System V Release 4、HP-UX 及 Tru64 UNIX 都使用它，也成为当今各 BSD 分支（FreeBSD、OpenBSD、NetBSD 及 DragonFlyBSD）的标准文件系统。每个不同的系统，无论开源与否，又会在 FFS 文件系统上增加各种扩展，这些扩展往往不互相兼容，但神奇的是，大家又都使用和原版同样的块大小和数据块宽度。因此在很大程度上，这些山寨版 FFS 文件系统又相互兼容，至少在一个操作系统上能对另一操作系统的文件系统执行只读操作。因此，FFS 事实上已经成为 Unix 系统的标准文件系统，故它有了一个更广泛的称谓——UFS（Unix File System，即 Unix 文件系统）。</p>
+<p>　　UFS 在后来的若干年又取得了长足的发展。Sun 公司在 Solaris 7 系统中，给 UFS 提供了简单的日志功能。日志文件系统指在档案系统发生变化时，先把相关的信息写入一个被称为日志的区域，然后再把变化写入主文件系统的文件系统。在文件系统发生故障（如内核崩溃或突然停电）时，日志文件系统更容易保持一致性，并且可以较快恢复。Marshall Kirk McKusick 又实现了 BSD 一度引以为豪的 Soft Update 功能，来保证计算机掉电或系统崩溃时，通过使元数据按依赖顺序更新来确保磁盘上总的文件系统保持一致的实现机制。Soft Update 的目标和日志类似，但实现代价比日志轻量许多。不过这项功能有所代价，主要是需要引入一个后台 FSCK 检查。</p>
+<p>　　2009 年，Jeff Roberson 正式发表了对 UFS 的一项改进，为 Soft Update 加入了日志功能，并消除了对 FSCK 的依赖，这项改进最终集成进了 FreeBSD 9 中。TrustedBSD 项目又为 BSD 分支的文件系统设计了 ACL 访问控制表功能（Access Control Lists）。先前，Unix 文件系统的访问控制是非常简单的，其权限管理分为三个不同的类别：用户、同组用户以及其他用户，对每个类别，Unix 文件系统提供读、写、执行三种权限的管理。这样的许可管理过于粗糙，无法指定某一用户访问的权限，也无法指定更为细致的权限内容（例如准许对一文件实行删除操作）。为解决这个问题，访问控制表被增加到文件系统中，使用以存取控制矩阵为基础的存取控制方法。存取控制串列描述每一个文件对象各自的存取控制，并记录可对此物件进行存取的所有主体对对象的权限。总之，UFS 与时俱进，不断增加新的功能。<br>HFS+：更现代的 HFS</p>
+<p>　　作为 Mac OS X 的老祖宗 NeXTSTEP，因为基于 BSD，所以自然也使用 UFS。而老版的 Mac OS 则使用一个叫做 HFS 的文件系统。HFS 是一个比较古老且不思进取的文件系统，因此，在 20 世纪 90 年代末已不能满足当时的需要。在《Mac OS X 背后的故事（一）》中我们提到，为了实现 Mac OS 的现代化，Copland 项目被提出。Copland 项目的子项目 Sequoia 旨在 HFS 的基础上，加入现代文件系统所必需的新功能，如大文件支持、Unicode 文件名支持、长文件名支持、32 位文件映射表支持等。Sequoia 项目即成为后来熟知的 HFS+，由 Don Brady 领导，这个团队先花了 6 个月时间把 HFS 项目原本的 Mac 使用的 68K 处理器汇编码改写成 C 代码，然后逐渐加入新功能。</p>
+<p>　　后来由于 Copland 被力挽狂澜的 Ellen Hancock 给废了，所以一些有用的更新，如 HFS+ 即被集成到 Mac OS 8.1 中。在 Mac OS X 诞生初期，HFS+ 和 UFS 文件系统同时被引入早期的 Mac OS X 中。不过由于 HFS+ 根植 Mac OS，缺乏 Unix 文件系统所必需的功能，如符号链接、硬链接及其他各种 POSIX 兼容性，所以 HFS+ 开发组又花了一些工夫在不影响和 Mac OS 兼容性的情况下引入了这些功能。由于 HFS+ 是对 HFS 的扩展，故 HFS+ 支持 Mac OS 至 Mac OS X 的平滑过渡，所以 Mac OS X 一直默认使用 HFS+。但当时的 UFS 提供比 HFS+ 更先进的功能，因此 Mac OS X 10.0 至 10.4，也都支持把系统安装在 UFS 系统上。</p>
+<p>　　Mac OS X 10.0 发布后，苹果不遗余力地对 HFS+ 进行大规模的扩展和维护，增加了很多 UFS 独有的功能。这些新功能使得文件系统更加安全稳定可靠。例如 Mac OS X 10.2.2 中，HFS+ 支持日志。日志功能在 Mac OS X 10.2 服务器版中可以简单地设定，但在普通桌面版中需要使用命令行进行操作。在 Mac OS X 10.3 中，带日志功能的 HFS+（被称为 HFSJ，即 HFS+ volume with journal）成为默认设置。Mac OS X 10.3 亦增加文件名、目录名区分大小写及 Unicode 3.2 的支持。Mac OS X 10.4 中，HFS+ 更是增加了 ACL 访问控制表功能，提供更复杂的对传统 Unix 文件系统权限的扩展。<br>　　文件系统除了让用户供稳定地存放文件这一目标以外，还是各项操作系统功能的基础。Mac OS X 每个大发行版都要增加数百项新功能，许多新功能严重依赖于文件系统的实现。Mac OS X 10.3 提供了 FileVault 来加密用户文件，因此用户主目录被保存在一个 HFS+ 文件系统加密镜像中。Mac OS X 10.4 提供了系统内置的 Spotlight 桌面搜寻搜索功能，能让用户对整个磁盘系统进行快速搜寻、随打即显。这项功能要求文件系统提供任意长度文件元数据（metadata）的支持。Mac OS X 10.4 转向了对 Intel 处理器的支持，因此苹果发布了一个测试版本的 BootCamp 来让用户安装 Mac OS X、Windows 双系统，并在 Mac OS X 10.5 正式集成进系统。</p>
+<p>　　哪怕在 Mac OS X 系统运行，BootCamp 也可以实时调整系统主分区的大小，来空出磁盘空间给 Windows，因此，HFS+ 又需要支持动态分区大小调整。在 Mac OS X 10.5 中集成了 Time Machine，它是苹果公司所推出备份的工具程序，于 2006 年 8 月 7 日在苹果计算机全球研发者大会（WWDC）中首次公开，成为当天观众欢呼声最高的功能。Time Machine 对于修改过的文件会在备份盘上保存一个新拷贝，而对于不变的内容，仅在备份盘上存一个指向先前文件的硬链接。因此每一次快照只保存改动的文件，而别的文件只保存占用空间很少的硬链接。但 Unix 一般只支持文件的硬链接而不支持目录的硬链接。因此 HFS+ 在这点上走得比 Unix 文件系统更远，提供了对于目录的硬链接支持。在 Mac OS X 10.6 中，HFS+ 甚至支持文件系统压缩，使得安装后占用比 Mac OS X 10.5 少得多的空间。Mac OS X 10.7 提出了 FileVault2，能加密整个磁盘而不是一个用户目录。这些功能我们在为读者介绍每个发行版时亦会提到，但总之读者看到，HFS+ 的功能随着 Mac OS X 的商业需求不断被扩展。“我在做了这么多工作后回想才发现，我们为 HFS+ 增加了那么多新功能，”苹果前文件系统开发者 Don Brady 如是说。<br>　　由于 HFS+ 经过后来若干年的发展，提供的功能已不逊于 UFS，甚至更多更好，故至 Mac OS X 10.5 砍掉了安装至 UFS 的支持。HFS+ 成为唯一正式的 Mac OS X 系统。</p>
+<h2 id="HFS-并不完美"><a href="#HFS-并不完美" class="headerlink" title="HFS+ 并不完美"></a>HFS+ 并不完美</h2><p>　　HFS+ 自发布以来，几乎每个发行版都有令人欣喜的改动。它也逐渐成为一个非常完善的文件系统。但 HFS+ 立足于 HFS 设计，HFS 已有 27 年的历史，HFS+ 亦有 14 年历史。这个文件系统有太多的历史包袱，为考虑兼容性，这些陈旧的设计并不能被推翻重来。</p>
+<p>　　HFS+ 基于B-树实现，当查找B-树中未使用的节点时，HFS+ 只能每次处理 16 位，原因是老 Mac 使用的 Motorola 的 68K 芯片原生支持 16 位的数据操作。但不管是 PowerPC 还是 Intel，寄存器都支持 256 位宽的寄存器。</p>
+<p>　　HFS+ 的元数据（metadata）都以大字节序保存，原因是 Motorola 的 68k 和后来 Mac 使用的 PowerPC 都使用大字节序。但经过 Intel 迁移后，当今的 Mac 都使用 Intel 芯片，而 Intel 芯片是使用小字节序的。因此每当数据读取或存入时，还要经过小字节序和大字节序的转换。远古时期磁盘很慢，计算机处理器的速度也很低，因此进行一次磁盘操作会占用较多的时间，HFS+ 的时间分辨率为一秒，但当今的磁盘、处理器处理一次文件系统操作的时间远小于一秒，因此所有主流磁盘文件系统的时间分辨率都是一至数百纳秒级别的。</p>
+<p>　　HFS+ 的元数据有全局锁，同一时间只有一个进程可以访问更新文件系统。在单核处理器连手机平板都较少见到的当今，这种设计显得很幼稚。</p>
+<p>　　HFS+ 亦没有稀疏文件的支持。例如我们在 SQL 中建立了一个数据库，SQL 分配了 10GB 的文件给这个数据库，并且在文件头和文件尾写上一些字节的数据。而由于我们还没有给这个数据库添加新的数据，所以这 10GB 的文件除了头尾外其他字节都为0。现代的文件系统基本都支持稀疏文件，也就是说，当处理这个数据库操作时，事实上往磁盘写入的数据只有那文件头和文件尾的若干字节。而 HFS+ 则需要把那些 0 也写上，因此会完整写入 10GB 的数据，耗费长得多的时间。</p>
+<p>　　此外，HFS+ 不具备元数据校验功能、快照功能、写入时复制功能、就地执行功能、逻辑卷管理功能等很多现代磁盘系统所具备的功能，也不能动态调整文件块大小。这些功能的加入并不容易。</p>
+<p>　　其中最要命的是，HFS+ 不像一些先进的文件系统，支持写入时复制事务模型，也没有快照和克隆。这使得用户数据时时处于风险之中。例如由于因为断电、内核崩溃等原因，文件系统上写到一半的数据，小则导致个别文件损坏，大则导致整个文件系统崩溃。在生产领域，这样不可靠的文件系统，很有可能带来致命的灾难。<br>　　正是由于上述这些原因，连我们介绍过的短视的 Linus Torvalds 都认为 HFS+ 是个垃圾文件系统。苹果自然受不了这种侮辱，因此，干掉 HFS+ 势在必行。用什么取代 HFS+ 呢？苹果开始秘密研发下一代的文件系统。</p>
+<p>　　由于各种缺点，干掉 HFS+ 势在必行，然而用什么取代 HFS+ 呢？苹果开始秘密研发下一代的文件系统——ZFS，然而在诸多因素的干扰下，Mac OS X 的 ZFS 支持却只是昙花一现，未来文件系统之路将走向何方？</p>
+<h2 id="文件系统的新时代——ZFS"><a href="#文件系统的新时代——ZFS" class="headerlink" title="文件系统的新时代——ZFS"></a>文件系统的新时代——ZFS</h2><p>　　为了代替 HFS+，苹果开始为研发下一代文件系统招兵买马，准备大干一场。但这时 Sun 公司的工作让苹果的员工们为之一振。</p>
+<p>　　2004 年，Sun 公司发表了其杰出的文件系统ZFS。这是一个 128 位的文件系统，本为 Solaris 操作系统开发，于 2005 年 10 月 31 日并入了 Solaris开发的主干原始码。后成为一个使用 CDDL 协议条款授权的开源项目。</p>
+<p>　　ZFS 是一个具有高存储容量、文件系统与卷管理概念整合、崭新的磁碟逻辑结构的轻量级文件系统，同时也是一个便捷的存储池管理系统。</p>
+<p>　　ZFS 的一个重大特点就是拥有大容量。ZFS 是一个 128 位的文件系统，这意味着它能存储 1800 亿亿（18.4×1018）倍于当前 64 位文件系统的数据。ZFS 的设计如此超前以至于这个极限就当前现实而言可能永远无法遇到。项目领导 Bonwick 曾说：“要填满一个 128 位的文件系统，将耗尽地球上所有存储设备，除非你拥有煮沸整个海洋的能量。”假设每秒钟创建 1000 个新文件，达到 ZFS 文件数的极限需要约 9000 年。</p>
+<p>　　此外，ZFS 的一个重要指导思想是不单单去做一个文件系统，而是实现一套完整的卷管理方案。不同于传统文件系统需要驻留于单独设备或者需要一个卷管理系统去使用一个以上的设备，ZFS 建立在虚拟的被称为“zpools”的存储池之上。每个存储池由若干虚拟设备组成。这些虚拟设备可以是原始磁碟，也可能是一 RAID1 镜像设备，或是非标准 RAID 等级的多磁碟组。于是 zpool 上的文件系统可以使用这些虚拟设备的总存储容量。</p>
+<p>　　有了卷管理方案后，ZFS 走得更远，加入了快照和克隆等实用的文件系统功能。当 ZFS 写新数据时，包含旧数据的块被保留，磁盘只写入修改过的那部分数据块。所以快照的建立非常快，只存储两个快照间的数据差异，因此快照也是空间优化的。克隆指两个独立的文件系统共享一些列的块。当任何一个克隆版本的文件系统被改变时，只创建改动的数据块，因此非常快速，也占用少得多的空间。<br>　　而 ZFS 最大的贡献在于它是第一个支持写入时复制功能（COW，copy on write）的文件系统。所有文件系统中的块都包括 256 位的校验值。含有活动数据的块从来不被覆盖；而是分配一个新块，并把修改过的数据写在新块上。所有与该块相关的元数据块都被重新读、分配和重写。因此，当一个数据写入时发生了任何意外错误，原先的数据依然可以被访问，且文件系统知道哪个操作出了错误而没有完成。ZFS 的快照和克隆正是因此项技术而得以实现。</p>
+<p>　　ZFS 对于用户而言，界面友好。先前 Unix的卷管理非常烦琐，FreeBSD 因此还建了一套宏伟的框架，给逻辑卷管理做深层次的抽象。而 ZFS 文件系统自带卷管理方案，几乎所有烦琐复杂的操作都能在一两条命令内完成，我用传统的卷管理工具已有近十个年头，第一次使用 ZFS 时，完全被其易用性震撼，所以我毫不犹豫地把手头所有的服务器迁移到了 ZFS。</p>
+<p>　　由于 ZFS 各种美好，加上其开源性质，所有的操作系统都想支持它。Solaris、OpenSolaris 项目一直作为标准实现供其他系统参考。Pawe Jakub Dawidek 把 ZFS 移到 FreeBSD，并在 2009 年进入了 FreeBSD 7，作为 FreeBSD 第七版最耀眼的三项功能之一（另一项功能是我们先前提到的 ULE，以及 Sun DTrace 的移植工作）。NetBSD 在 2009 年正式收纳 ZFS。Linux 则麻烦得多，因为 Linux 内核的协议 GPL 是个和很多协议都水火不容的奇葩协议，ZFS 分发所采用的 CDDL 和 GPL 会产生冲突，所以一方面 FUSE提供了用户空间层面的支持；另一方面，由 Oracle 牵头，专为 Linux 开发 Btrfs，事实上就是一个 ZFS 的山寨版，可惜折腾了几年，Oracle 自己又把 Sun 收购了，且到我撰写此文时 Btrfs 依然没有正式的稳定版本发布。</p>
+<h2 id="昙花一现的-ZFS-梦"><a href="#昙花一现的-ZFS-梦" class="headerlink" title="昙花一现的 ZFS 梦"></a>昙花一现的 ZFS 梦</h2><p>　　刚才提到，苹果在招兵买马，雇员工开发新一代的文件系统，而 Chris Emura（Apple CoreOS 的文件系统开发经理）及 Don Brady（先前提到，此人领导 HFS+ 的开发）两个富有经验的文件系统开发者却被衣服一样晾在了一边无所事事。2006 年，刚刚提到的 Pawe Jakub Dawidek 正在往 FreeBSD 迁移 Sun 的 ZFS，这项工作立刻引起了 Chris Emura 及 Don Brady 的高度兴趣。由于 ZFS 在 Unix 系统高度的可移植性，加上 Mac OS X 本就是 FreeBSD 的近亲，闲得发慌的两人立即打算往 Mac OS X 移植 ZFS。在 2007 年 4 月 6 日，FreeBSD 的移植宣告完成，等待合并进主干。一周后，两位苹果员工亦成功地完成了 Mac OS X 的移植。</p>
+<p>　　苹果一看两人的 ZFS 的移植工作大有前途，立即跟进。2007 年的苹果全球开发者大会上，苹果让 Chris Emura 及 Don Brady 举办了一场小型讲话，介绍 Mac OS X 对 ZFS 的支持。这场讲话先前并没有在官方声明中告示，但讲话的报告厅依然挤满了听众。随后 ZFS 移植的源码在 Mac OS Forge 公布。在最终版的 Mac OS X 10.5 带有试验性的 ZFS 只读支持，以命令行方式提供。用户可以挂载 ZFS 的存储池，并对池中的文件系统进行读取操作。</p>
+<p>　　苹果一直使移植并使用 Sun 的关键技术，除了 Java 以外，Mac OS X 10.5 的 Xcode 套件也加入了 DTrace 的支持，并提供了一个好用的图形界面 Instruments 让开发者更方便地调用 DTrace。ZFS 除了解决 HFS+ 的所有问题，提供安全可靠的文件系统基础外，还可以简化苹果许多软件的实现。例如前文提到的 Mac OS X 10.5 的 Time Machine，实现颇为烦琐，依赖于给 HFS+ 提供新功能，功能层也需要增加很多的和备份相关的代码。而 ZFS 默认就支持快照，将大大简化 Time Machine 的实现，并使该功能更稳定可靠。事实上在 2008 年 11 月 25 日，Sun 发布了 OpenSolaris 2008.11 版，其中给 GNOME 的 Nautilus 增加了一个使用 ZFS 的快照功能的图形界面插件名为 Time Slider，和苹果的 Time Machine 提供了非常相近的功能，我在使用后感觉不错。</p>
+<p>　　因此在 WWDC 2008 上，Snow Leopard 被提出，其中一项很重要的卖点就是对 ZFS 的完整的读写支持。在 Mac OS X 的服务器版，苹果也将提供一套图形界面工具来方便维护人员管理 ZFS 存储池。在当时的 Snow Leopard Server 主页上，苹果声明 ZFS 将作为一项主推功能。</p>
+<p>　　但好景不长，一年后的苹果开发者大会时，ZFS 相关的内容被悄悄从任何公开的文档、网站、发布会中撤下，没有给出任何的理由。Mac OS Forge 上的 ZFS 代码和页面也被苹果移除。外界有很多对此的猜测，但没有任何猜测得到苹果官方的或是哪怕离职员工的证实。</p>
+<p>　　猜测之一是当时 Sun 刚被 Oracle 收购，而 Oracle 长期投资 ZFS 的竞争产品 Btrfs。因此苹果觉得 ZFS 的前途不甚明朗。</p>
+<p>　　猜测之二是 ZFS 的关键技术 Copy On Write 有专利问题，NetApp 声称他们拥有 COW 的专利因此在起诉 Sun，苹果不想在当中冒风险。</p>
+<p>　　猜测之三是 ZFS 和苹果的 XNU 内核有协议冲突。我虽然不学法律，但我认为这个说法不完全对，因为 ZFS 和 DTrace 一样，是以 CDDL 发布的开源软件，既然 DTrace 可以无后顾之忧地加入到 XNU 中，ZFS 也没有理由不可以。事实上，除了 Linux 这种少数使用 GPL 这类奇葩协议的内核，大多数系统的协议都不和 CDDL 冲突。FreeBSD 也好，Mac OS X 10.5 也罢，都把 ZFS 加入内核发布。<br>　　但事实上，如果把三种猜测并在一起，我们可以看到一个更全局的可能性：对于猜测之二，苹果可能并非想使用 CDDL，而是想从 Sun 买下一个私有的协议，这样一来，Sun 不但提供更好的技术支持，出了问题（比如猜测二中的专利问题）也可以让 Sun 为自己背黑锅。结果 Sun 可能和苹果价格谈不拢，加上猜测之一提到的 Sun 大势已去，让苹果觉得还不如自己造个轮子来得方便。Sun 公司开发 ZFS 的主力 Jeff Bonwick 虽不能提供详细的信息，但他基本证实了这种说法。</p>
+<p>　　无论如何，Mac OS X的 ZFS 支持，如昙花一现般消失了。</p>
+<h2 id="未来文件系统之路走向何方"><a href="#未来文件系统之路走向何方" class="headerlink" title="未来文件系统之路走向何方"></a>未来文件系统之路走向何方</h2><p>　　虽然 Mac OS X的 ZFS 支持被砍了，开源社区依然想继续开发 Mac OS Forge 先前版本的移植。如 MacZFS 项目不遗余力地给 Mac OS X 10.5~10.7 提供 ZFS 读写支持。Don Brady 在苹果将对 ZFS 的支持砍掉之后从工作了 20 多年的苹果离职，开了一家名为 Ten’s Complement 的公司，该公司提供 Z-410，较 MacZFS 提供更新更稳定的移植。</p>
+<p>　　不过，砍了 ZFS 后的苹果目标也变得更清晰——和 Sun 的谈判让苹果觉得与其支付高额的协议费，还不如雇人自己做个新的，再说了，作为比 Sun 大得多的 IT 公司，苹果可以轻而易举地搞个更强大的东西灭了它，因为 ZFS 其实也不如传说中的那样好。</p>
+<p>　　首先，时代在进步。ZFS 之后，又有很多新的和文件系统相关的研究，如 Ohad Rodeh 的论文，即成为后来 BtrFS 实现的基础，可能比 ZFS 做得更好。</p>
+<p>　　其次，ZFS 是十年前开始设计的文件系统，但十年中，存储工具已发生了重大的变化。ZFS 为传统磁盘设计，但传统磁盘的市场空间已不断被 SSD、闪存的吞食。尤其是 MacBook Air 中使用的 Flash 存储器便宜好用又小巧，可能将来会在 MacBook Pro 甚至 iMac 中得到更大的推广。采用为传统磁盘优化的 ZFS 就不显得那么有吸引力。</p>
+<p>　　最后，ZFS 和苹果有不同的用户群。ZFS 目标用户是大企业的工作站和服务器。在那里，大容量的存储空间、高级的卷管理显得非常重要，但苹果面对的基本都是个人用户——先前苹果还卖服务器，但后来 Xserve 都被苹果砍了。有几个个人用户需要使用到 ZFS 这些高级的功能呢？更重要的，苹果的主要利润将移到 iPhone、iPod、iPad、Apple TV 这些小设备上，ZFS 需要占用大量的内存来实现文件系统操作，在这些小设备上，内存很少，ZFS 根本跑不起来。</p>
+<p>　　苹果非常清楚这些问题，工程师们现在一定在紧锣密鼓地开发下一代文件系统。在 10.7 及 10.8 中，这套文件系统并未浮出水面，但一些细节值得留意。在 10.7 中，苹果发布了 Core Storage，但并未声张。这是一套逻辑卷管理工具，类似于前文提到的 FreeBSD 的 GEOM。这个版本的 File Vault 2 亦使用 Core Storage 重写。可以看到虽然苹果在上层不断地淡化文件系统的概念，例如 iCloud 的发布和 iOS 中对于文件这一概念的故意忽略，但苹果在底层文件系统上的动作越来越大，想必在将来，苹果定会让我们感到重大的惊喜。</p>
+
+      
+    </div>
+
+    
+      
+
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/macOS/" rel="tag"># macOS</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/macos/story3.html" rel="next" title="Mac OS X 背后的故事（补充）">
+                <i class="fa fa-chevron-left"></i> Mac OS X 背后的故事（补充）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/macos/story.html" rel="prev" title="Mac OS X 背后的故事（上）">
+                Mac OS X 背后的故事（上） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.miitbeian.gov.cn" rel="noopener" target="_blank">晋ICP备16007512号 </a>&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">khs1994</span>
+
+  
+
+  
+</div>
+
+
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.9.0</div>
+
+
+
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Mist</a> v7.0.1</div>
+
+
+
+  <div class="footer-custom">LNMP by <a href="https://github.com/khs1994-docker/lnmp" class="theme-link" rel="noopener" target="_blank">khs1994-docker/lnmp</a></div>
+
+
+        
+
+
+  <script>
+    var _mtac = {};
+    (function() {
+      var mta = document.createElement("script");
+      mta.src = "https://pingjs.qq.com/h5/stats.js";
+      mta.setAttribute("name", "MTAH5");
+      mta.setAttribute("sid", "500439913");
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(mta, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/reading_progress/reading_progress.js"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=7.0.1"></script>
+
+  <script src="/js/src/motion.js?v=7.0.1"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/schemes/muse.js?v=7.0.1"></script>
+
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=7.0.1"></script>
+<script src="/js/src/post-details.js?v=7.0.1"></script>
+
+
+
+  
+
+
+  <script src="/js/src/next-boot.js?v=7.0.1"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+<script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: false,
+    notify: true,
+    appId: 'XIHxBRQs1ijkKrdjHvb5DJa7-gzGzoHsz',
+    appKey: 'GtQLQEn98uwVGhni3IhveGkc',
+    placeholder: 'Just go go',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: true,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+
+  
+
+</body>
+</html>
