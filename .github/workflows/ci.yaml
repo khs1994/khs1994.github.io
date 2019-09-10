@@ -23,7 +23,7 @@ jobs:
         with:
           git_user: Kang Huaishuai
           git_email: khs1994@khs1994.com
-          key_name: key_rsa
+          key_name: id_rsa
           key: ${{ secrets.SSH_KEY }}
       - name: Hexo Build
         uses: docker://khs1994/hexo
